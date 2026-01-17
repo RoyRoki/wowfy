@@ -116,14 +116,15 @@ export default function RadialOrbitalTimeline({
         const radius = 200;
         const radian = (angle * Math.PI) / 180;
 
-        const x = radius * Math.cos(radian) + centerOffset.x;
-        const y = radius * Math.sin(radian) + centerOffset.y;
+        // Round values to prevent SSR/client hydration mismatches
+        const x = Math.round((radius * Math.cos(radian) + centerOffset.x) * 100) / 100;
+        const y = Math.round((radius * Math.sin(radian) + centerOffset.y) * 100) / 100;
 
         const zIndex = Math.round(100 + 50 * Math.cos(radian));
-        const opacity = Math.max(
+        const opacity = Math.round(Math.max(
             0.4,
             Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2))
-        );
+        ) * 100) / 100;
 
         return { x, y, angle, zIndex, opacity };
     };

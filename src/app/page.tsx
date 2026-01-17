@@ -1,6 +1,4 @@
-import { Hero } from "@/components/sections/Hero";
-import { Welcome } from "@/components/sections/Welcome";
-import { Journey } from "@/components/sections/Journey";
+import { ImmersiveScrollExperience } from "@/components/ui/immersive-scroll-experience";
 import { Services } from "@/components/sections/Services";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -9,10 +7,8 @@ import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main className="relative">
-      <Hero />
-      <Welcome />
-      <Journey />
+    <main className="relative bg-black">
+      <ImmersiveScrollExperience />
       <Services />
       <Portfolio />
       <Testimonials />

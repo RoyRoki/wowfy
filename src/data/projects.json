@@ -1,0 +1,102 @@
+[
+    {
+        "id": "project-1",
+        "title": "Nexus AI Platform",
+        "year": "2024",
+        "role": "Full-Stack Development",
+        "description": "AI-powered analytics dashboard with real-time data visualization and predictive insights for enterprise clients.",
+        "tech": [
+            "Next.js",
+            "Python",
+            "TensorFlow",
+            "AWS",
+            "PostgreSQL"
+        ],
+        "image": "/projects/nexus-ai.jpg",
+        "liveUrl": "https://example.com/nexus",
+        "featured": true
+    },
+    {
+        "id": "project-2",
+        "title": "FinFlow Mobile",
+        "year": "2024",
+        "role": "Mobile App Development",
+        "description": "Cross-platform fintech app enabling seamless payments, budgeting, and investment tracking for 500K+ users.",
+        "tech": [
+            "React Native",
+            "Node.js",
+            "MongoDB",
+            "Stripe",
+            "Firebase"
+        ],
+        "image": "/projects/finflow.jpg",
+        "liveUrl": "https://example.com/finflow",
+        "featured": true
+    },
+    {
+        "id": "project-3",
+        "title": "EcoTrack Dashboard",
+        "year": "2023",
+        "role": "UI/UX Design & Development",
+        "description": "Sustainability metrics platform helping corporations track and reduce their carbon footprint.",
+        "tech": [
+            "Vue.js",
+            "D3.js",
+            "GraphQL",
+            "GCP",
+            "Tailwind"
+        ],
+        "image": "/projects/ecotrack.jpg",
+        "liveUrl": "https://example.com/ecotrack",
+        "featured": true
+    },
+    {
+        "id": "project-4",
+        "title": "HealthSync Pro",
+        "year": "2023",
+        "role": "Backend Architecture",
+        "description": "HIPAA-compliant healthcare platform connecting patients with providers through secure telemedicine.",
+        "tech": [
+            "Node.js",
+            "PostgreSQL",
+            "Docker",
+            "WebRTC",
+            "Azure"
+        ],
+        "image": "/projects/healthsync.jpg",
+        "liveUrl": "https://example.com/healthsync",
+        "featured": false
+    },
+    {
+        "id": "project-5",
+        "title": "CreativeHub Studio",
+        "year": "2023",
+        "role": "Full-Stack Development",
+        "description": "Collaborative design platform enabling real-time editing and asset management for creative teams.",
+        "tech": [
+            "React",
+            "Socket.io",
+            "AWS S3",
+            "Redis",
+            "Figma API"
+        ],
+        "image": "/projects/creativehub.jpg",
+        "featured": false
+    },
+    {
+        "id": "project-6",
+        "title": "LogiChain Network",
+        "year": "2022",
+        "role": "Cloud Architecture",
+        "description": "Supply chain optimization platform with blockchain verification and IoT integration.",
+        "tech": [
+            "Next.js",
+            "Solidity",
+            "AWS IoT",
+            "Kubernetes",
+            "MongoDB"
+        ],
+        "image": "/projects/logichain.jpg",
+        "featured": false
+    }
+]

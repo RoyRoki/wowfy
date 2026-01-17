@@ -1,0 +1,74 @@
+[
+    {
+        "id": "web-apps",
+        "title": "Web & Mobile Apps",
+        "description": "Blazing-fast, pixel-perfect applications built with modern frameworks. From MVPs to enterprise solutions.",
+        "icon": "rocket",
+        "features": [
+            "React & Next.js Development",
+            "React Native & Flutter Mobile",
+            "Progressive Web Apps (PWA)",
+            "Real-time Applications"
+        ]
+    },
+    {
+        "id": "ui-ux",
+        "title": "UI/UX Design",
+        "description": "Award-worthy interfaces that captivate users and drive conversions. Every pixel tells a story.",
+        "icon": "palette",
+        "features": [
+            "User Research & Strategy",
+            "Interactive Prototypes",
+            "Design Systems",
+            "Motion Design"
+        ]
+    },
+    {
+        "id": "backend",
+        "title": "Backend & APIs",
+        "description": "Scalable, secure server architectures that power your applications. Built to handle millions.",
+        "icon": "server",
+        "features": [
+            "Node.js & Python APIs",
+            "GraphQL & REST Design",
+            "Database Architecture",
+            "Microservices"
+        ]
+    },
+    {
+        "id": "cloud",
+        "title": "Cloud Architecture",
+        "description": "Enterprise-grade cloud infrastructure on AWS, GCP, and Azure. Optimized for performance and cost.",
+        "icon": "cloud",
+        "features": [
+            "AWS / GCP / Azure",
+            "Kubernetes & Docker",
+            "CI/CD Pipelines",
+            "Auto-scaling Solutions"
+        ]
+    },
+    {
+        "id": "ai-ml",
+        "title": "AI & ML Integration",
+        "description": "Intelligent features powered by cutting-edge AI. Transform your product with machine learning.",
+        "icon": "brain",
+        "features": [
+            "OpenAI & LLM Integration",
+            "Custom ML Models",
+            "Computer Vision",
+            "Predictive Analytics"
+        ]
+    },
+    {
+        "id": "devops",
+        "title": "DevOps & Maintenance",
+        "description": "Keep your systems running at peak performance. 24/7 monitoring and rapid incident response.",
+        "icon": "settings",
+        "features": [
+            "Infrastructure as Code",
+            "Performance Monitoring",
+            "Security Audits",
+            "Ongoing Support"
+        ]
+    }
+]

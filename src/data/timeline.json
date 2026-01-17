@@ -1,0 +1,42 @@
+[
+    {
+        "id": "step-1",
+        "phase": "01",
+        "title": "Discovery",
+        "subtitle": "Idea",
+        "description": "We dive deep into your vision, understand your goals, and map out the perfect strategy for success.",
+        "icon": "lightbulb"
+    },
+    {
+        "id": "step-2",
+        "phase": "02",
+        "title": "Design",
+        "subtitle": "Wireframe",
+        "description": "Beautiful, functional designs come to life. Every interaction is crafted to delight your users.",
+        "icon": "pencil"
+    },
+    {
+        "id": "step-3",
+        "phase": "03",
+        "title": "Development",
+        "subtitle": "Code",
+        "description": "Clean, scalable code transforms designs into reality. Built with the latest technologies.",
+        "icon": "code"
+    },
+    {
+        "id": "step-4",
+        "phase": "04",
+        "title": "Deployment",
+        "subtitle": "Launch",
+        "description": "Your product goes live with optimized performance, security, and monitoring in place.",
+        "icon": "rocket"
+    },
+    {
+        "id": "step-5",
+        "phase": "05",
+        "title": "Growth",
+        "subtitle": "Scale",
+        "description": "Continuous improvement and optimization ensure your product evolves with your business.",
+        "icon": "chart"
+    }
+]

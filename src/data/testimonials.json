@@ -1,0 +1,47 @@
+[
+    {
+        "id": "testimonial-1",
+        "quote": "They completely transformed our digital presence. The attention to detail and innovative approach exceeded all expectations. Our conversion rate increased by 340%.",
+        "name": "Sarah Chen",
+        "title": "CEO",
+        "company": "TechVentures Inc.",
+        "avatar": "/avatars/sarah.jpg",
+        "rating": 5
+    },
+    {
+        "id": "testimonial-2",
+        "quote": "Working with them felt like having an in-house team. They understood our vision and delivered a product that our users absolutely love.",
+        "name": "Marcus Rodriguez",
+        "title": "Product Director",
+        "company": "Finova Labs",
+        "avatar": "/avatars/marcus.jpg",
+        "rating": 5
+    },
+    {
+        "id": "testimonial-3",
+        "quote": "The best investment we've made. Our app went from concept to App Store featured in just 4 months. Incredible craftsmanship.",
+        "name": "Emily Watson",
+        "title": "Founder",
+        "company": "GreenWave",
+        "avatar": "/avatars/emily.jpg",
+        "rating": 5
+    },
+    {
+        "id": "testimonial-4",
+        "quote": "Their AI integration expertise is unmatched. They built us a recommendation engine that boosted engagement by 200%.",
+        "name": "David Park",
+        "title": "CTO",
+        "company": "DataFlow AI",
+        "avatar": "/avatars/david.jpg",
+        "rating": 5
+    },
+    {
+        "id": "testimonial-5",
+        "quote": "From backend architecture to pixel-perfect frontend, they handle everything with precision. A true end-to-end partner.",
+        "name": "Aisha Patel",
+        "title": "VP Engineering",
+        "company": "Cloudscale",
+        "avatar": "/avatars/aisha.jpg",
+        "rating": 5
+    }
+]

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, assetPath } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export interface GalleryItem {
@@ -49,7 +49,7 @@ export function InteractiveImageGallery({
                     >
                         {item.src && (
                             <Image
-                                src={item.src}
+                                src={assetPath(item.src)}
                                 alt="gallery item"
                                 width={400}
                                 height={300}

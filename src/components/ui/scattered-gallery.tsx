@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, assetPath } from "@/lib/utils";
 
 interface GalleryImage {
     id: string;
@@ -198,7 +198,7 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
                         >
                             <div className="relative w-32 h-24 md:w-48 md:h-36 lg:w-56 lg:h-40 rounded-xl overflow-hidden border-2 border-white/10 shadow-2xl">
                                 <Image
-                                    src={image.src}
+                                    src={assetPath(image.src)}
                                     alt={image.title || "Project screenshot"}
                                     fill
                                     unoptimized

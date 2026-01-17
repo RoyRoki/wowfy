@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { assetPath } from "@/lib/utils";
 
 interface CardItem {
     id: string | number;
@@ -77,7 +78,7 @@ export function StackCard({ cards: initialCards, className = "" }: StackCardProp
                             }
                         >
                             <Image
-                                src={src}
+                                src={assetPath(src)}
                                 alt={alt}
                                 fill
                                 unoptimized

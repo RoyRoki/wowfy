@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
-import { cn } from "@/lib/utils";
+import { cn, assetPath } from "@/lib/utils";
 import { ParticleBurst } from "./ParticleBurst";
 
 export interface Project {
@@ -124,7 +124,7 @@ export function Project3DCard({ project, index, onClick }: Project3DCardProps) {
                 <div className="absolute inset-0">
                     {projectImage ? (
                         <motion.img
-                            src={projectImage}
+                            src={assetPath(projectImage)}
                             alt={project.title}
                             className="w-full h-full object-cover"
                             initial={{ scale: 1.1 }}

@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedMarqueeHero } from "@/components/ui/hero-3";
+import { assetPath } from "@/lib/utils";
 
 // Portfolio images from the project for the marquee
 const WELCOME_IMAGES = [
@@ -18,7 +19,7 @@ const WELCOME_IMAGES = [
     "/projects/Works_Best/p4/images/image copy.png",
     "/projects/Works_Best/p5/images/image copy.png",
     "/projects/Works_Best/p6/images/image copy.png",
-];
+].map(assetPath);
 
 export const Welcome: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);

@@ -1,102 +1,225 @@
 [
     {
         "id": "project-1",
-        "title": "Nexus AI Platform",
+        "title": "AI Study Notes",
         "year": "2024",
         "role": "Full-Stack Development",
-        "description": "AI-powered analytics dashboard with real-time data visualization and predictive insights for enterprise clients.",
+        "description": "Full-stack AI platform for students/freelancers to upload notes/photos → auto-summarize, rewrite, quiz via GPT. Real-time collab, mobile scan (camera OCR), export PDF/Markdown. Scaled to 10K DAU with push notifications.",
         "tech": [
             "Next.js",
-            "Python",
-            "TensorFlow",
-            "AWS",
-            "PostgreSQL"
+            "React Native",
+            "OpenAI",
+            "Supabase",
+            "Three.js",
+            "GSAP"
         ],
-        "image": "/projects/nexus-ai.jpg",
-        "liveUrl": "https://example.com/nexus",
-        "featured": true
+        "image": "/projects/Works_Best/p1/images/image.png",
+        "liveUrl": "https://example.com/ai-study-notes",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/p1/images/image.png",
+            "/projects/Works_Best/p1/images/image copy.png",
+            "/projects/Works_Best/p1/images/image copy 2.png",
+            "/projects/Works_Best/p1/images/image copy 3.png",
+            "/projects/Works_Best/p1/images/image copy 4.png",
+            "/projects/Works_Best/p1/images/image copy 5.png",
+            "/projects/Works_Best/p1/images/image copy 6.png",
+            "/projects/Works_Best/p1/images/image copy 7.png",
+            "/projects/Works_Best/p1/images/image copy 8.png",
+            "/projects/Works_Best/p1/images/image copy 9.png"
+        ],
+        "metrics": {
+            "users": "360K",
+            "revenue": "$19K/mo",
+            "retention": "85%"
+        },
+        "problem": "Students struggle with poor note retention and fragmented study materials across devices.",
+        "solution": "Built AI vision + LLM pipeline (OpenAI/Anthropic) for 40% better recall; responsive PWA for cross-device sync with real-time collaboration.",
+        "results": "360K users, $19K/mo revenue via Stripe subscriptions, 85% retention rate."
     },
     {
         "id": "project-2",
-        "title": "FinFlow Mobile",
+        "title": "Freelancer Portal",
         "year": "2024",
-        "role": "Mobile App Development",
-        "description": "Cross-platform fintech app enabling seamless payments, budgeting, and investment tracking for 500K+ users.",
+        "role": "Full-Stack Development",
+        "description": "End-to-end dashboard for freelancers: Invoicing (PDF gen), real-time chat, milestone tracking, AI proposal writer. Clients approve payments, view analytics. Responsive for desktop/mobile invoicing.",
         "tech": [
-            "React Native",
-            "Node.js",
-            "MongoDB",
+            "React 18",
+            "Next.js",
+            "Prisma",
+            "Socket.io",
             "Stripe",
-            "Firebase"
+            "GSAP"
         ],
-        "image": "/projects/finflow.jpg",
-        "liveUrl": "https://example.com/finflow",
-        "featured": true
+        "image": "/projects/Works_Best/p2/images/image.png",
+        "liveUrl": "https://example.com/freelancer-portal",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/p2/images/image.png",
+            "/projects/Works_Best/p2/images/image copy.png",
+            "/projects/Works_Best/p2/images/image copy 2.png",
+            "/projects/Works_Best/p2/images/image copy 3.png",
+            "/projects/Works_Best/p2/images/image copy 4.png",
+            "/projects/Works_Best/p2/images/image copy 5.png",
+            "/projects/Works_Best/p2/images/image copy 6.png",
+            "/projects/Works_Best/p2/images/image copy 7.png",
+            "/projects/Works_Best/p2/images/image copy 8.png"
+        ],
+        "metrics": {
+            "users": "5K",
+            "processed": "$50K",
+            "onTime": "92%"
+        },
+        "problem": "Freelancers juggle fragmented tools for invoicing, communication, and project tracking.",
+        "solution": "Unified Prisma/Stripe integration with AI (Claude) that drafts proposals 3x faster than manual writing.",
+        "results": "5K freelancers onboarded, $50K processed, 92% on-time payments."
     },
     {
         "id": "project-3",
-        "title": "EcoTrack Dashboard",
+        "title": "Analytics Dashboard",
         "year": "2023",
         "role": "UI/UX Design & Development",
-        "description": "Sustainability metrics platform helping corporations track and reduce their carbon footprint.",
+        "description": "Privacy-first dashboard: Track site metrics, real-time graphs, custom alerts. Multi-tenant (user plans), AI insights (Gemini summaries). Embed widgets, mobile push reports.",
         "tech": [
-            "Vue.js",
-            "D3.js",
-            "GraphQL",
-            "GCP",
-            "Tailwind"
+            "React",
+            "FastAPI",
+            "PostgreSQL",
+            "Docker",
+            "Recharts",
+            "Framer"
         ],
-        "image": "/projects/ecotrack.jpg",
-        "liveUrl": "https://example.com/ecotrack",
-        "featured": true
+        "image": "/projects/Works_Best/p3/images/image.png",
+        "liveUrl": "https://example.com/analytics-dashboard",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/p3/images/image.png",
+            "/projects/Works_Best/p3/images/image copy.png",
+            "/projects/Works_Best/p3/images/image copy 2.png",
+            "/projects/Works_Best/p3/images/image copy 3.png",
+            "/projects/Works_Best/p3/images/image copy 4.png",
+            "/projects/Works_Best/p3/images/image copy 5.png",
+            "/projects/Works_Best/p3/images/image copy 6.png",
+            "/projects/Works_Best/p3/images/image copy 7.png",
+            "/projects/Works_Best/p3/images/image copy 8.png",
+            "/projects/Works_Best/p3/images/image copy 9.png"
+        ],
+        "metrics": {
+            "sites": "12K",
+            "events": "2M/day",
+            "arr": "$8K/mo"
+        },
+        "problem": "Data overload made it difficult for users to extract actionable insights from analytics.",
+        "solution": "React Flow for custom visualizations; cloud migration (GCP) cut infrastructure costs by 60%.",
+        "results": "12K sites tracked, 2M events/day processed, $8K/mo ARR."
     },
     {
         "id": "project-4",
-        "title": "HealthSync Pro",
+        "title": "HealthSync",
         "year": "2023",
-        "role": "Backend Architecture",
-        "description": "HIPAA-compliant healthcare platform connecting patients with providers through secure telemedicine.",
+        "role": "Mobile & Backend Development",
+        "description": "Clinic platform: Book slots, video consult (Twilio), patient records, AI symptom checker. Full responsive—phone telehealth, laptop admin dashboard.",
         "tech": [
+            "React Native",
+            "Next.js",
             "Node.js",
-            "PostgreSQL",
-            "Docker",
-            "WebRTC",
-            "Azure"
+            "Twilio",
+            "Gemini AI",
+            "Prisma"
         ],
-        "image": "/projects/healthsync.jpg",
+        "image": "/projects/Works_Best/p4/images/image.png",
         "liveUrl": "https://example.com/healthsync",
-        "featured": false
+        "featured": false,
+        "deviceType": "phone",
+        "screenshots": [
+            "/projects/Works_Best/p4/images/image.png",
+            "/projects/Works_Best/p4/images/image copy.png",
+            "/projects/Works_Best/p4/images/image copy 2.png",
+            "/projects/Works_Best/p4/images/image copy 3.png",
+            "/projects/Works_Best/p4/images/image copy 4.png",
+            "/projects/Works_Best/p4/images/image copy 5.png",
+            "/projects/Works_Best/p4/images/image copy 6.png",
+            "/projects/Works_Best/p4/images/image copy 7.png",
+            "/projects/Works_Best/p4/images/image copy 8.png"
+        ],
+        "metrics": {
+            "bookings": "15K",
+            "uptime": "98%",
+            "revenue": "$15K/mo"
+        },
+        "problem": "High no-show rates and logistical challenges for clinic appointment management.",
+        "solution": "Calendar AI predictions reduced no-shows by 30%; Azure cloud for HIPAA compliance.",
+        "results": "15K bookings processed, 98% uptime, $15K/mo revenue for partner clinics."
     },
     {
         "id": "project-5",
-        "title": "CreativeHub Studio",
+        "title": "Inventory Manager",
         "year": "2023",
         "role": "Full-Stack Development",
+        "description": "For e-comm/retail: Stock alerts, barcode scan (mobile), multi-warehouse dashboard, AI demand forecast.",
+        "tech": [
+            "React",
+            "Next.js",
+            "PostgreSQL",
+            "Docker",
+            "TensorFlow.js",
+            "Three.js"
+        ],
+        "image": "/projects/Works_Best/p5/images/image.png",
+        "featured": false,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/p5/images/image.png",
+            "/projects/Works_Best/p5/images/image copy.png",
+            "/projects/Works_Best/p5/images/image copy 2.png",
+            "/projects/Works_Best/p5/images/image copy 3.png",
+            "/projects/Works_Best/p5/images/image copy 4.png",
+            "/projects/Works_Best/p5/images/image copy 5.png",
+            "/projects/Works_Best/p5/images/image copy 6.png",
+            "/projects/Works_Best/p5/images/image copy 7.png",
+            "/projects/Works_Best/p5/images/image copy 8.png"
+        ],
+        "metrics": {
+            "inventory": "$2M",
+            "accuracy": "99%",
+            "savings": "25%"
+        },
+        "problem": "Overstock and inventory inaccuracies led to significant capital waste.",
+        "solution": "ML forecasting (TensorFlow.js) predicts demand with 25% cost savings; DevOps CI/CD for reliability.",
+        "results": "Managed $2M inventory, 99% accuracy, 25% cost savings achieved."
+    },
+    {
+        "id": "project-6",
+        "title": "Creative Studio",
+        "year": "2022",
+        "role": "Frontend Development",
         "description": "Collaborative design platform enabling real-time editing and asset management for creative teams.",
         "tech": [
             "React",
             "Socket.io",
             "AWS S3",
             "Redis",
-            "Figma API"
+            "Figma API",
+            "Framer Motion"
         ],
-        "image": "/projects/creativehub.jpg",
-        "featured": false
-    },
-    {
-        "id": "project-6",
-        "title": "LogiChain Network",
-        "year": "2022",
-        "role": "Cloud Architecture",
-        "description": "Supply chain optimization platform with blockchain verification and IoT integration.",
-        "tech": [
-            "Next.js",
-            "Solidity",
-            "AWS IoT",
-            "Kubernetes",
-            "MongoDB"
+        "image": "/projects/Works_Best/p6/images/image.png",
+        "featured": false,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/p6/images/image.png",
+            "/projects/Works_Best/p6/images/image copy.png",
+            "/projects/Works_Best/p6/images/image copy 2.png",
+            "/projects/Works_Best/p6/images/image copy 3.png"
         ],
-        "image": "/projects/logichain.jpg",
-        "featured": false
+        "metrics": {
+            "teams": "200+",
+            "assets": "50K",
+            "collab": "Real-time"
+        },
+        "problem": "Creative teams struggled with version control and real-time collaboration on design assets.",
+        "solution": "WebSocket-powered real-time sync with Figma API integration for seamless workflows.",
+        "results": "200+ teams onboarded, 50K assets managed, real-time collaboration achieved."
     }
 ]

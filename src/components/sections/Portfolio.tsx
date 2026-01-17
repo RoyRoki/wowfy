@@ -1,224 +1,219 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectsData from "@/data/projects.json";
 import { cn } from "@/lib/utils";
+import { Project3DCard, type Project } from "@/components/ui/Project3DCard";
+import { ProjectDetails } from "@/components/sections/ProjectDetails";
+import { KineticWords } from "@/components/ui/KineticText";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Portfolio() {
-    const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
+    const [isReducedMotion, setIsReducedMotion] = useState(false);
+
+    // Check for reduced motion preference
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        setIsReducedMotion(mediaQuery.matches);
+        const handler = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
+        mediaQuery.addEventListener("change", handler);
+        return () => mediaQuery.removeEventListener("change", handler);
+    }, []);
+
+    // GSAP header animation
+    useEffect(() => {
+        if (!headerRef.current || isReducedMotion) return;
+
+        const ctx = gsap.context(() => {
+            gsap.from(headerRef.current, {
+                opacity: 0,
+                y: 60,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+            });
+        });
+
+        return () => ctx.revert();
+    }, [isReducedMotion]);
+
+    // Cast projects data with proper typing
+    const projects = projectsData as Project[];
+    const featuredProjects = projects.filter((p) => p.featured);
+    const otherProjects = projects.filter((p) => !p.featured);
 
     return (
-        <section id="portfolio" className="section-padding relative overflow-hidden">
-            <div className="absolute inset-0 bg-[var(--color-background-alt)]/50" />
+        <>
+            <section
+                id="portfolio"
+                ref={sectionRef}
+                className="section-padding relative overflow-hidden"
+            >
+                {/* Background Effects */}
+                <div className="absolute inset-0 bg-[var(--color-background-alt)]/50" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent)]/5 to-transparent" />
 
-            <div className="container-wide relative z-10">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-sm uppercase tracking-widest text-[var(--color-accent)] mb-4 block">
-                        Our Work
-                    </span>
-                    <h2 className="text-headline mb-6">
-                        Featured <span className="text-gradient">Projects</span>
-                    </h2>
-                    <p className="text-body-lg max-w-2xl mx-auto">
-                        A showcase of our finest work — crafted with precision and passion.
-                    </p>
-                </motion.div>
-
-                {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projectsData.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                            <ProjectCard
-                                project={project}
-                                onClick={() => setSelectedProject(project)}
-                            />
-                        </motion.div>
-                    ))}
+                {/* Animated Grid Pattern */}
+                <div className="absolute inset-0 opacity-[0.02]">
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            backgroundImage: `linear-gradient(var(--color-accent) 1px, transparent 1px),
+                                            linear-gradient(90deg, var(--color-accent) 1px, transparent 1px)`,
+                            backgroundSize: "60px 60px",
+                        }}
+                    />
                 </div>
-            </div>
 
-            {/* Project Modal */}
+                <div className="container-wide relative z-10">
+                    {/* Header */}
+                    <div ref={headerRef} className="text-center mb-20">
+                        <motion.span
+                            className="inline-block text-sm uppercase tracking-[0.3em] text-[var(--color-accent)] mb-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            Selected Works
+                        </motion.span>
+
+                        <h2 className="text-headline mb-8">
+                            <KineticWords
+                                text="Featured Projects"
+                                className="text-white"
+                                delay={0.2}
+                            />
+                        </h2>
+
+                        <motion.p
+                            className="text-body-lg max-w-2xl mx-auto text-[var(--color-text-muted)]"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                        >
+                            A curated showcase of projects crafted with precision, passion, and cutting-edge technology.
+                        </motion.p>
+                    </div>
+
+                    {/* Featured Projects Grid - Masonry Style */}
+                    <div
+                        ref={gridRef}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-20"
+                    >
+                        {featuredProjects.map((project, index) => (
+                            <div
+                                key={project.id}
+                                className={cn(
+                                    // Create masonry effect with varying heights
+                                    index === 0 && "lg:row-span-2",
+                                    index === 1 && "lg:col-span-2"
+                                )}
+                            >
+                                <Project3DCard
+                                    project={project}
+                                    index={index}
+                                    onClick={() => setSelectedProject(project)}
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Other Projects */}
+                    {otherProjects.length > 0 && (
+                        <>
+                            <motion.div
+                                className="text-center mb-12"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                            >
+                                <span className="text-sm uppercase tracking-widest text-[var(--color-text-muted)]">
+                                    More Projects
+                                </span>
+                            </motion.div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {otherProjects.map((project, index) => (
+                                    <Project3DCard
+                                        key={project.id}
+                                        project={project}
+                                        index={index + featuredProjects.length}
+                                        onClick={() => setSelectedProject(project)}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    {/* View All CTA */}
+                    <motion.div
+                        className="text-center mt-16"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <motion.button
+                            className={cn(
+                                "group relative inline-flex items-center gap-3",
+                                "px-8 py-4 rounded-full",
+                                "bg-transparent border-2 border-[var(--color-accent)]",
+                                "text-[var(--color-accent)] font-medium",
+                                "overflow-hidden transition-colors duration-300",
+                                "hover:text-white"
+                            )}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <span className="absolute inset-0 bg-[var(--color-accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                            <span className="relative">View All Projects</span>
+                            <svg
+                                className="relative w-5 h-5 group-hover:translate-x-1 transition-transform"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                            </svg>
+                        </motion.button>
+                    </motion.div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute -right-32 top-1/4 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute -left-32 bottom-1/4 w-64 h-64 bg-[var(--color-highlight)]/10 rounded-full blur-[100px] pointer-events-none" />
+            </section>
+
+            {/* Project Details Modal */}
             <AnimatePresence>
                 {selectedProject && (
-                    <ProjectModal
+                    <ProjectDetails
                         project={selectedProject}
                         onClose={() => setSelectedProject(null)}
                     />
                 )}
             </AnimatePresence>
-        </section>
-    );
-}
-
-interface ProjectCardProps {
-    project: typeof projectsData[0];
-    onClick: () => void;
-}
-
-function ProjectCard({ project, onClick }: ProjectCardProps) {
-    return (
-        <motion.div
-            onClick={onClick}
-            className={cn(
-                "group relative overflow-hidden rounded-2xl",
-                "bg-[var(--color-surface-elevated)]",
-                "border border-white/[0.08]",
-                "cursor-pointer h-[300px] md:h-[350px]"
-            )}
-            whileHover={{ y: -8 }}
-            transition={{ duration: 0.3 }}
-        >
-            {/* Placeholder Image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-highlight)]/20">
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl font-bold text-white/10">
-                        {project.title.charAt(0)}
-                    </div>
-                </div>
-            </div>
-
-            {/* Overlay */}
-            <motion.div
-                className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300"
-            />
-
-            {/* Content */}
-            <div className="absolute inset-x-0 bottom-0 p-6">
-                {/* Tags */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                    {project.tech.slice(0, 3).map((tech, i) => (
-                        <span
-                            key={i}
-                            className="px-2 py-1 text-xs rounded-full bg-white/10 text-white/80"
-                        >
-                            {tech}
-                        </span>
-                    ))}
-                </motion.div>
-
-                {/* Title & Role */}
-                <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-[var(--color-highlight)] transition-colors">
-                    {project.title}
-                </h3>
-                <p className="text-sm text-white/60">{project.role}</p>
-
-                {/* Year */}
-                <span className="absolute top-6 right-6 text-sm text-white/40">
-                    {project.year}
-                </span>
-            </div>
-
-            {/* Hover Glow */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/10 to-[var(--color-highlight)]/10" />
-            </div>
-        </motion.div>
-    );
-}
-
-interface ProjectModalProps {
-    project: typeof projectsData[0];
-    onClose: () => void;
-}
-
-function ProjectModal({ project, onClose }: ProjectModalProps) {
-    return (
-        <>
-            {/* Backdrop */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={onClose}
-                className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
-            />
-
-            {/* Modal */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 50 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 50 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="fixed inset-4 md:inset-[10%] z-50 overflow-auto rounded-3xl glass-strong"
-            >
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-
-                <div className="p-6 md:p-12">
-                    {/* Header */}
-                    <div className="mb-8">
-                        <span className="text-sm text-[var(--color-highlight)] uppercase tracking-wider">
-                            {project.year} • {project.role}
-                        </span>
-                        <h2 className="text-title mt-2 mb-4">{project.title}</h2>
-                        <p className="text-body-lg">{project.description}</p>
-                    </div>
-
-                    {/* Tech Stack */}
-                    <div className="mb-8">
-                        <h3 className="text-sm uppercase tracking-wider text-[var(--color-text-muted)] mb-4">
-                            Tech Stack
-                        </h3>
-                        <div className="flex flex-wrap gap-3">
-                            {project.tech.map((tech, i) => (
-                                <span
-                                    key={i}
-                                    className="px-4 py-2 rounded-full border border-[var(--color-accent)]/30 text-sm text-[var(--color-accent)]"
-                                >
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Placeholder for project visual */}
-                    <div className="aspect-video rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-highlight)]/20 flex items-center justify-center">
-                        <div className="text-8xl font-bold text-white/10">
-                            {project.title.charAt(0)}
-                        </div>
-                    </div>
-
-                    {/* CTA */}
-                    {project.liveUrl && (
-                        <div className="mt-8 text-center">
-                            <a
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--color-accent)] text-white font-medium hover:opacity-90 transition-opacity"
-                            >
-                                View Live Project
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
-                        </div>
-                    )}
-                </div>
-            </motion.div>
         </>
     );
 }

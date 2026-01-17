@@ -1,0 +1,12 @@
+{
+    "email": "hello@example.com",
+    "phone": "9800881300",
+    "whatsapp": "9800881300",
+    "social": {
+        "twitter": "",
+        "linkedin": "",
+        "github": "",
+        "instagram": ""
+    },
+    "calendly": "https://cal.com/jatin-yadav05/15min"
+}

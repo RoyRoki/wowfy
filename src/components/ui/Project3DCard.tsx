@@ -98,7 +98,7 @@ export function Project3DCard({ project, index, onClick }: Project3DCardProps) {
             viewport={{ once: true, margin: "-50px" }}
             transition={{
                 duration: 0.6,
-                delay: index * 0.1,
+                delay: index * 0.12,
                 ease: [0.16, 1, 0.3, 1],
             }}
             onMouseMove={handleMouseMove}
@@ -112,12 +112,26 @@ export function Project3DCard({ project, index, onClick }: Project3DCardProps) {
                     "bg-[var(--color-surface-elevated)]",
                     "border border-white/[0.08]",
                     "h-[320px] md:h-[380px]",
-                    "transform-gpu will-change-transform"
+                    "transform-gpu will-change-transform",
+                    "transition-all duration-500 ease-out"
                 )}
                 style={{
                     rotateX,
                     rotateY,
                     transformStyle: "preserve-3d",
+                }}
+                whileHover={{
+                    scale: 1.03,
+                    y: -8,
+                    transition: {
+                        duration: 0.4,
+                        ease: [0.16, 1, 0.3, 1],
+                    },
+                }}
+                animate={{
+                    boxShadow: isHovered
+                        ? "0 20px 60px rgba(124, 58, 237, 0.3), 0 0 0 1px rgba(167, 139, 250, 0.4)"
+                        : "0 4px 20px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.08)",
                 }}
             >
                 {/* Image / Gradient Background */}

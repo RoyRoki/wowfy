@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectsData from "@/data/projects.json";
@@ -20,6 +20,14 @@ export function Portfolio() {
     const headerRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
     const [isReducedMotion, setIsReducedMotion] = useState(false);
+
+    // Parallax scroll effect for background
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+    const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+    const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
     // Check for reduced motion preference
     useEffect(() => {
@@ -58,6 +66,7 @@ export function Portfolio() {
 
     return (
         <>
+
             <section
                 id="portfolio"
                 ref={sectionRef}
@@ -65,7 +74,10 @@ export function Portfolio() {
             >
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-[var(--color-background-alt)]/50" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent)]/5 to-transparent" />
+                <motion.div
+                    className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent)]/5 to-transparent"
+                    style={{ y: isReducedMotion ? 0 : y1 }}
+                />
 
                 {/* Animated Grid Pattern */}
                 <div className="absolute inset-0 opacity-[0.02]">
@@ -107,7 +119,7 @@ export function Portfolio() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            A curated showcase of projects crafted with precision, passion, and cutting-edge technology.
+                            A curated selection of standout work, demonstrating precision in design, full-stack development, and innovative solutions across diverse domains.
                         </motion.p>
                     </div>
 
@@ -133,33 +145,6 @@ export function Portfolio() {
                             </div>
                         ))}
                     </div>
-
-                    {/* Other Projects */}
-                    {otherProjects.length > 0 && (
-                        <>
-                            <motion.div
-                                className="text-center mb-12"
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                            >
-                                <span className="text-sm uppercase tracking-widest text-[var(--color-text-muted)]">
-                                    More Projects
-                                </span>
-                            </motion.div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {otherProjects.map((project, index) => (
-                                    <Project3DCard
-                                        key={project.id}
-                                        project={project}
-                                        index={index + featuredProjects.length}
-                                        onClick={() => setSelectedProject(project)}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    )}
 
                     {/* View All CTA */}
                     <motion.div
@@ -200,9 +185,15 @@ export function Portfolio() {
                     </motion.div>
                 </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute -right-32 top-1/4 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full blur-[100px] pointer-events-none" />
-                <div className="absolute -left-32 bottom-1/4 w-64 h-64 bg-[var(--color-highlight)]/10 rounded-full blur-[100px] pointer-events-none" />
+                {/* Decorative Elements with Parallax */}
+                <motion.div
+                    className="absolute -right-32 top-1/4 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full blur-[100px] pointer-events-none"
+                    style={{ y: isReducedMotion ? 0 : y2 }}
+                />
+                <motion.div
+                    className="absolute -left-32 bottom-1/4 w-64 h-64 bg-[var(--color-highlight)]/10 rounded-full blur-[100px] pointer-events-none"
+                    style={{ y: isReducedMotion ? 0 : y1 }}
+                />
             </section>
 
             {/* Project Details Modal */}

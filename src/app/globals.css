@@ -414,6 +414,11 @@ html.lenis body {
   background: linear-gradient(to bottom right, #6366f1, #3b82f6, #14b8a6);
 }
 
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+
 /* Z-index utilities */
 .z-10 {
   z-index: 10;

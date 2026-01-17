@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SphereImageGrid, { ImageData } from "@/components/ui/image-sphere";
+import { TechModelViewer, preloadModels } from "@/components/ui/tech-model-viewer";
+import { motion, AnimatePresence } from "framer-motion";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -43,15 +45,50 @@ const TECH_LOGOS: ImageData[] = [
 ];
 
 const TECH_CATEGORIES = [
-    { label: "Frontend", tech: "Next.js", color: "from-white via-gray-200 to-gray-400" },
-    { label: "Backend", tech: "Golang", color: "from-cyan-400 via-sky-500 to-blue-600" },
-    { label: "Mobile", tech: "Flutter", color: "from-pink-400 via-purple-500 to-blue-500" },
+    { label: "Frontend", tech: "Next.js", color: "from-white via-gray-200 to-gray-400", modelPath: "/3d/react_logo.glb" },
+    { label: "Backend", tech: "Golang", color: "from-cyan-400 via-sky-500 to-blue-600", modelPath: "/3d/gopher.glb" },
+    { label: "Mobile", tech: "Flutter", color: "from-pink-400 via-purple-500 to-blue-500", modelPath: "/3d/flutter.glb" },
 ];
+
+// Preload all 3D models
+if (typeof window !== "undefined") {
+    preloadModels(TECH_CATEGORIES.map(cat => cat.modelPath));
+}
 
 export function TechStack() {
     const sectionRef = useRef<HTMLElement>(null);
     const textContainerRef = useRef<HTMLDivElement>(null);
     const sphereContainerRef = useRef<HTMLDivElement>(null);
+    const [activeModel, setActiveModel] = useState<string | null>(null);
+    const [isSectionVisible, setIsSectionVisible] = useState(false);
+
+    // Track section visibility with Intersection Observer
+    useEffect(() => {
+        if (!sectionRef.current) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    setIsSectionVisible(entry.isIntersecting);
+
+                    // Hide active model when leaving section
+                    if (!entry.isIntersecting && activeModel) {
+                        setActiveModel(null);
+                    }
+                });
+            },
+            {
+                threshold: 0.1, // Trigger when at least 10% of section is visible
+                rootMargin: '0px'
+            }
+        );
+
+        observer.observe(sectionRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [activeModel]);
 
     useEffect(() => {
         if (!sectionRef.current || !textContainerRef.current) return;
@@ -201,25 +238,49 @@ export function TechStack() {
 
                 {/* Main Content: Sphere + Text */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
-                    {/* Left: 3D Sphere */}
+                    {/* Left: 3D Sphere with Model Overlay */}
                     <div
                         ref={sphereContainerRef}
-                        className="flex justify-center lg:justify-end"
+                        className="flex justify-center lg:justify-end relative"
                     >
-                        <SphereImageGrid
-                            images={TECH_LOGOS}
-                            containerSize={600}
-                            sphereRadius={220}
-                            dragSensitivity={0.8}
-                            momentumDecay={0.96}
-                            maxRotationSpeed={6}
-                            baseImageScale={0.15}
-                            hoverScale={1.3}
-                            perspective={1000}
-                            autoRotate={true}
-                            autoRotateSpeed={0.2}
-                            className="mx-auto"
-                        />
+                        <div className="relative w-[600px] h-[600px]">
+                            {/* Globe - fades out when model is active */}
+                            <AnimatePresence>
+                                {!activeModel && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                                        className="absolute inset-0"
+                                    >
+                                        <SphereImageGrid
+                                            images={TECH_LOGOS}
+                                            containerSize={600}
+                                            sphereRadius={220}
+                                            dragSensitivity={0.8}
+                                            momentumDecay={0.96}
+                                            maxRotationSpeed={6}
+                                            baseImageScale={0.15}
+                                            hoverScale={1.3}
+                                            perspective={1000}
+                                            autoRotate={true}
+                                            autoRotateSpeed={0.2}
+                                            className="mx-auto"
+                                        />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            {/* 3D Model Viewer - Only render when section is visible */}
+                            {isSectionVisible && (
+                                <TechModelViewer
+                                    modelPath={activeModel}
+                                    onHide={() => setActiveModel(null)}
+                                    autoHideDuration={3000}
+                                />
+                            )}
+                        </div>
                     </div>
 
                     {/* Right: GSAP Animated Text */}
@@ -227,7 +288,8 @@ export function TechStack() {
                         {TECH_CATEGORIES.map((category, index) => (
                             <div
                                 key={category.label}
-                                className="tech-category flex items-baseline gap-6 justify-center"
+                                className="tech-category flex items-baseline gap-6 justify-center cursor-pointer transition-transform hover:scale-105"
+                                onClick={() => setActiveModel(category.modelPath)}
                             >
                                 {/* Label */}
                                 <div className="text-right">

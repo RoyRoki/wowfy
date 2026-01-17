@@ -11,6 +11,7 @@ export function CustomCursor() {
 
     const cursorRef = useRef<HTMLDivElement>(null);
     const ringRef = useRef<HTMLDivElement>(null);
+    const currentHoveredElement = useRef<Element | null>(null);
 
     // Mouse position with spring physics
     const mouseX = useMotionValue(0);
@@ -37,25 +38,59 @@ export function CustomCursor() {
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
+
+            // Check if we're actually over an interactive element
+            const target = e.target as Element;
+            const isOverInteractive = target?.closest(
+                'a, button, [data-cursor="pointer"], input, textarea, [role="button"]'
+            );
+
+            if (!isOverInteractive && (isHovering || isPointer)) {
+                // Force reset if we're not over an interactive element
+                setIsHovering(false);
+                setIsPointer(false);
+                currentHoveredElement.current = null;
+            }
         };
 
         const handleMouseEnter = () => setIsHidden(false);
-        const handleMouseLeave = () => setIsHidden(true);
+        const handleMouseLeave = () => {
+            setIsHidden(true);
+            setIsHovering(false);
+            setIsPointer(false);
+            currentHoveredElement.current = null;
+        };
 
         // Track interactive elements
-        const handleInteractiveEnter = () => {
+        const handleInteractiveEnter = (e: Event) => {
+            currentHoveredElement.current = e.target as Element;
             setIsHovering(true);
             setIsPointer(true);
         };
 
-        const handleInteractiveLeave = () => {
-            setIsHovering(false);
-            setIsPointer(false);
+        const handleInteractiveLeave = (e: Event) => {
+            // Only reset if we're leaving the element we entered
+            if (currentHoveredElement.current === e.target) {
+                setIsHovering(false);
+                setIsPointer(false);
+                currentHoveredElement.current = null;
+            }
+        };
+
+        // Global mouseout handler to catch edge cases
+        const handleMouseOut = (e: MouseEvent) => {
+            const target = e.target as Element;
+            if (currentHoveredElement.current === target) {
+                setIsHovering(false);
+                setIsPointer(false);
+                currentHoveredElement.current = null;
+            }
         };
 
         window.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseenter", handleMouseEnter);
         document.addEventListener("mouseleave", handleMouseLeave);
+        document.addEventListener("mouseout", handleMouseOut);
 
         // Add listeners to interactive elements
         const interactiveElements = document.querySelectorAll(
@@ -86,6 +121,7 @@ export function CustomCursor() {
             window.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseenter", handleMouseEnter);
             document.removeEventListener("mouseleave", handleMouseLeave);
+            document.removeEventListener("mouseout", handleMouseOut);
 
             interactiveElements.forEach((el) => {
                 el.removeEventListener("mouseenter", handleInteractiveEnter);
@@ -94,7 +130,7 @@ export function CustomCursor() {
 
             observer.disconnect();
         };
-    }, [isTouchDevice, mouseX, mouseY]);
+    }, [isTouchDevice, mouseX, mouseY, isHovering, isPointer]);
 
     // Don't render on touch devices
     if (isTouchDevice) return null;

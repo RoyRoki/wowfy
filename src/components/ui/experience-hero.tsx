@@ -110,7 +110,7 @@ export const ExperienceHero = () => {
                         <div className="relative w-2.5 h-2.5 bg-white rounded-full">
                             <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-30" />
                         </div>
-                        <span className="font-mono text-[11px] font-bold text-white tracking-[0.2em] uppercase">HAIK.DEV</span>
+                        <span className="font-mono text-[11px] font-bold text-white tracking-[0.2em] uppercase">ROKI.DEV</span>
                     </div>
 
                     <div className="max-w-4xl lg:-translate-y-8 pr-12">

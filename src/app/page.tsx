@@ -5,6 +5,7 @@ import { Services } from "@/components/sections/Services";
 import { TechStack } from "@/components/sections/TechStack";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { PricingSection } from "@/components/sections/pricing";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <TechStack />
       <Portfolio />
       <Testimonials />
+      <PricingSection />
       <Contact />
       <Footer />
     </main>

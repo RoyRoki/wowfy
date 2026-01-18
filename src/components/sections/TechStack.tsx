@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SphereImageGrid, { ImageData } from "@/components/ui/image-sphere";
 import { TechModelViewer, preloadModels } from "@/components/ui/tech-model-viewer";
 import { motion, AnimatePresence } from "framer-motion";
+import { assetPath } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -50,9 +51,14 @@ const TECH_CATEGORIES = [
     { label: "Mobile", tech: "Flutter", color: "from-pink-400 via-purple-500 to-blue-500", modelPath: "/3d/flutter.glb" },
 ];
 
+const getTechCategories = () => TECH_CATEGORIES.map(cat => ({
+    ...cat,
+    modelPath: assetPath(cat.modelPath)
+}));
+
 // Preload all 3D models
 if (typeof window !== "undefined") {
-    preloadModels(TECH_CATEGORIES.map(cat => cat.modelPath));
+    preloadModels(getTechCategories().map(cat => cat.modelPath));
 }
 
 export function TechStack() {
@@ -285,7 +291,7 @@ export function TechStack() {
 
                     {/* Right: GSAP Animated Text */}
                     <div ref={textContainerRef} className="space-y-16">
-                        {TECH_CATEGORIES.map((category, index) => (
+                        {getTechCategories().map((category, index) => (
                             <div
                                 key={category.label}
                                 className="tech-category flex items-baseline gap-6 justify-center cursor-pointer transition-transform hover:scale-105"

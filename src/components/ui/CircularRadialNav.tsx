@@ -23,6 +23,7 @@ const defaultItems: NavItem[] = [
     { id: "hero", label: "Home", href: "#hero" },
     { id: "welcome", label: "About", href: "#welcome" },
     { id: "services", label: "Services", href: "#services" },
+    { id: "tech-stack", label: "Tech Stack", href: "#tech-stack" },
     { id: "portfolio", label: "Projects", href: "#portfolio" },
     { id: "pricing", label: "Pricing", href: "#pricing" },
     { id: "contact", label: "Contact", href: "#contact" },
@@ -251,7 +252,7 @@ export function CircularRadialNav({ items = defaultItems }: CircularRadialNavPro
                             }}
                         >
                             <button
-                                ref={(el) => (buttonRefs.current[index] = el)}
+                                ref={(el) => { buttonRefs.current[index] = el; }}
                                 onClick={() => handleItemClick(index, item.href)}
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
@@ -282,8 +283,8 @@ export function CircularRadialNav({ items = defaultItems }: CircularRadialNavPro
                                         ${active
                                             ? "w-5 h-5 bg-gradient-to-br from-white via-white to-white/80 shadow-lg shadow-white/30"
                                             : hovered
-                                            ? "w-3 h-3 bg-white/70 scale-110 shadow-md shadow-white/20"
-                                            : "w-2 h-2 bg-white/40"
+                                                ? "w-3 h-3 bg-white/70 scale-110 shadow-md shadow-white/20"
+                                                : "w-2 h-2 bg-white/40"
                                         }
                                     `}
                                     style={{
@@ -298,7 +299,7 @@ export function CircularRadialNav({ items = defaultItems }: CircularRadialNavPro
 
                                 {/* Label - always stays horizontal with smart positioning */}
                                 <div
-                                    ref={(el) => (labelRefs.current[index] = el)}
+                                    ref={(el) => { labelRefs.current[index] = el; }}
                                     className={`
                                         absolute whitespace-nowrap pointer-events-none
                                         transition-all duration-500
@@ -306,8 +307,8 @@ export function CircularRadialNav({ items = defaultItems }: CircularRadialNavPro
                                         ${active
                                             ? "text-white font-semibold text-base tracking-wide"
                                             : hovered
-                                            ? "text-white/90 font-normal text-sm"
-                                            : "text-white/50 font-light text-sm"
+                                                ? "text-white/90 font-normal text-sm"
+                                                : "text-white/50 font-light text-sm"
                                         }
                                     `}
                                     style={{

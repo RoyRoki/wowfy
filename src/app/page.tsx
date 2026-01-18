@@ -23,6 +23,9 @@ export default function Home() {
       <section id="services">
         <Services />
       </section>
+      <section id="tech-stack">
+        <TechStack />
+      </section>
       <section id="portfolio">
         <Portfolio />
       </section>

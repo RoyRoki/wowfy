@@ -12,9 +12,20 @@ export function getBasePath(): string {
 
 // Helper to prefix asset paths with basePath
 export function assetPath(path: string): string {
-    const basePath = getBasePath();
+    // If already an absolute URL, return as-is
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+    }
+
     // Ensure path starts with /
     const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-    return `${basePath}${normalizedPath}`;
+
+    // In production, return full GitHub Pages URL
+    if (process.env.NODE_ENV === 'production') {
+        return `https://royroki.github.io/wowfy${normalizedPath}`;
+    }
+
+    // In development, return local path
+    return normalizedPath;
 }
 

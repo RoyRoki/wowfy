@@ -8,19 +8,30 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { PricingSection } from "@/components/sections/pricing";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { CircularRadialNav } from "@/components/ui/CircularRadialNav";
 
 export default function Home() {
   return (
     <main className="relative">
-      <Hero />
-      <Welcome />
-      <Journey />
-      <Services />
-      <TechStack />
-      <Portfolio />
-      <Testimonials />
-      <PricingSection />
-      <Contact />
+      <CircularRadialNav />
+      <section id="hero">
+        <Hero />
+      </section>
+      <section id="welcome">
+        <Welcome />
+      </section>
+      <section id="services">
+        <Services />
+      </section>
+      <section id="portfolio">
+        <Portfolio />
+      </section>
+      <section id="pricing">
+        <PricingSection />
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
       <Footer />
     </main>
   );

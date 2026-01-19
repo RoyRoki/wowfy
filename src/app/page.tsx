@@ -13,7 +13,7 @@ import { CircularRadialNav } from "@/components/ui/CircularRadialNav";
 export default function Home() {
   return (
     <main className="relative">
-      <CircularRadialNav />
+      {/* <CircularRadialNav /> */}
       <section id="hero">
         <Hero />
       </section>

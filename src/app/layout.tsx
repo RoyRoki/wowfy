@@ -1,28 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, Syne } from "next/font/google";
+import { Inter, Outfit, Manrope } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { CustomCursor } from "@/components/CustomCursor";
 
-// Body font - Clean and readable
-const inter = Inter({
+// Display font - Bold geometric elegance for hero headlines
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+  weight: ["700", "800"],
+});
+
+// Heading font - Open, precise, distinctive for section titles
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+  weight: ["500", "600", "700"],
+});
+
+// Body font - Screen-optimized clarity for readability
+const interDisplay = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
-});
-
-// Heading font - Modern geometric sans
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-// Display font - Distinctive and creative
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -58,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${syne.variable} font-sans antialiased noise`}>
+      <body className={`${interDisplay.variable} ${manrope.variable} ${outfit.variable} font-sans antialiased noise`}>
         <Providers>
           <CustomCursor />
           {children}

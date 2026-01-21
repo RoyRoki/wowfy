@@ -2,18 +2,32 @@ import { Hero } from "@/components/sections/Hero";
 import { Welcome } from "@/components/sections/Welcome";
 import { Journey } from "@/components/sections/Journey";
 import { Services } from "@/components/sections/Services";
+import { WhyUs } from "@/components/sections/WhyUs";
 import { TechStack } from "@/components/sections/TechStack";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { PricingSection } from "@/components/sections/pricing";
 import { Contact } from "@/components/sections/Contact";
+import { Home as HomeIcon, Briefcase, DollarSign, Mail } from "lucide-react"; // Removed as not needed
+import { NavBar } from "@/components/ui/tube-light-navbar";
 import { Footer } from "@/components/sections/Footer";
-import { CircularRadialNav } from "@/components/ui/CircularRadialNav";
 
 export default function Home() {
+  const navItems = [
+    { name: 'Home', url: '#hero', icon: 'Home' },
+    // { name: 'Intro', url: '#welcome', icon: 'User' },
+    { name: 'Services', url: '#services', icon: 'Briefcase' },
+    { name: 'Why Us', url: '#why-us', icon: 'Star' },
+    { name: 'Tech', url: '#tech-stack', icon: 'Code' },
+    { name: 'Works', url: '#portfolio', icon: 'Folder' },
+    { name: 'Pricing', url: '#pricing', icon: 'DollarSign' },
+    { name: 'Contact', url: '#contact', icon: 'Mail' }
+  ];
+
   return (
     <main className="relative">
       {/* <CircularRadialNav /> */}
+      <NavBar items={navItems} />
       <section id="hero">
         <Hero />
       </section>
@@ -22,6 +36,9 @@ export default function Home() {
       </section>
       <section id="services">
         <Services />
+      </section>
+      <section id="why-us">
+        <WhyUs />
       </section>
       <section id="tech-stack">
         <TechStack />

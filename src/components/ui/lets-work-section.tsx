@@ -217,7 +217,7 @@ export function LetsWorkTogether() {
             .then(data => setContactData(data))
             .catch(() => {
                 setContactData({
-                    email: "hello@example.com",
+                    email: "rokiroydev@gmail.com",
                     phone: "9800881300",
                     whatsapp: "9800881300",
                     calendly: "https://cal.com/jatin-yadav05/15min"
@@ -466,7 +466,7 @@ export function LetsWorkTogether() {
                     <div className="flex flex-col items-center gap-2">
                         {/* Animated headline with magnetic characters */}
                         <div
-                            className="text-center text-5xl font-light tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
+                            className="text-center text-5xl font-light tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl font-display"
                             style={{
                                 opacity: isClicked ? 0 : 1,
                             }}
@@ -544,7 +544,7 @@ export function LetsWorkTogether() {
                         Have a project in mind? I'd love to hear about it. Let's create something exceptional together.
                     </p>
                     <span className="text-xs tracking-widest uppercase text-muted-foreground/60">
-                        {contactData?.email || "hello@example.com"}
+                        {contactData?.email || "rokiroydev@gmail.com"}
                     </span>
                 </div>
             </div>

@@ -35,12 +35,29 @@ export const Welcome: React.FC = () => {
     const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1]);
     const y = useTransform(scrollYProgress, [0, 0.5, 1], [60, 0, 0]);
 
+    // Scroll to contact section
+    const handleCtaClick = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <motion.div
             ref={containerRef}
             style={{ opacity, scale, y }}
             className="relative"
         >
+            {/* Background Effects */}
+            <div className="absolute inset-0 z-0">
+                {/* Grid Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+                {/* Radial Gradient for subtle lighting */}
+                <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-indigo-500 opacity-20 blur-[100px]" />
+            </div>
+
             {/* Gradient blend from hero section - creates seamless transition from dark icosahedron */}
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020202] to-transparent z-20 pointer-events-none" />
 
@@ -56,7 +73,8 @@ export const Welcome: React.FC = () => {
                 description="We blend cutting-edge technology with bold creative vision to deliver digital products that captivate, engage, and convert. Your audience deserves nothing less than extraordinary."
                 ctaText="Explore Our Work"
                 images={WELCOME_IMAGES}
-                className="bg-[#020202]"
+                className="bg-transparent relative z-10"
+                onCtaClick={handleCtaClick}
             />
 
             {/* Bottom gradient for smooth transition to next section */}

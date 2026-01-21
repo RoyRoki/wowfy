@@ -114,7 +114,7 @@ export const ExperienceHero = () => {
                     </div>
 
                     <div className="max-w-4xl lg:-translate-y-8 pr-12">
-                        <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] tracking-tighter text-white uppercase italic-none">
+                        <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] tracking-tighter text-white uppercase italic-none font-display">
                             CREATIVE <br /> <span className="text-outline">AGENCY</span>
                         </h1>
                         <p className="mt-8 font-mono text-[11px] text-white/40 uppercase tracking-[0.35em] max-w-sm leading-relaxed">
@@ -122,7 +122,16 @@ export const ExperienceHero = () => {
                         </p>
                     </div>
 
-                    <button ref={ctaRef} className="w-fit flex items-center gap-6 group lg:-translate-y-20">
+                    <button
+                        ref={ctaRef}
+                        className="w-fit flex items-center gap-6 group lg:-translate-y-20"
+                        onClick={() => {
+                            const contactSection = document.getElementById('contact');
+                            if (contactSection) {
+                                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }}
+                    >
                         <div className="w-14 h-14 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-white transition-all duration-500 overflow-hidden">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:stroke-black stroke-white transition-colors duration-500">
                                 <path d="M7 17L17 7M17 7H8M17 7V16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />

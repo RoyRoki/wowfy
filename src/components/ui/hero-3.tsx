@@ -12,11 +12,13 @@ interface AnimatedMarqueeHeroProps {
     ctaText: string;
     images: string[];
     className?: string;
+    onCtaClick?: () => void;
 }
 
 // Reusable Button component styled like in the image
-const ActionButton = ({ children }: { children: React.ReactNode }) => (
+const ActionButton = ({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) => (
     <motion.button
+        onClick={onClick}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="mt-8 px-8 py-3 rounded-full bg-red-500 text-white font-semibold shadow-lg transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
@@ -33,6 +35,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     ctaText,
     images,
     className,
+    onCtaClick,
 }) => {
     // Animation variants for the text content
     const FADE_IN_ANIMATION_VARIANTS = {
@@ -108,7 +111,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                     variants={FADE_IN_ANIMATION_VARIANTS}
                     transition={{ delay: 0.6 }}
                 >
-                    <ActionButton>{ctaText}</ActionButton>
+                    <ActionButton onClick={onCtaClick}>{ctaText}</ActionButton>
                 </motion.div>
             </div>
 

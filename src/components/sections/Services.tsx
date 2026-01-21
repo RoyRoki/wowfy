@@ -1,9 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import servicesData from "@/data/services.json";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const icons: Record<string, React.ReactNode> = {
     rocket: <RocketIcon />,
@@ -15,6 +20,38 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 export function Services() {
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const [chars, setChars] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (headingRef.current) {
+            const text = headingRef.current.textContent || "";
+            setChars(text.split(""));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (chars.length === 0) return;
+
+        const ctx = gsap.context(() => {
+            gsap.from(".char", {
+                scrollTrigger: {
+                    trigger: headingRef.current,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 0,
+                y: 50,
+                rotateX: -90,
+                stagger: 0.02,
+                duration: 0.8,
+                ease: "back.out(1.7)",
+            });
+        });
+
+        return () => ctx.revert();
+    }, [chars]);
+
     return (
         <section id="services" className="section-padding relative overflow-hidden">
             <div className="container-wide">
@@ -29,8 +66,26 @@ export function Services() {
                     <span className="text-sm uppercase tracking-widest text-[var(--color-accent)] mb-4 block">
                         What We Do
                     </span>
-                    <h2 className="text-headline mb-6">
-                        Full-Stack <span className="text-gradient">Expertise</span>
+                    <h2 ref={headingRef} className="text-headline mb-6" style={{ perspective: "1000px" }}>
+                        {chars.length > 0 ? (
+                            chars.map((char, i) => (
+                                <span
+                                    key={i}
+                                    className={cn(
+                                        "char inline-block",
+                                        char === " " ? "w-2" : "",
+                                        i >= 11 ? "text-gradient" : ""
+                                    )}
+                                    style={{ transformOrigin: "50% 100%" }}
+                                >
+                                    {char === " " ? "\u00A0" : char}
+                                </span>
+                            ))
+                        ) : (
+                            <>
+                                Full-Stack <span className="text-gradient">Expertise</span>
+                            </>
+                        )}
                     </h2>
                     <p className="text-body-lg max-w-2xl mx-auto">
                         End-to-end solutions covering every aspect of modern software development.
@@ -67,15 +122,93 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ service }: ServiceCardProps) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const iconRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const card = cardRef.current;
+        const icon = iconRef.current;
+        if (!card || !icon) return;
+
+        // 3D Tilt effect on hover
+        const handleMouseMove = (e: MouseEvent) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+
+            gsap.to(card, {
+                rotateX,
+                rotateY,
+                duration: 0.5,
+                ease: "power2.out",
+                transformPerspective: 1000,
+            });
+        };
+
+        const handleMouseLeave = () => {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 0.5,
+                ease: "power2.out",
+            });
+        };
+
+        card.addEventListener("mousemove", handleMouseMove);
+        card.addEventListener("mouseleave", handleMouseLeave);
+
+        // Magnetic hover effect on icon
+        const handleIconMouseMove = (e: MouseEvent) => {
+            const rect = icon.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            gsap.to(icon, {
+                x: x * 0.3,
+                y: y * 0.3,
+                rotation: x * 0.05,
+                duration: 0.3,
+                ease: "power2.out",
+            });
+        };
+
+        const handleIconMouseLeave = () => {
+            gsap.to(icon, {
+                x: 0,
+                y: 0,
+                rotation: 0,
+                duration: 0.5,
+                ease: "elastic.out(1, 0.3)",
+            });
+        };
+
+        icon.addEventListener("mousemove", handleIconMouseMove);
+        icon.addEventListener("mouseleave", handleIconMouseLeave);
+
+        return () => {
+            card.removeEventListener("mousemove", handleMouseMove);
+            card.removeEventListener("mouseleave", handleMouseLeave);
+            icon.removeEventListener("mousemove", handleIconMouseMove);
+            icon.removeEventListener("mouseleave", handleIconMouseLeave);
+        };
+    }, []);
+
     return (
         <SpotlightCard
             glowColor="purple"
             customSize
             className="h-full !aspect-auto !grid-rows-none"
         >
-            <div className="relative z-10 p-6 md:p-8">
+            <div ref={cardRef} className="relative z-10 p-6 md:p-8" style={{ transformStyle: "preserve-3d" }}>
                 {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-highlight)]/20 flex items-center justify-center mb-6 text-[var(--color-accent)]">
+                <div
+                    ref={iconRef}
+                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-highlight)]/20 flex items-center justify-center mb-6 text-[var(--color-accent)] cursor-pointer"
+                >
                     {icons[service.icon] || <RocketIcon />}
                 </div>
 

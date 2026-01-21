@@ -1,9 +1,49 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BentoPricing } from '@/components/ui/bento-pricing';
 import { cn } from '@/lib/utils';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function PricingSection() {
+    const headingRef = useRef<HTMLDivElement>(null);
+    const pricingRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Animate heading fade in from bottom
+            gsap.from(headingRef.current, {
+                scrollTrigger: {
+                    trigger: headingRef.current,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse',
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out',
+            });
+
+            // Animate pricing cards with stagger
+            gsap.from(pricingRef.current, {
+                scrollTrigger: {
+                    trigger: pricingRef.current,
+                    start: 'top 75%',
+                    toggleActions: 'play none none reverse',
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out',
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
+
     return (
         <div className="bg-[radial-gradient(35%_80%_at_50%_0%,--theme(--color-foreground/.1),transparent)] relative flex size-full min-h-screen items-center justify-center overflow-hidden py-24">
             {/* Dots */}
@@ -27,7 +67,7 @@ export function PricingSection() {
 
             <section className="mx-auto w-full max-w-5xl p-4">
                 {/* Heading */}
-                <div className="mx-auto mb-10 max-w-2xl text-center">
+                <div ref={headingRef} className="mx-auto mb-10 max-w-2xl text-center">
                     <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
                         Data-Driven Growth
                     </h1>
@@ -37,7 +77,9 @@ export function PricingSection() {
                         focus on what matters most.
                     </p>
                 </div>
-                <BentoPricing />
+                <div ref={pricingRef}>
+                    <BentoPricing />
+                </div>
             </section>
         </div>
     );

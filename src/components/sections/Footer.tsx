@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ParticleTextEffect } from "@/components/ui/interactive-text-particle";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -17,22 +18,30 @@ export function Footer() {
     ];
 
     return (
-        <footer className="relative py-16 border-t border-white/10">
-            <div className="container-wide">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                    {/* Logo / Brand */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="flex items-center gap-3"
-                    >
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-highlight)] flex items-center justify-center text-white font-bold">
-                            W
-                        </div>
-                        <span className="text-xl font-semibold">Wowfy</span>
-                    </motion.div>
+        <footer className="relative pt-16 pb-16 border-t border-white/10 min-h-[800px]">
+            {/* Particle Text Effect - Full Footer Background */}
+            <div className="absolute inset-0">
+                <ParticleTextEffect
+                    text="Wowfy"
+                    className="w-full h-full"
+                    colors={[
+                        '8B5CF6',  // Purple
+                        'A78BFA',  // Light Purple
+                        'C084FC',  // Pink Purple
+                        'E879F9',  // Magenta
+                        'F472B6',  // Pink
+                        '06B6D4',  // Cyan
+                        '0EA5E9',  // Sky Blue
+                    ]}
+                    animationForce={60}
+                    particleDensity={4}
+                    enableInitialAnimation={true}
+                />
+            </div>
 
+            <div className="container-wide relative z-10">
+                {/* Top Section - Social Links and Back to Top */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
                     {/* Social Links */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -85,19 +94,23 @@ export function Footer() {
                         </motion.div>
                     </motion.button>
                 </div>
+            </div>
 
-                {/* Bottom Bar */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="mt-12 pt-8 border-t border-white/5 text-center"
-                >
-                    <p className="text-sm text-[var(--color-text-muted)]">
-                        © {currentYear} Wowfy. Crafted with{" "}
-                        <span className="text-red-400">♥</span> & code.
-                    </p>
-                </motion.div>
+            {/* Bottom Bar - Below Particle Text */}
+            <div className="absolute bottom-8 left-0 right-0 z-10">
+                <div className="container-wide">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="pt-8 border-t border-white/10 text-center"
+                    >
+                        <p className="text-xs text-[var(--color-text-muted)]">
+                            © {currentYear} Crafted with{" "}
+                            <span className="text-red-400">♥</span> & Prompt.
+                        </p>
+                    </motion.div>
+                </div>
             </div>
         </footer>
     );

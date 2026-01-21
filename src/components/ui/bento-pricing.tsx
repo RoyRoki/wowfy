@@ -1,10 +1,15 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CheckIcon, SparklesIcon } from 'lucide-react';
+import Link from 'next/link';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type PricingCardProps = {
     titleBadge: string;
@@ -28,13 +33,13 @@ function PricingCard({
     priceLabel,
     priceSuffix = '/month',
     features,
-    cta = 'Subscribe',
+    cta = 'Contact Now',
     className,
 }: PricingCardProps) {
     return (
         <div
             className={cn(
-                'bg-background border-foreground/10 relative overflow-hidden rounded-md border',
+                'bg-background border-foreground/10 relative overflow-hidden rounded-md border pricing-card',
                 'supports-[backdrop-filter]:bg-background/10 backdrop-blur',
                 className,
             )}
@@ -42,7 +47,9 @@ function PricingCard({
             <div className="flex items-center gap-3 p-4">
                 <Badge variant="secondary">{titleBadge}</Badge>
                 <div className="ml-auto">
-                    <Button variant="outline">{cta}</Button>
+                    <Link href="#contact">
+                        <Button variant="outline">{cta}</Button>
+                    </Link>
                 </div>
             </div>
 
@@ -68,11 +75,33 @@ function PricingCard({
 }
 
 export function BentoPricing() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Animate all pricing cards with stagger
+            gsap.from('.pricing-card', {
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top 75%',
+                    toggleActions: 'play none none reverse',
+                },
+                y: 80,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out',
+            });
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-8">
+        <div ref={containerRef} className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-8">
             <div
                 className={cn(
-                    'bg-background border-foreground/10 relative w-full overflow-hidden rounded-md border',
+                    'bg-background border-foreground/10 relative w-full overflow-hidden rounded-md border pricing-card',
                     'supports-[backdrop-filter]:bg-background/10 backdrop-blur',
                     'lg:col-span-5',
                 )}
@@ -90,27 +119,29 @@ export function BentoPricing() {
                     </div>
                 </div>
                 <div className="flex items-center gap-3 p-4">
-                    <Badge variant="secondary">CREATORS SPECIAL</Badge>
+                    <Badge variant="secondary">GROWTH</Badge>
                     <Badge variant="outline" className="hidden lg:flex">
                         <SparklesIcon className="me-1 size-3" /> Most Recommended
                     </Badge>
                     <div className="ml-auto">
-                        <Button>Subscribe</Button>
+                        <Link href="#contact">
+                            <Button>Contact Now</Button>
+                        </Link>
                     </div>
                 </div>
                 <div className="flex flex-col p-4 lg:flex-row">
                     <div className="pb-4 lg:w-[30%]">
                         <span className="font-mono text-5xl font-semibold tracking-tight">
-                            $19
+                            $299
                         </span>
                         <span className="text-muted-foreground text-sm">/month</span>
                     </div>
                     <ul className="text-muted-foreground grid gap-4 text-sm lg:w-[70%]">
                         {[
-                            'Perfect for individual bloggers',
-                            'freelancers and entrepreneurs',
-                            'AI-Powered editing tools',
-                            'Basic Analytics to track content performance',
+                            'Full Stack Development',
+                            'SEO Optimization',
+                            'Digital Marketing Integration',
+                            'Performance Analytics',
                         ].map((f, i) => (
                             <li key={i} className="flex items-center gap-3">
                                 <FilledCheck />
@@ -122,34 +153,36 @@ export function BentoPricing() {
             </div>
 
             <PricingCard
-                titleBadge="STARTERS"
-                priceLabel="$0"
+                titleBadge="BASIC"
+                priceLabel="$99"
                 features={[
-                    'Perfect for beginners',
-                    'Unlimited Content Generation',
-                    'AI-Powered editing tools',
+                    'Static Website',
+                    'Basic SEO',
+                    'Content Management',
                 ]}
                 className="lg:col-span-3"
             />
 
             <PricingCard
-                titleBadge="TEAMS"
-                priceLabel="$49"
+                titleBadge="PROFESSIONAL"
+                priceLabel="$499"
                 features={[
-                    'Ideal for small teams and agencies',
-                    'Collaborative features like shared projects',
-                    'Advanced Analytics to optimize content strategy',
+                    'E-commerce Solutions',
+                    'Custom Web Applications',
+                    'API Integrations',
                 ]}
                 className="lg:col-span-4"
             />
 
             <PricingCard
                 titleBadge="ENTERPRISE"
-                priceLabel="$99"
+                priceLabel="Custom"
+                priceSuffix=""
                 features={[
-                    'Designed for large companies',
-                    'high-volume content creators',
-                    'dedicated account management',
+                    'Custom Software Solutions',
+                    'Dedicated Support',
+                    'Cloud Infrastructure',
+                    'Security Audits',
                 ]}
                 className="lg:col-span-4"
             />

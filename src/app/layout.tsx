@@ -1,12 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk, Syne } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { CustomCursor } from "@/components/CustomCursor";
 
+// Body font - Clean and readable
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Heading font - Modern geometric sans
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+// Display font - Distinctive and creative
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -43,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased noise`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${syne.variable} font-sans antialiased noise`}>
         <Providers>
           <CustomCursor />
           {children}

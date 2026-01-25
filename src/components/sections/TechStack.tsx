@@ -320,7 +320,7 @@ export function TechStack() {
 
                         {/* Additional info */}
                         <div className="mt-16 pt-8 border-t border-[var(--color-accent)]/20">
-                            <p className="text-body text-[var(--color-text-muted)] leading-relaxed">
+                            <p className="text-body text-[var(--color-text-muted)] leading-relaxed text-center lg:text-left">
                                 From responsive frontends to scalable backends and native mobile experiences,
                                 I architect solutions using industry-leading frameworks and best practices.
                             </p>

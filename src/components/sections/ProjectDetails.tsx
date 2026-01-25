@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { ParticleBurst } from "@/components/ui/ParticleBurst";
 import { StackCard } from "@/components/ui/stack-card";
 import { ScatteredGallery as ScatteredImageGallery } from "@/components/ui/scattered-gallery";
+import { MobileGallery } from "@/components/ui/mobile-gallery";
 import type { Project } from "@/components/ui/Project3DCard";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
@@ -391,25 +392,47 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                     )}
                 </section>
 
-                {/* Scattered Image Gallery Section */}
+                {/* Gallery Section - Conditional Mobile/Desktop */}
                 {project.screenshots && project.screenshots.length > 0 && (
-                    <ScatteredImageGallery
-                        images={project.screenshots.slice(0, isMobile ? 4 : 8).map((src, i) => ({
-                            id: `gallery-${i}`,
-                            src,
-                            title: i === 0 ? "Main Dashboard" : i === 1 ? "Core Features" : i === 2 ? "User Interface" : i === 3 ? "Analytics View" : i === 4 ? "Mobile View" : i === 5 ? "Settings Panel" : i === 6 ? "Integration Hub" : "Advanced Tools",
-                            description: i === 0 ? project.description?.slice(0, 80) + "..." : undefined,
-                            features: i === 0
-                                ? project.tech?.slice(0, 3)
-                                : i === 1
-                                    ? ["Real-time", "Interactive", "Responsive"]
-                                    : i === 2
-                                        ? ["Modern UI", "Dark Mode", "Accessible"]
-                                        : ["Optimized", "Scalable"],
-                        }))}
-                        projectTitle={project.title}
-                        className={isMobile ? "py-4 pb-20" : "py-8"}
-                    />
+                    <>
+                        {isMobile ? (
+                            <MobileGallery
+                                images={project.screenshots.slice(0, 6).map((src, i) => ({
+                                    id: `gallery-${i}`,
+                                    src,
+                                    title: i === 0 ? "Main Dashboard" : i === 1 ? "Core Features" : i === 2 ? "User Interface" : i === 3 ? "Analytics View" : i === 4 ? "Mobile View" : "Settings Panel",
+                                    description: i === 0 ? project.description?.slice(0, 80) + "..." : undefined,
+                                    features: i === 0
+                                        ? project.tech?.slice(0, 3)
+                                        : i === 1
+                                            ? ["Real-time", "Interactive", "Responsive"]
+                                            : i === 2
+                                                ? ["Modern UI", "Dark Mode", "Accessible"]
+                                                : ["Optimized", "Scalable"],
+                                }))}
+                                projectTitle={project.title}
+                                className="py-4 pb-20"
+                            />
+                        ) : (
+                            <ScatteredImageGallery
+                                images={project.screenshots.slice(0, 8).map((src, i) => ({
+                                    id: `gallery-${i}`,
+                                    src,
+                                    title: i === 0 ? "Main Dashboard" : i === 1 ? "Core Features" : i === 2 ? "User Interface" : i === 3 ? "Analytics View" : i === 4 ? "Mobile View" : i === 5 ? "Settings Panel" : i === 6 ? "Integration Hub" : "Advanced Tools",
+                                    description: i === 0 ? project.description?.slice(0, 80) + "..." : undefined,
+                                    features: i === 0
+                                        ? project.tech?.slice(0, 3)
+                                        : i === 1
+                                            ? ["Real-time", "Interactive", "Responsive"]
+                                            : i === 2
+                                                ? ["Modern UI", "Dark Mode", "Accessible"]
+                                                : ["Optimized", "Scalable"],
+                                }))}
+                                projectTitle={project.title}
+                                className="py-8"
+                            />
+                        )}
+                    </>
                 )}
             </motion.div>
         </motion.div>

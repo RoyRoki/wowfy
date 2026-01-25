@@ -9,6 +9,7 @@ import { ParticleBurst } from "@/components/ui/ParticleBurst";
 import { StackCard } from "@/components/ui/stack-card";
 import { ScatteredGallery as ScatteredImageGallery } from "@/components/ui/scattered-gallery";
 import type { Project } from "@/components/ui/Project3DCard";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -26,6 +27,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
     const narrativeRef = useRef<HTMLDivElement>(null);
     const [hoveredTech, setHoveredTech] = useState<string | null>(null);
     const [isReducedMotion, setIsReducedMotion] = useState(false);
+    const isMobile = useMediaQuery("(max-width: 768px)");
 
     // Modal-specific cursor
     const cursorX = useMotionValue(0);
@@ -190,47 +192,51 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 exit={{ opacity: 0 }}
             />
 
-            {/* Custom Modal Cursor */}
-            <motion.div
-                className="pointer-events-none fixed z-[9999]"
-                style={{
-                    x: cursorXSpring,
-                    y: cursorYSpring,
-                    translateX: "-50%",
-                    translateY: "-50%",
-                }}
-            >
-                {/* Center dot */}
-                <motion.div
-                    className="relative"
-                    animate={{
-                        scale: isHoveringInteractive ? 0.5 : 1,
-                    }}
-                    transition={{ duration: 0.15 }}
-                >
-                    <div className="h-3 w-3 rounded-full bg-[var(--color-accent)] shadow-[0_0_15px_var(--color-accent)]" />
-                </motion.div>
-            </motion.div>
+            {/* Custom Modal Cursor (Desktop only) */}
+            {!isMobile && (
+                <>
+                    <motion.div
+                        className="pointer-events-none fixed z-[9999]"
+                        style={{
+                            x: cursorXSpring,
+                            y: cursorYSpring,
+                            translateX: "-50%",
+                            translateY: "-50%",
+                        }}
+                    >
+                        {/* Center dot */}
+                        <motion.div
+                            className="relative"
+                            animate={{
+                                scale: isHoveringInteractive ? 0.5 : 1,
+                            }}
+                            transition={{ duration: 0.15 }}
+                        >
+                            <div className="h-3 w-3 rounded-full bg-[var(--color-accent)] shadow-[0_0_15px_var(--color-accent)]" />
+                        </motion.div>
+                    </motion.div>
 
-            {/* Cursor ring */}
-            <motion.div
-                className="pointer-events-none fixed z-[9998]"
-                style={{
-                    x: cursorXSpring,
-                    y: cursorYSpring,
-                    translateX: "-50%",
-                    translateY: "-50%",
-                }}
-            >
-                <motion.div
-                    className="rounded-full border-2 border-[var(--color-accent)]/60 shadow-[0_0_10px_var(--color-accent)]"
-                    animate={{
-                        width: isHoveringInteractive ? 48 : 32,
-                        height: isHoveringInteractive ? 48 : 32,
-                    }}
-                    transition={{ duration: 0.2 }}
-                />
-            </motion.div>
+                    {/* Cursor ring */}
+                    <motion.div
+                        className="pointer-events-none fixed z-[9998]"
+                        style={{
+                            x: cursorXSpring,
+                            y: cursorYSpring,
+                            translateX: "-50%",
+                            translateY: "-50%",
+                        }}
+                    >
+                        <motion.div
+                            className="rounded-full border-2 border-[var(--color-accent)]/60 shadow-[0_0_10px_var(--color-accent)]"
+                            animate={{
+                                width: isHoveringInteractive ? 48 : 32,
+                                height: isHoveringInteractive ? 48 : 32,
+                            }}
+                            transition={{ duration: 0.2 }}
+                        />
+                    </motion.div>
+                </>
+            )}
 
             {/* Scrollable Content Container */}
             <motion.div
@@ -246,7 +252,10 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors group"
+                    className={cn(
+                        "fixed z-50 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors group",
+                        isMobile ? "top-4 right-4" : "top-6 right-6"
+                    )}
                 >
                     <svg className="w-6 h-6 group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -254,15 +263,21 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 </button>
 
                 {/* Hero Section with 3D Device */}
-                <section ref={heroRef} className="relative min-h-screen flex items-center justify-center py-20">
+                <section ref={heroRef} className={cn(
+                    "relative flex items-center justify-center",
+                    isMobile ? "min-h-[80vh] py-12 px-4" : "min-h-screen py-20"
+                )}>
                     <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/10 via-transparent to-[var(--color-background)]" />
 
-                    <div className="container-wide relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    <div className={cn(
+                        "container-wide relative z-10 items-center",
+                        isMobile ? "flex flex-col gap-8" : "grid lg:grid-cols-2 gap-12"
+                    )}>
                         {/* Hero Project Images - Stack Card */}
                         <motion.div
-                            className="order-2 lg:order-1"
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            className={cn(isMobile ? "order-2 w-full" : "order-2 lg:order-1")}
+                            initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 20 : 0 }}
+                            animate={{ opacity: 1, x: 0, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.6 }}
                         >
                             {project.screenshots && project.screenshots.length > 0 ? (
@@ -282,7 +297,10 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                         </motion.div>
 
                         {/* Content */}
-                        <div className="order-1 lg:order-2 text-center lg:text-left">
+                        <div className={cn(
+                            "order-1",
+                            isMobile ? "text-center w-full" : "lg:order-2 text-center lg:text-left"
+                        )}>
                             <motion.span
                                 className="inline-block text-sm text-[var(--color-highlight)] uppercase tracking-widest mb-4"
                                 initial={{ opacity: 0, y: 20 }}
@@ -293,7 +311,10 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                             </motion.span>
 
                             <motion.h1
-                                className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+                                className={cn(
+                                    "font-bold text-white mb-6",
+                                    isMobile ? "text-3xl" : "text-4xl md:text-6xl lg:text-7xl"
+                                )}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
@@ -302,7 +323,10 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                             </motion.h1>
 
                             <motion.p
-                                className="text-lg md:text-xl text-[var(--color-text-muted)] mb-8 max-w-xl"
+                                className={cn(
+                                    "text-[var(--color-text-muted)] mb-8",
+                                    isMobile ? "text-sm max-w-full px-4" : "text-lg md:text-xl max-w-xl"
+                                )}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
@@ -312,7 +336,10 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
 
                             {/* Tech Stack with Particle Burst */}
                             <motion.div
-                                className="flex flex-wrap gap-3 justify-center lg:justify-start"
+                                className={cn(
+                                    "flex flex-wrap gap-3",
+                                    isMobile ? "justify-center px-4" : "justify-center lg:justify-start"
+                                )}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.5 }}
@@ -321,50 +348,53 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                                     <motion.span
                                         key={tech}
                                         className={cn(
-                                            "relative px-4 py-2 rounded-full text-sm font-medium",
+                                            "relative rounded-full font-medium",
                                             "bg-[#7c3aed] backdrop-blur-sm",
                                             "border border-[#a78bfa]",
                                             "text-white",
-                                            "cursor-pointer transition-all duration-300"
+                                            "transition-all duration-300",
+                                            isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm cursor-pointer"
                                         )}
                                         initial={{ opacity: 0, scale: 0.8 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: 0.5 + i * 0.05 }}
-                                        whileHover={{
+                                        whileHover={!isMobile ? {
                                             scale: 1.1,
                                             boxShadow: "0 0 25px rgba(139, 92, 246, 0.6)",
-                                        }}
-                                        onMouseEnter={() => setHoveredTech(tech)}
+                                        } : undefined}
+                                        onMouseEnter={() => !isMobile && setHoveredTech(tech)}
                                         onMouseLeave={() => setHoveredTech(null)}
                                     >
                                         {tech}
-                                        {hoveredTech === tech && <ParticleBurst trigger={true} />}
+                                        {!isMobile && hoveredTech === tech && <ParticleBurst trigger={true} />}
                                     </motion.span>
                                 ))}
                             </motion.div>
                         </div>
                     </div>
 
-                    {/* Scroll Indicator */}
-                    <motion.div
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ repeat: Infinity, duration: 2 }}
-                    >
-                        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
-                            <motion.div
-                                className="w-1.5 h-1.5 rounded-full bg-white/60"
-                                animate={{ y: [0, 12, 0] }}
-                                transition={{ repeat: Infinity, duration: 2 }}
-                            />
-                        </div>
-                    </motion.div>
+                    {/* Scroll Indicator (Desktop only) */}
+                    {!isMobile && (
+                        <motion.div
+                            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ repeat: Infinity, duration: 2 }}
+                        >
+                            <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
+                                <motion.div
+                                    className="w-1.5 h-1.5 rounded-full bg-white/60"
+                                    animate={{ y: [0, 12, 0] }}
+                                    transition={{ repeat: Infinity, duration: 2 }}
+                                />
+                            </div>
+                        </motion.div>
+                    )}
                 </section>
 
                 {/* Scattered Image Gallery Section */}
                 {project.screenshots && project.screenshots.length > 0 && (
                     <ScatteredImageGallery
-                        images={project.screenshots.slice(0, 8).map((src, i) => ({
+                        images={project.screenshots.slice(0, isMobile ? 4 : 8).map((src, i) => ({
                             id: `gallery-${i}`,
                             src,
                             title: i === 0 ? "Main Dashboard" : i === 1 ? "Core Features" : i === 2 ? "User Interface" : i === 3 ? "Analytics View" : i === 4 ? "Mobile View" : i === 5 ? "Settings Panel" : i === 6 ? "Integration Hub" : "Advanced Tools",
@@ -378,7 +408,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                                         : ["Optimized", "Scalable"],
                         }))}
                         projectTitle={project.title}
-                        className="py-8"
+                        className={isMobile ? "py-4 pb-20" : "py-8"}
                     />
                 )}
             </motion.div>

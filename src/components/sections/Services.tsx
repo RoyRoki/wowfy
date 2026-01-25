@@ -130,7 +130,16 @@ function ServiceCard({ service }: ServiceCardProps) {
         const icon = iconRef.current;
         if (!card || !icon) return;
 
-        // 3D Tilt effect on hover
+        // Check if device is touch-enabled
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        // Only apply 3D effects on non-touch devices (desktop)
+        if (isTouchDevice) {
+            // Exit early on touch devices to allow normal scrolling
+            return;
+        }
+
+        // 3D Tilt effect on hover (desktop only)
         const handleMouseMove = (e: MouseEvent) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -161,7 +170,7 @@ function ServiceCard({ service }: ServiceCardProps) {
         card.addEventListener("mousemove", handleMouseMove);
         card.addEventListener("mouseleave", handleMouseLeave);
 
-        // Magnetic hover effect on icon
+        // Magnetic hover effect on icon (desktop only)
         const handleIconMouseMove = (e: MouseEvent) => {
             const rect = icon.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;

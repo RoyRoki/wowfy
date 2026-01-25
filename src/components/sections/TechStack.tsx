@@ -247,9 +247,9 @@ export function TechStack() {
                     {/* Left: 3D Sphere with Model Overlay */}
                     <div
                         ref={sphereContainerRef}
-                        className="flex justify-center lg:justify-end relative"
+                        className="flex justify-center relative w-full"
                     >
-                        <div className="relative w-[600px] h-[600px]">
+                        <div className="relative w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] aspect-square mx-auto">
                             {/* Globe - fades out when model is active */}
                             <AnimatePresence>
                                 {!activeModel && (
@@ -262,8 +262,8 @@ export function TechStack() {
                                     >
                                         <SphereImageGrid
                                             images={TECH_LOGOS}
-                                            containerSize={600}
-                                            sphereRadius={220}
+                                            containerSize={typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : 600}
+                                            sphereRadius={typeof window !== 'undefined' && window.innerWidth < 768 ? 130 : 220}
                                             dragSensitivity={0.8}
                                             momentumDecay={0.96}
                                             maxRotationSpeed={6}
@@ -272,7 +272,7 @@ export function TechStack() {
                                             perspective={1000}
                                             autoRotate={true}
                                             autoRotateSpeed={0.2}
-                                            className="mx-auto"
+                                            className="mx-auto w-full h-full"
                                         />
                                     </motion.div>
                                 )}

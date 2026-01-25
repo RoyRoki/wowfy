@@ -40,6 +40,15 @@ const SpotlightCard: React.FC<GlowCardProps> = ({
     const innerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Check if device is touch-enabled
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        // Only track pointer on non-touch devices (desktop)
+        // On mobile, disable tracking to allow normal scrolling
+        if (isTouchDevice) {
+            return;
+        }
+
         const syncPointer = (e: PointerEvent) => {
             const { clientX: x, clientY: y } = e;
 
@@ -89,7 +98,8 @@ const SpotlightCard: React.FC<GlowCardProps> = ({
             backgroundAttachment: 'fixed',
             border: 'var(--border-size) solid var(--backup-border)',
             position: 'relative',
-            touchAction: 'none',
+            // Allow vertical scrolling on mobile (pan-y) instead of blocking all touch (none)
+            touchAction: 'pan-y',
         };
 
         if (width !== undefined) {

@@ -235,10 +235,10 @@ export function TechStack() {
                         Technology Stack
                     </span>
                     <h2 className="text-headline mb-6">
-                        Built with Modern Tools
+                        Our Tech Stack
                     </h2>
                     <p className="text-body-lg max-w-2xl mx-auto text-[var(--color-text-muted)]">
-                        Leveraging cutting-edge technologies to deliver exceptional digital experiences
+                        Next.js, React, Flutter, GSAP, Three.js — Modern technologies that power premium digital experiences
                     </p>
                 </div>
 

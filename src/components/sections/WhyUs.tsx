@@ -24,10 +24,10 @@ export function WhyUs() {
             {/* Section Header - Content Layer */}
             <div className="relative z-20 px-4 pt-20 w-full text-center pointer-events-none">
                 <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
-                    Why Choose Us?
+                    Why Choose wowfy?
                 </h2>
                 <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto">
-                    We don't just build products. We craft experiences that transform businesses and delight users.
+                    Creative developers who build award-worthy experiences. Premium quality at unbeatable prices. Serving clients from India to Dubai with passion and precision.
                 </p>
             </div>
 

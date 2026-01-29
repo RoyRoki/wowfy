@@ -196,7 +196,7 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
                             onMouseLeave={() => setHoveredImage(null)}
                             onMouseMove={handleMouseMove}
                         >
-                            <div className="relative w-32 h-24 md:w-48 md:h-36 lg:w-56 lg:h-40 rounded-xl overflow-hidden border-2 border-white/10 shadow-2xl">
+                            <div className="relative w-64 h-48 md:w-80 md:h-60 lg:w-96 lg:h-72 rounded-xl overflow-hidden border-2 border-white/10 shadow-2xl">
                                 <Image
                                     src={assetPath(image.src)}
                                     alt={image.title || "Project screenshot"}

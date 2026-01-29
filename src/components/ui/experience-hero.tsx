@@ -110,15 +110,15 @@ export const ExperienceHero = () => {
                         <div className="relative w-2.5 h-2.5 bg-white rounded-full">
                             <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-30" />
                         </div>
-                        <span className="font-mono text-[11px] font-bold text-white tracking-[0.2em] uppercase">ROKI.DEV</span>
+                        <span className="font-mono text-[11px] font-bold text-white tracking-[0.2em] uppercase">WOWFY</span>
                     </div>
 
                     <div className="max-w-4xl lg:-translate-y-8 pr-12">
                         <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] tracking-tighter text-white uppercase italic-none font-display">
-                            CREATIVE <br /> <span className="text-outline">AGENCY</span>
+                            WOWFY <br /> <span className="text-outline">Solutions</span>
                         </h1>
                         <p className="mt-8 font-mono text-[11px] text-white/40 uppercase tracking-[0.35em] max-w-sm leading-relaxed">
-                            We engineer immersive digital experiences through spatial logic and advanced WebGL.
+                            Premium digital experiences that make your audience go WOW. From India to Dubai, we create award-worthy websites & apps.
                         </p>
                     </div>
 

@@ -35,11 +35,11 @@ export const Welcome: React.FC = () => {
     const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1]);
     const y = useTransform(scrollYProgress, [0, 0.5, 1], [60, 0, 0]);
 
-    // Scroll to contact section
+    // Scroll to portfolio section
     const handleCtaClick = () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const portfolioSection = document.getElementById('portfolio');
+        if (portfolioSection) {
+            portfolioSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
 
@@ -62,15 +62,15 @@ export const Welcome: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020202] to-transparent z-20 pointer-events-none" />
 
             <AnimatedMarqueeHero
-                tagline="Welcome to the Future of Digital"
+                tagline="Welcome to wowfy"
                 title={
                     <>
-                        Crafting <span className="bg-gradient-to-r from-red-500 via-pink-500 to-violet-500 bg-clip-text text-transparent">Immersive</span>
+                        Where Creativity <span className="bg-gradient-to-r from-red-500 via-pink-500 to-violet-500 bg-clip-text text-transparent">Meets</span>
                         <br />
-                        Digital Experiences
+                        Code
                     </>
                 }
-                description="We blend cutting-edge technology with bold creative vision to deliver digital products that captivate, engage, and convert. Your audience deserves nothing less than extraordinary."
+                description="Founded by Roki, a creative developer with 2 years of experience obsessed with building WOW moments. We're a software agency serving clients from India to Dubai with premium digital solutions at unbeatable prices. From stunning websites to powerful mobile apps, we transform your vision into reality."
                 ctaText="Explore Our Work"
                 images={WELCOME_IMAGES}
                 className="bg-transparent relative z-10"

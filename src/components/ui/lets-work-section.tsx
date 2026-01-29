@@ -303,8 +303,9 @@ export function LetsWorkTogether() {
         window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank")
     }
 
-    const handleBookCall = () => {
-        window.open(contactData?.calendly || "https://cal.com/jatin-yadav05/15min", "_blank")
+    const handleCallNow = () => {
+        const phoneNumber = contactData?.phone || "9800881300"
+        window.location.href = `tel:${phoneNumber}`
     }
 
     return (
@@ -380,7 +381,7 @@ export function LetsWorkTogether() {
                         </button>
 
                         <button
-                            onClick={handleBookCall}
+                            onClick={handleCallNow}
                             onMouseEnter={() => setIsButtonHovered(true)}
                             onMouseLeave={() => setIsButtonHovered(false)}
                             className="group relative flex items-center gap-3 overflow-hidden rounded-full border px-6 py-3 transition-all duration-500 cursor-pointer sm:px-8 sm:py-4 min-w-[180px] sm:min-w-[200px]"
@@ -410,7 +411,7 @@ export function LetsWorkTogether() {
                                     color: isButtonHovered ? "var(--background)" : "var(--foreground)",
                                 }}
                             >
-                                Book a call
+                                Call now
                             </span>
                             <ArrowUpRight
                                 className="size-4 transition-all duration-500 sm:size-5 ml-auto"

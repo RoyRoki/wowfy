@@ -1,226 +1,194 @@
 [
     {
-        "id": "project-1",
-        "title": "HealthSync Analytics Dashboard",
-        "year": "2023",
-        "role": "UI/UX Design & Full-Stack Development",
-        "description": "A comprehensive healthcare analytics platform featuring real-time insights, appointment tracking, and intuitive visualizations for medical professionals.",
+        "id": "formula-shop",
+        "title": "The Formula Shop",
+        "year": "2025",
+        "role": "Frontend Development (Team Project)",
+        "description": "Korean beauty product e-commerce website featuring modern design, product catalog, and seamless shopping experience.",
         "tech": [
-            "React",
             "Next.js",
-            "Node.js",
-            "PostgreSQL",
-            "Recharts",
-            "GSAP"
+            "Tailwind CSS",
+            "E-commerce",
+            "Responsive Design"
         ],
-        "image": "/projects/Works_Best/p3/images/image.png",
-        "liveUrl": "https://example.com/healthsync-analytics",
+        "image": "/projects/Works_Best/Formula/images/image.png",
+        "liveUrl": "https://theformulashop.com/",
         "featured": true,
         "deviceType": "laptop",
         "screenshots": [
-            "/projects/Works_Best/p3/images/image.png",
-            "/projects/Works_Best/p3/images/image copy.png",
-            "/projects/Works_Best/p3/images/image copy 2.png",
-            "/projects/Works_Best/p3/images/image copy 3.png",
-            "/projects/Works_Best/p3/images/image copy 4.png",
-            "/projects/Works_Best/p3/images/image copy 5.png",
-            "/projects/Works_Best/p3/images/image copy 6.png",
-            "/projects/Works_Best/p3/images/image copy 7.png",
-            "/projects/Works_Best/p3/images/image copy 8.png",
-            "/projects/Works_Best/p3/images/image copy 9.png"
+            "/projects/Works_Best/Formula/images/image.png",
+            "/projects/Works_Best/Formula/images/image copy.png",
+            "/projects/Works_Best/Formula/images/image copy 2.png",
+            "/projects/Works_Best/Formula/images/image copy 3.png",
+            "/projects/Works_Best/Formula/images/image copy 4.png",
+            "/projects/Works_Best/Formula/images/image copy 5.png",
+            "/projects/Works_Best/Formula/images/image copy 6.png",
+            "/projects/Works_Best/Formula/images/image copy 7.png",
+            "/projects/Works_Best/Formula/images/image copy 8.png",
+            "/projects/Works_Best/Formula/images/image copy 9.png",
+            "/projects/Works_Best/Formula/images/image copy 10.png"
         ],
         "metrics": {
-            "sites": "12K",
-            "events": "2M/day",
-            "arr": "$8K/mo"
+            "type": "E-commerce",
+            "products": "Beauty",
+            "status": "Live"
         },
-        "problem": "Medical professionals struggle with fragmented patient data and lack of real-time insights.",
-        "solution": "Built comprehensive analytics dashboard with real-time visualizations, appointment tracking, and patient health metrics all in one place.",
-        "results": "12K healthcare providers using platform, 2M events/day processed, $8K/mo ARR."
+        "problem": "Beauty product retailer needed modern e-commerce platform to showcase Korean beauty products online.",
+        "solution": "Built responsive e-commerce website with product catalog, cart functionality, and modern design using Next.js and Tailwind CSS as part of team project.",
+        "results": "Successfully launched live e-commerce platform for Korean beauty products."
     },
     {
-        "id": "project-2",
-        "title": "Freelancer Portal",
-        "year": "2024",
+        "id": "dubai-luxury-apartments",
+        "title": "Dubai Luxury Apartments",
+        "year": "2025",
+        "role": "UI/UX Design & Frontend Development",
+        "description": "Curating the world's most exceptional properties for those who accept nothing less than perfection. A legacy of excellence in Dubai real estate.",
+        "tech": [
+            "Next.js",
+            "Tailwind CSS",
+            "GSAP",
+            "Framer Motion",
+            "Smooth Scroll"
+        ],
+        "image": "/projects/Works_Best/Dubai_Apartment/images/image.png",
+        "liveUrl": "https://royroki.github.io/dubai-luxury-apartments/",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/Dubai_Apartment/images/image.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 2.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 3.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 4.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 5.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 6.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 7.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 8.png",
+            "/projects/Works_Best/Dubai_Apartment/images/image copy 9.png"
+        ],
+        "metrics": {
+            "type": "Landing Page",
+            "quality": "Premium",
+            "animations": "Award-Worthy"
+        },
+        "problem": "Luxury real estate needed a premium landing page that matches the elegance and sophistication of high-end properties.",
+        "solution": "Designed and developed award-worthy landing page with smooth scroll animations, stunning visuals, and premium aesthetic using GSAP and Framer Motion.",
+        "results": "Created demo-quality landing page showcasing premium design capabilities."
+    },
+    {
+        "id": "astra-terra",
+        "title": "Astra Terra Properties",
+        "year": "2026",
         "role": "Full-Stack Development",
-        "description": "A modern marketplace connecting clients and talent, built with React 18, Next.js, Prisma, and real-time features using Socket.io. Processed over 50K users with seamless performance.",
+        "description": "A dynamic, one-stop-shop, full-service real estate provider dedicated to delivering exceptional property solutions across Dubai, UAE.",
         "tech": [
-            "React 18",
             "Next.js",
-            "Prisma",
-            "Socket.io",
-            "Stripe",
-            "GSAP"
+            "Tailwind CSS",
+            "GSAP",
+            "Framer Motion",
+            "Leaflet Maps",
+            "Firebase"
         ],
-        "image": "/projects/Works_Best/p2/images/image.png",
-        "liveUrl": "https://example.com/freelancer-portal",
+        "image": "/projects/Works_Best/Astera/images/image.png",
+        "liveUrl": "https://www.astraterra.ae/",
         "featured": true,
         "deviceType": "laptop",
         "screenshots": [
-            "/projects/Works_Best/p2/images/image.png",
-            "/projects/Works_Best/p2/images/image copy.png",
-            "/projects/Works_Best/p2/images/image copy 2.png",
-            "/projects/Works_Best/p2/images/image copy 3.png",
-            "/projects/Works_Best/p2/images/image copy 4.png",
-            "/projects/Works_Best/p2/images/image copy 5.png",
-            "/projects/Works_Best/p2/images/image copy 6.png",
-            "/projects/Works_Best/p2/images/image copy 7.png",
-            "/projects/Works_Best/p2/images/image copy 8.png"
+            "/projects/Works_Best/Astera/images/image.png",
+            "/projects/Works_Best/Astera/images/image copy.png",
+            "/projects/Works_Best/Astera/images/image copy 2.png",
+            "/projects/Works_Best/Astera/images/image copy 3.png",
+            "/projects/Works_Best/Astera/images/image copy 4.png",
+            "/projects/Works_Best/Astera/images/image copy 5.png",
+            "/projects/Works_Best/Astera/images/image copy 6.png",
+            "/projects/Works_Best/Astera/images/image copy 7.png",
+            "/projects/Works_Best/Astera/images/image copy 8.png",
+            "/projects/Works_Best/Astera/images/image copy 9.png"
         ],
         "metrics": {
-            "users": "50K+",
-            "processed": "$500K",
-            "onTime": "95%"
+            "status": "Live",
+            "client": "Dubai UAE",
+            "type": "Real Estate"
         },
-        "problem": "Clients and freelancers need a reliable platform to connect and collaborate efficiently.",
-        "solution": "Built modern marketplace with real-time features using Socket.io, seamless payments via Stripe, and scalable architecture with Prisma ORM.",
-        "results": "50K+ users onboarded, $500K in transactions processed, 95% satisfaction rate."
+        "problem": "Dubai real estate market needed a modern, user-friendly platform to showcase premium properties with interactive features.",
+        "solution": "Built comprehensive real estate platform with interactive maps, property search, filters, and seamless user experience using Next.js and modern web technologies.",
+        "results": "Successfully launched full-service real estate platform serving Dubai market."
     },
     {
-        "id": "project-3",
-        "title": "Inventory Manager",
-        "year": "2023",
-        "role": "Full-Stack Development",
-        "description": "Robust inventory management system with advanced tracking, reporting, and competitive logistics features — designed for scalability and operational efficiency.",
-        "tech": [
-            "React",
-            "Next.js",
-            "PostgreSQL",
-            "Docker",
-            "TensorFlow.js",
-            "Three.js"
-        ],
-        "image": "/projects/Works_Best/p5/images/image.png",
-        "liveUrl": "https://example.com/inventory-manager",
-        "featured": true,
-        "deviceType": "laptop",
-        "screenshots": [
-            "/projects/Works_Best/p5/images/image.png",
-            "/projects/Works_Best/p5/images/image copy.png",
-            "/projects/Works_Best/p5/images/image copy 2.png",
-            "/projects/Works_Best/p5/images/image copy 3.png",
-            "/projects/Works_Best/p5/images/image copy 4.png",
-            "/projects/Works_Best/p5/images/image copy 5.png",
-            "/projects/Works_Best/p5/images/image copy 6.png",
-            "/projects/Works_Best/p5/images/image copy 7.png",
-            "/projects/Works_Best/p5/images/image copy 8.png"
-        ],
-        "metrics": {
-            "inventory": "$2M",
-            "accuracy": "99%",
-            "savings": "25%"
-        },
-        "problem": "Businesses struggle with inventory inaccuracies and lack of real-time tracking across warehouses.",
-        "solution": "Developed robust inventory system with ML forecasting, barcode scanning, multi-warehouse tracking, and advanced reporting for operational efficiency.",
-        "results": "Managed $2M inventory, 99% tracking accuracy, 25% cost savings achieved."
-    },
-    {
-        "id": "project-4",
-        "title": "AI Study Notes",
-        "year": "2024",
-        "role": "Full-Stack & AI-Enhanced Development",
-        "description": "An intelligent note-taking application leveraging AI to organize, summarize, and enhance learning materials for students and professionals.",
+        "id": "wowfy-portfolio",
+        "title": "wowfy - 3D Portfolio",
+        "year": "2026",
+        "role": "Full-Stack & 3D Development",
+        "description": "3D portfolio website showcasing modern web development capabilities with Three.js, GSAP animations, and immersive user experience.",
         "tech": [
             "Next.js",
-            "React Native",
-            "OpenAI",
-            "Supabase",
+            "Tailwind CSS",
             "Three.js",
-            "GSAP"
+            "GSAP",
+            "Framer Motion",
+            "3D Graphics"
         ],
-        "image": "/projects/Works_Best/p1/images/image.png",
-        "liveUrl": "https://example.com/ai-study-notes",
+        "image": "/projects/Works_Best/Wowfy/images/image.png",
+        "liveUrl": "https://royroki.github.io/wowfy/",
         "featured": true,
         "deviceType": "laptop",
         "screenshots": [
-            "/projects/Works_Best/p1/images/image.png",
-            "/projects/Works_Best/p1/images/image copy.png",
-            "/projects/Works_Best/p1/images/image copy 2.png",
-            "/projects/Works_Best/p1/images/image copy 3.png",
-            "/projects/Works_Best/p1/images/image copy 4.png",
-            "/projects/Works_Best/p1/images/image copy 5.png",
-            "/projects/Works_Best/p1/images/image copy 6.png",
-            "/projects/Works_Best/p1/images/image copy 7.png",
-            "/projects/Works_Best/p1/images/image copy 8.png",
-            "/projects/Works_Best/p1/images/image copy 9.png"
+            "/projects/Works_Best/Wowfy/images/image.png",
+            "/projects/Works_Best/Wowfy/images/image copy.png",
+            "/projects/Works_Best/Wowfy/images/image copy 2.png",
+            "/projects/Works_Best/Wowfy/images/image copy 3.png",
+            "/projects/Works_Best/Wowfy/images/image copy 4.png",
+            "/projects/Works_Best/Wowfy/images/image copy 5.png",
+            "/projects/Works_Best/Wowfy/images/image copy 6.png",
+            "/projects/Works_Best/Wowfy/images/image copy 7.png",
+            "/projects/Works_Best/Wowfy/images/image copy 8.png",
+            "/projects/Works_Best/Wowfy/images/image copy 9.png"
         ],
         "metrics": {
-            "users": "360K",
-            "revenue": "$19K/mo",
-            "retention": "85%"
+            "tech": "3D + Animations",
+            "type": "Portfolio",
+            "quality": "Premium"
         },
-        "problem": "Students and professionals struggle with organizing and retaining information from their study materials.",
-        "solution": "Built AI-powered note-taking app with OpenAI integration for auto-summarization, smart organization, and enhanced learning through AI-generated quizzes and flashcards.",
-        "results": "360K users, $19K/mo revenue via Stripe subscriptions, 85% retention rate."
+        "problem": "Needed portfolio website that showcases advanced web development skills including 3D graphics and complex animations.",
+        "solution": "Created immersive 3D portfolio using Three.js for 3D graphics, GSAP for advanced animations, and Framer Motion for smooth interactions.",
+        "results": "Built showcase portfolio demonstrating cutting-edge web technologies and creative development capabilities."
     },
     {
-        "id": "project-5",
-        "title": "HealthSync Telehealth",
-        "year": "2023",
-        "role": "Mobile & Backend Development",
-        "description": "Clinic platform: Book slots, video consult (Twilio), patient records, AI symptom checker. Full responsive—phone telehealth, laptop admin dashboard.",
+        "id": "emsigner",
+        "title": "emSigner Digital Signature",
+        "year": "2025-2026",
+        "role": "Flutter Mobile Development",
+        "description": "emSigner Digital Signature Platform - Cross-platform mobile application for secure digital signatures on Android and iOS.",
         "tech": [
-            "React Native",
-            "Next.js",
-            "Node.js",
-            "Twilio",
-            "Gemini AI",
-            "Prisma"
+            "Flutter",
+            "Dart",
+            "API Integration",
+            "Android",
+            "iOS"
         ],
-        "image": "/projects/Works_Best/p4/images/image.png",
-        "liveUrl": "https://example.com/healthsync",
-        "featured": false,
+        "image": "/projects/Works_Best/emSigner/images/image.png",
+        "liveUrl": "https://play.google.com/store/apps/details?id=com.emudhra.emSigner&hl=en_IN",
+        "featured": true,
         "deviceType": "phone",
         "screenshots": [
-            "/projects/Works_Best/p4/images/image.png",
-            "/projects/Works_Best/p4/images/image copy.png",
-            "/projects/Works_Best/p4/images/image copy 2.png",
-            "/projects/Works_Best/p4/images/image copy 3.png",
-            "/projects/Works_Best/p4/images/image copy 4.png",
-            "/projects/Works_Best/p4/images/image copy 5.png",
-            "/projects/Works_Best/p4/images/image copy 6.png",
-            "/projects/Works_Best/p4/images/image copy 7.png",
-            "/projects/Works_Best/p4/images/image copy 8.png"
+            "/projects/Works_Best/emSigner/images/image.png",
+            "/projects/Works_Best/emSigner/images/image copy.png",
+            "/projects/Works_Best/emSigner/images/image copy 2.png",
+            "/projects/Works_Best/emSigner/images/image copy 3.png",
+            "/projects/Works_Best/emSigner/images/image copy 4.png",
+            "/projects/Works_Best/emSigner/images/image copy 5.png",
+            "/projects/Works_Best/emSigner/images/image copy 6.png",
+            "/projects/Works_Best/emSigner/images/image copy 7.png",
+            "/projects/Works_Best/emSigner/images/image copy 8.png",
+            "/projects/Works_Best/emSigner/images/image copy 9.png"
         ],
         "metrics": {
-            "bookings": "15K",
-            "uptime": "98%",
-            "revenue": "$15K/mo"
+            "platform": "Android & iOS",
+            "client": "emudhra",
+            "type": "Enterprise App"
         },
-        "problem": "High no-show rates and logistical challenges for clinic appointment management.",
-        "solution": "Calendar AI predictions reduced no-shows by 30%; Azure cloud for HIPAA compliance.",
-        "results": "15K bookings processed, 98% uptime, $15K/mo revenue for partner clinics."
-    },
-    {
-        "id": "project-6",
-        "title": "Creative Studio",
-        "year": "2022",
-        "role": "Frontend Development",
-        "description": "Collaborative design platform enabling real-time editing and asset management for creative teams.",
-        "tech": [
-            "React",
-            "Socket.io",
-            "AWS S3",
-            "Redis",
-            "Figma API",
-            "Framer Motion"
-        ],
-        "image": "/projects/Works_Best/p6/images/image.png",
-        "featured": false,
-        "deviceType": "laptop",
-        "screenshots": [
-            "/projects/Works_Best/p6/images/image.png",
-            "/projects/Works_Best/p6/images/image copy.png",
-            "/projects/Works_Best/p6/images/image copy 2.png",
-            "/projects/Works_Best/p6/images/image copy 3.png"
-        ],
-        "metrics": {
-            "teams": "200+",
-            "assets": "50K",
-            "collab": "Real-time"
-        },
-        "problem": "Creative teams struggled with version control and real-time collaboration on design assets.",
-        "solution": "WebSocket-powered real-time sync with Figma API integration for seamless workflows.",
-        "results": "200+ teams onboarded, 50K assets managed, real-time collaboration achieved."
+        "problem": "Enterprise clients needed secure, cross-platform digital signature solution for mobile devices.",
+        "solution": "Developed Flutter-based mobile application with robust security features, API integrations, and native performance for both Android and iOS platforms.",
+        "results": "Live on Google Play Store, serving enterprise clients with secure digital signature capabilities."
     }
 ]

@@ -1,74 +1,74 @@
 [
     {
-        "id": "web-apps",
-        "title": "Web & Mobile Apps",
-        "description": "Blazing-fast, pixel-perfect applications built with modern frameworks. From MVPs to enterprise solutions.",
+        "id": "web-development",
+        "title": "Premium Web Development",
+        "description": "Award-worthy websites built with Next.js and React. From landing pages to complex web applications, we create digital experiences that make your audience go WOW.",
         "icon": "rocket",
         "features": [
-            "React & Next.js Development",
-            "React Native & Flutter Mobile",
-            "Progressive Web Apps (PWA)",
-            "Real-time Applications"
+            "Next.js & React Development",
+            "Responsive Design (Mobile-First)",
+            "GSAP & Smooth Animations",
+            "SEO Optimized & Fast Performance"
+        ]
+    },
+    {
+        "id": "mobile-apps",
+        "title": "Mobile App Development",
+        "description": "Cross-platform mobile applications with Flutter. Build once, deploy on iOS and Android. Beautiful interfaces, native performance.",
+        "icon": "settings",
+        "features": [
+            "Flutter Cross-Platform Apps",
+            "Android & iOS Development",
+            "Native Performance & UX",
+            "API Integration & Backend"
         ]
     },
     {
         "id": "ui-ux",
         "title": "UI/UX Design",
-        "description": "Award-worthy interfaces that captivate users and drive conversions. Every pixel tells a story.",
+        "description": "Not just developers—we're creative developers. Beautiful, functional designs with micro-interactions and animations that elevate user experience.",
         "icon": "palette",
         "features": [
-            "User Research & Strategy",
+            "Modern UI/UX Design",
             "Interactive Prototypes",
-            "Design Systems",
-            "Motion Design"
+            "Design Systems & Branding",
+            "3D & Motion Design"
         ]
     },
     {
-        "id": "backend",
-        "title": "Backend & APIs",
-        "description": "Scalable, secure server architectures that power your applications. Built to handle millions.",
-        "icon": "server",
-        "features": [
-            "Node.js & Python APIs",
-            "GraphQL & REST Design",
-            "Database Architecture",
-            "Microservices"
-        ]
-    },
-    {
-        "id": "cloud",
-        "title": "Cloud Architecture",
-        "description": "Enterprise-grade cloud infrastructure on AWS, GCP, and Azure. Optimized for performance and cost.",
-        "icon": "cloud",
-        "features": [
-            "AWS / GCP / Azure",
-            "Kubernetes & Docker",
-            "CI/CD Pipelines",
-            "Auto-scaling Solutions"
-        ]
-    },
-    {
-        "id": "ai-ml",
-        "title": "AI & ML Integration",
-        "description": "Intelligent features powered by cutting-edge AI. Transform your product with machine learning.",
+        "id": "3d-interactive",
+        "title": "Interactive Experiences",
+        "description": "Bring your website to life with 3D graphics, smooth scroll magic, and immersive animations using Three.js, GSAP, and Framer Motion.",
         "icon": "brain",
         "features": [
-            "OpenAI & LLM Integration",
-            "Custom ML Models",
-            "Computer Vision",
-            "Predictive Analytics"
+            "Three.js 3D Graphics",
+            "GSAP Advanced Animations",
+            "Smooth Scroll (Lenis)",
+            "Framer Motion Interactions"
         ]
     },
     {
-        "id": "devops",
-        "title": "DevOps & Maintenance",
-        "description": "Keep your systems running at peak performance. 24/7 monitoring and rapid incident response.",
-        "icon": "settings",
+        "id": "api-integration",
+        "title": "API Integration",
+        "description": "Connect your application to any service. Payment gateways, CRM systems, third-party APIs—we make integrations seamless and reliable.",
+        "icon": "server",
         "features": [
-            "Infrastructure as Code",
-            "Performance Monitoring",
-            "Security Audits",
-            "Ongoing Support"
+            "REST & GraphQL APIs",
+            "Payment Gateway Integration",
+            "Firebase & Supabase",
+            "Real-time Data Sync"
+        ]
+    },
+    {
+        "id": "deployment",
+        "title": "Deployment & Support",
+        "description": "From local development to production deployment on Vercel, AWS, or your preferred platform. Ongoing support and maintenance included.",
+        "icon": "cloud",
+        "features": [
+            "Vercel & AWS Deployment",
+            "CI/CD Setup",
+            "Performance Optimization",
+            "Ongoing Maintenance"
         ]
     }
 ]

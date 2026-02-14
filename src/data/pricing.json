@@ -1,0 +1,57 @@
+[
+    {
+        "id": "growth",
+        "titleBadge": "GROWTH",
+        "priceLabel": "$299",
+        "priceSuffix": "/month",
+        "features": [
+            "Full Stack Development",
+            "SEO Optimization",
+            "Digital Marketing Integration",
+            "Performance Analytics"
+        ],
+        "cta": "Contact Now",
+        "isFeatured": true,
+        "isRecommended": true
+    },
+    {
+        "id": "basic",
+        "titleBadge": "BASIC",
+        "priceLabel": "$99",
+        "priceSuffix": "/month",
+        "features": [
+            "Static Website",
+            "Basic SEO",
+            "Content Management"
+        ],
+        "cta": "Contact Now",
+        "isFeatured": false
+    },
+    {
+        "id": "professional",
+        "titleBadge": "PROFESSIONAL",
+        "priceLabel": "$499",
+        "priceSuffix": "/month",
+        "features": [
+            "E-commerce Solutions",
+            "Custom Web Applications",
+            "API Integrations"
+        ],
+        "cta": "Contact Now",
+        "isFeatured": false
+    },
+    {
+        "id": "enterprise",
+        "titleBadge": "ENTERPRISE",
+        "priceLabel": "Custom",
+        "priceSuffix": "",
+        "features": [
+            "Custom Software Solutions",
+            "Dedicated Support",
+            "Cloud Infrastructure",
+            "Security Audits"
+        ],
+        "cta": "Contact Now",
+        "isFeatured": false
+    }
+]

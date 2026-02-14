@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "title": "World-Class",
+        "highlightedWord": "Excellence",
+        "particleWords": [
+            "EXCELLENCE",
+            "INNOVATION",
+            "QUALITY",
+            "CREATIVITY",
+            "PASSION",
+            "PRECISION"
+        ]
+    },
+    "valueProposition": {
+        "headline": "Unbeatable Value.",
+        "subheadline": "Silicon Valley quality, optimized for your budget.",
+        "description": "We don't just build websites; we engineer digital assets that drive growth."
+    },
+    "location": {
+        "label": "Proudly based in",
+        "city": "India (Siliguri & Kolkata)",
+        "servingLabel": "Serving",
+        "targetAudience": "Global Clients"
+    },
+    "accessibility": {
+        "instruction": "Click or hold right click to interact with the particles"
+    }
+}

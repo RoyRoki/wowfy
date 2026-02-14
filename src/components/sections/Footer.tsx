@@ -4,6 +4,15 @@ import { motion } from "framer-motion";
 import { ParticleTextEffect } from "@/components/ui/interactive-text-particle";
 import { ContactForm } from "@/components/ui/contact-form";
 
+import socialsData from "@/data/socials.json";
+
+const iconMap: Record<string, React.ReactNode> = {
+    GitHub: <GitHubIcon />,
+    Twitter: <TwitterIcon />,
+    LinkedIn: <LinkedInIcon />,
+    Instagram: <InstagramIcon />,
+};
+
 export function Footer() {
     const currentYear = new Date().getFullYear();
 
@@ -11,12 +20,7 @@ export function Footer() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    const socialLinks = [
-        { name: "GitHub", href: "https://github.com/royroki", icon: <GitHubIcon /> },
-        { name: "Twitter", href: "https://x.com/MRrokiroy", icon: <TwitterIcon /> },
-        { name: "LinkedIn", href: "https://linkedin.com/in/rokiroy", icon: <LinkedInIcon /> },
-        { name: "Instagram", href: "https://www.instagram.com/rokiroydev/", icon: <InstagramIcon /> },
-    ];
+    const { socialLinks, contactHeading, contactSubHeading, copyrightText } = socialsData;
 
     return (
         <footer className="relative pt-16 pb-16 border-t border-white/10 min-h-[800px]">
@@ -41,7 +45,7 @@ export function Footer() {
                                 whileTap={{ scale: 0.95 }}
                                 aria-label={social.name}
                             >
-                                {social.icon}
+                                {iconMap[social.icon]}
                             </motion.a>
                         ))}
                     </motion.div>
@@ -88,10 +92,10 @@ export function Footer() {
                     className="flex flex-col items-center justify-center text-center mb-8"
                 >
                     <h3 className="text-xl md:text-2xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/60">
-                        Get in touch
+                        {contactHeading}
                     </h3>
                     <p className="text-sm text-[var(--color-text-muted)] mb-6 max-w-sm">
-                        Have a project in mind? Let&apos;s build something amazing together.
+                        {contactSubHeading}
                     </p>
                     <ContactForm />
                 </motion.div>
@@ -127,7 +131,7 @@ export function Footer() {
                         className="pt-8 border-t border-white/10 text-center"
                     >
                         <p className="text-xs text-[var(--color-text-muted)]">
-                            © {currentYear} RokiRoy Digital. Proudly building in <span className="text-white">Siliguri, India 🇮🇳</span>.
+                            © {currentYear} {copyrightText} <span className="text-white">India 🇮🇳</span>.
                         </p>
                     </motion.div>
                 </div>

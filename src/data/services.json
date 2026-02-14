@@ -1,62 +1,74 @@
 [
     {
         "id": "tier-1",
-        "title": "Tier 1: Premium Landing Page",
-        "description": "Single-page, scroll-driven, Awwwards-quality animations. Perfect for product launches, events, or luxury brands.",
+        "title": "Premium Landing Page",
+        "description": "High-impact single page. Smooth animations. Perfect for product launches and personal brands.",
         "icon": "rocket",
         "features": [
-            "Timeline: 5-7 Days",
-            "Price: ₹3-5 Lakhs ($3.6K-6K)",
+            "Timeline: 3-5 Days",
+            "Price: ₹15,000 - ₹25,000 ($200-$300)",
             "Scroll-driven UI (Lenis+GSAP)",
-            "90+ Lighthouse Score Guaranteed"
+            "90+ Lighthouse Score"
         ]
     },
     {
         "id": "tier-2",
-        "title": "Tier 2: Business Website",
-        "description": "Multi-page site with CMS, SEO, and analytics. Ideal for SMBs, agencies, and early-stage startups needing a solid presence.",
+        "title": "Business Website",
+        "description": "Multi-page site with CMS. Easy to manage, SEO-ready. Ideal for agencies and small businesses.",
         "icon": "server",
         "features": [
-            "Timeline: 2-3 Weeks",
-            "Price: ₹5-10 Lakhs ($6K-12K)",
+            "Timeline: 7-10 Days",
+            "Price: ₹30,000 - ₹50,000 ($400-$600)",
             "CMS Integration (Easy Updates)",
             "SEO & Analytics Setup"
         ]
     },
     {
         "id": "tier-3",
-        "title": "Tier 3: Full-Stack MVP",
-        "description": "Custom web app with auth, database, and admin dashboard. For SaaS, E-commerce, and Platforms validating their idea.",
+        "title": "Web Application",
+        "description": "Custom functionality. Auth, Database, Dashboard. For SaaS ideas and e-commerce stores.",
         "icon": "brain",
         "features": [
-            "Timeline: 4-8 Weeks",
-            "Price: ₹10-30 Lakhs ($12K-36K)",
+            "Timeline: 3-4 Weeks",
+            "Price: ₹80,000+ ($1,000+)",
             "Auth + Database + Admin",
             "Scalable Architecture"
         ]
     },
     {
         "id": "tier-4",
-        "title": "Tier 4: Mobile App",
-        "description": "Native iOS & Android apps built with Flutter. For mobile-first startups and enterprise tools requiring native features.",
+        "title": "Mobile App",
+        "description": "Native iOS & Android apps built with Flutter. High performance, beautiful animations.",
         "icon": "settings",
         "features": [
-            "Timeline: 6-12 Weeks",
-            "Price: ₹15-40 Lakhs ($18K-48K)",
+            "Timeline: 4-6 Weeks",
+            "Price: ₹1 Lakh+ ($1,200+)",
             "iOS + Android (Flutter)",
-            "Native Features & Offline Mode"
+            "Native Features"
+        ]
+    },
+    {
+        "id": "tier-refactor",
+        "title": "Code Refactor / Audit",
+        "description": "Fix bugs, optimize performance, and clean up bad code. Make your existing site fly.",
+        "icon": "code",
+        "features": [
+            "Timeline: 2-5 Days",
+            "Price: From ₹10,000 ($120)",
+            "Performance Optimization",
+            "Clean Code & Bug Fixes"
         ]
     },
     {
         "id": "tier-5",
-        "title": "Tier 5: Retainer / Support",
-        "description": "Ongoing dev support, updates, and feature additions. Your on-demand dev team without the overhead.",
+        "title": "Dedicated Dev",
+        "description": "Hire a dedicated developer for your team. Daily updates, direct communication.",
         "icon": "cloud",
         "features": [
             "Timeline: Monthly",
-            "Price: ₹30K-100K/mo",
+            "Price: ₹40,000/mo ($500/mo)",
             "Priority Support",
-            "Fast Feature Updates"
+            "Direct Slack/WhatsApp Access"
         ]
     }
 ]

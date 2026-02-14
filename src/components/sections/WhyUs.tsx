@@ -1,9 +1,11 @@
 "use client";
 
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
+import { SectionHeader } from "@/components/ui/section-header";
+import whyUsData from "@/data/why-us.json";
 
 export function WhyUs() {
-    const particleWords = ["EXCELLENCE", "INNOVATION", "QUALITY", "CREATIVITY", "PASSION", "PRECISION"];
+    const { hero, valueProposition, location, accessibility } = whyUsData;
 
     return (
         <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-start justify-center">
@@ -18,23 +20,43 @@ export function WhyUs() {
 
             {/* Particle Text Effect - Background Layer */}
             <div className="absolute inset-0 z-10">
-                <ParticleTextEffect words={particleWords} />
+                <ParticleTextEffect words={hero.particleWords} />
             </div>
 
             {/* Section Header - Content Layer */}
             <div className="relative z-20 px-4 pt-20 w-full text-center pointer-events-none">
-                <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent py-2">
-                    Siliguri's Premier Digital Agency
-                </h2>
-                <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto">
-                    World-class quality, right here in North Bengal. Stop chasing expensive metro agencies. We deliver global-standard websites & apps with local accountability.
-                </p>
+                <SectionHeader
+                    title={hero.title}
+                    gradientText={hero.highlightedWord}
+                    center
+                    className="mb-8"
+                >
+                    <div className="flex flex-col items-center gap-6 max-w-4xl mx-auto">
+                        <h3 className="text-2xl md:text-3xl font-medium text-white/90">
+                            {valueProposition.headline} <span className="text-[var(--color-text-muted)]">{valueProposition.subheadline}</span>
+                        </h3>
+
+                        <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed max-w-2xl">
+                            {valueProposition.description}
+                        </p>
+
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mt-2">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                            <span className="text-m font-medium text-white/80">
+                                {location.label} <strong className="text-white">{location.city}</strong> &bull; {location.servingLabel} <strong className="text-white">{location.targetAudience}</strong>
+                            </span>
+                        </div>
+                    </div>
+                </SectionHeader>
             </div>
 
             {/* Bottom Instruction Text */}
             <div className="absolute bottom-8 left-0 right-0 z-20 text-center pointer-events-none">
                 <p className="text-gray-500 text-sm md:text-base">
-                    Click or hold right click to interact with the particles
+                    {accessibility.instruction}
                 </p>
             </div>
 

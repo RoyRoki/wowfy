@@ -65,7 +65,7 @@ export const Welcome: React.FC = () => {
                 tagline="Welcome to RokiRoy Digital"
                 title={
                     <>
-                        Where Creativity <span className="bg-gradient-to-r from-red-500 via-pink-500 to-violet-500 bg-clip-text text-transparent">Meets</span>
+                        Where Creativity <span className="text-gradient">Meets</span>
                         <br />
                         Code
                     </>

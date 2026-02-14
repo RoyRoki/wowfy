@@ -544,7 +544,7 @@ export function LetsWorkTogether() {
                     <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
                         Have a project in mind? Let&apos;s create something exceptional together.
                         <br /><br />
-                        <span className="text-emerald-400">Based in Siliguri?</span> Coffee is on us. ☕️
+                        <span className="text-emerald-400">In Siliguri or Kolkata?</span> Coffee is on us. ☕️
                     </p>
                     <span className="text-xs tracking-widest uppercase text-muted-foreground/60">
                         {contactData?.email || "rokiroydev@gmail.com"}

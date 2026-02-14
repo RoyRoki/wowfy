@@ -1,0 +1,27 @@
+{
+    "socialLinks": [
+        {
+            "name": "GitHub",
+            "href": "https://github.com/royroki",
+            "icon": "GitHub"
+        },
+        {
+            "name": "Twitter",
+            "href": "https://x.com/MRrokiroy",
+            "icon": "Twitter"
+        },
+        {
+            "name": "LinkedIn",
+            "href": "https://linkedin.com/in/rokiroy",
+            "icon": "LinkedIn"
+        },
+        {
+            "name": "Instagram",
+            "href": "https://www.instagram.com/rokiroydev/",
+            "icon": "Instagram"
+        }
+    ],
+    "contactHeading": "Get in touch",
+    "contactSubHeading": "Have a project in mind? Let's build something amazing together.",
+    "copyrightText": "RokiRoy Digital. Made in"
+}

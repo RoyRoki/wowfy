@@ -5,51 +5,19 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SphereImageGrid, { ImageData } from "@/components/ui/image-sphere";
 import { TechModelViewer, preloadModels } from "@/components/ui/tech-model-viewer";
+import { SectionHeader } from "@/components/ui/section-header";
 import { motion, AnimatePresence } from "framer-motion";
 import { assetPath } from "@/lib/utils";
+import techStackData from "@/data/tech-stack.json";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const TECH_LOGOS: ImageData[] = [
-    // Frontend
-    { id: "nextjs", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", alt: "Next.js", title: "Next.js", glowColor: "#FFFFFF" },
-    { id: "react", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", alt: "React", title: "React", glowColor: "#61DAFB" },
-    { id: "typescript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", alt: "TypeScript", title: "TypeScript", glowColor: "#3178C6" },
-    { id: "tailwind", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", alt: "Tailwind CSS", title: "Tailwind CSS", glowColor: "#06B6D4" },
-    { id: "vue", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", alt: "Vue.js", title: "Vue.js", glowColor: "#4FC08D" },
-
-    // Backend
-    { id: "golang", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg", alt: "Golang", title: "Golang", glowColor: "#00ADD8" },
-    { id: "nodejs", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", alt: "Node.js", title: "Node.js", glowColor: "#339933" },
-    { id: "python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", alt: "Python", title: "Python", glowColor: "#3776AB" },
-    { id: "postgresql", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", alt: "PostgreSQL", title: "PostgreSQL", glowColor: "#4169E1" },
-    { id: "mongodb", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", alt: "MongoDB", title: "MongoDB", glowColor: "#47A248" },
-
-    // AI/ML
-    { id: "tensorflow", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg", alt: "TensorFlow", title: "TensorFlow", glowColor: "#FF6F00" },
-    { id: "pytorch", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg", alt: "PyTorch", title: "PyTorch", glowColor: "#EE4C2C" },
-    { id: "openai", src: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", alt: "OpenAI", title: "OpenAI", glowColor: "#10A37F" },
-    { id: "huggingface", src: "https://huggingface.co/front/assets/huggingface_logo.svg", alt: "Hugging Face", title: "Hugging Face", glowColor: "#FFD21E" },
-
-    // Mobile & Tools
-    { id: "flutter", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", alt: "Flutter", title: "Flutter", glowColor: "#02569B" },
-    { id: "docker", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", alt: "Docker", title: "Docker", glowColor: "#2496ED" },
-    { id: "kubernetes", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg", alt: "Kubernetes", title: "Kubernetes", glowColor: "#326CE5" },
-    { id: "git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", alt: "Git", title: "Git", glowColor: "#F05032" },
-    { id: "graphql", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg", alt: "GraphQL", title: "GraphQL", glowColor: "#E10098" },
-    { id: "redis", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", alt: "Redis", title: "Redis", glowColor: "#DC382D" },
-    { id: "aws", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg", alt: "AWS", title: "AWS", glowColor: "#FF9900" },
-    { id: "prisma", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg", alt: "Prisma", title: "Prisma", glowColor: "#2D3748" },
-    { id: "firebase", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg", alt: "Firebase", title: "Firebase", glowColor: "#FFCA28" },
-];
-
-const TECH_CATEGORIES = [
-    { label: "Frontend", tech: "Next.js", color: "from-white via-gray-200 to-gray-400", modelPath: "/3d/react_logo.glb" },
-    { label: "Backend", tech: "Golang", color: "from-cyan-400 via-sky-500 to-blue-600", modelPath: "/3d/gopher.glb" },
-    { label: "Mobile", tech: "Flutter", color: "from-pink-400 via-purple-500 to-blue-500", modelPath: "/3d/flutter.glb" },
-];
+// Transform the JSON data to match the component's expected format if needed,
+// or just use it directly if it matches.
+const TECH_LOGOS: ImageData[] = techStackData.logos;
+const TECH_CATEGORIES = techStackData.categories;
 
 const getTechCategories = () => TECH_CATEGORIES.map(cat => ({
     ...cat,
@@ -193,18 +161,7 @@ export function TechStack() {
                     }, "-=0.2");
             });
 
-            // Header animation
-            gsap.from(".tech-header", {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                ease: "power3.out"
-            });
+
         });
 
         return () => ctx.revert();
@@ -233,17 +190,14 @@ export function TechStack() {
 
             <div className="container-wide relative z-10">
                 {/* Header */}
-                <div className="text-center mb-20 tech-header">
-                    <span className="inline-block text-sm uppercase tracking-[0.3em] text-[var(--color-accent)] mb-6">
-                        Technology Stack
-                    </span>
-                    <h2 className="text-headline mb-6">
-                        Our Tech Stack
-                    </h2>
-                    <p className="text-body-lg max-w-2xl mx-auto text-[var(--color-text-muted)]">
-                        Next.js, React, Flutter, GSAP, Three.js — Modern technologies that power premium digital experiences
-                    </p>
-                </div>
+                <SectionHeader
+                    eyebrow={techStackData.eyebrow}
+                    title={techStackData.title}
+                    gradientText={techStackData.gradientText}
+                    description={techStackData.description}
+                    center
+                    className="mb-20"
+                />
 
                 {/* Main Content: Sphere + Text */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
@@ -325,8 +279,7 @@ export function TechStack() {
                         {/* Additional info */}
                         <div className="mt-16 pt-8 border-t border-[var(--color-accent)]/20">
                             <p className="text-body text-[var(--color-text-muted)] leading-relaxed text-center lg:text-left">
-                                From responsive frontends to scalable backends and native mobile experiences,
-                                I architect solutions using industry-leading frameworks and best practices.
+                                {techStackData.footerText}
                             </p>
                         </div>
                     </div>

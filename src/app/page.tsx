@@ -22,7 +22,7 @@ export default function Home() {
     { name: 'Tech', url: '#tech-stack', icon: 'Code' },
     { name: 'Works', url: '#portfolio', icon: 'Folder' },
     { name: 'Team', url: '#team', icon: 'Users' },
-    { name: 'Pricing', url: '#pricing', icon: 'DollarSign' },
+    // { name: 'Pricing', url: '#pricing', icon: 'DollarSign' },
     { name: 'Contact', url: '#contact', icon: 'Mail' }
   ];
 
@@ -51,9 +51,9 @@ export default function Home() {
       <section id="team">
         <Team />
       </section>
-      <section id="pricing">
+      {/* <section id="pricing">
         <PricingSection />
-      </section>
+      </section> */}
       <section id="contact">
         <Contact />
       </section>

@@ -2,30 +2,22 @@
 
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { SectionHeader } from "@/components/ui/section-header";
 import testimonialsData from "@/data/testimonials.json";
+import { Testimonial } from "@/types/data";
 
 export function Testimonials() {
     return (
         <section id="testimonials" className="section-padding relative overflow-hidden">
             <div className="container-wide">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-sm uppercase tracking-widest text-[var(--color-accent)] mb-4 block">
-                        Testimonials
-                    </span>
-                    <h2 className="text-headline mb-6">
-                        Loved by <span className="text-gradient">Clients</span>
-                    </h2>
-                    <p className="text-body-lg max-w-2xl mx-auto">
-                        Don&apos;t just take our word for it — hear what our partners have to say.
-                    </p>
-                </motion.div>
+                <SectionHeader
+                    eyebrow="Testimonials"
+                    title="Loved by"
+                    gradientText="Clients"
+                    description="Don&apos;t just take our word for it — hear what our partners have to say."
+                    center
+                />
             </div>
 
             {/* Marquee */}
@@ -83,7 +75,7 @@ function Marquee({ children, direction = "left", speed = 30 }: MarqueeProps) {
 }
 
 interface TestimonialCardProps {
-    testimonial: typeof testimonialsData[0];
+    testimonial: Testimonial;
 }
 
 function TestimonialCard({ testimonial }: TestimonialCardProps) {

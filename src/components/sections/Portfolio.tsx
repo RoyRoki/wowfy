@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectsData from "@/data/projects.json";
 import { cn } from "@/lib/utils";
 import { Project3DCard, type Project } from "@/components/ui/Project3DCard";
-import { KineticWords } from "@/components/ui/KineticText";
+import { SectionHeader } from "@/components/ui/section-header";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 if (typeof window !== "undefined") {
@@ -18,7 +18,6 @@ if (typeof window !== "undefined") {
 export function Portfolio() {
     const router = useRouter();
     const sectionRef = useRef<HTMLElement>(null);
-    const headerRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
     // Parallax scroll effect for background
     const { scrollYProgress } = useScroll({
@@ -31,26 +30,7 @@ export function Portfolio() {
     // Check for reduced motion preference
     const isReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
-    // GSAP header animation
-    useEffect(() => {
-        if (!headerRef.current || isReducedMotion) return;
 
-        const ctx = gsap.context(() => {
-            gsap.from(headerRef.current, {
-                opacity: 0,
-                y: 60,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: headerRef.current,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse",
-                },
-            });
-        });
-
-        return () => ctx.revert();
-    }, [isReducedMotion]);
 
     // Cast projects data with proper typing
     const projects = projectsData as Project[];
@@ -89,35 +69,14 @@ export function Portfolio() {
 
             <div className="container-wide relative z-10">
                 {/* Header */}
-                <div ref={headerRef} className="text-center mb-20">
-                    <motion.span
-                        className="inline-block text-sm uppercase tracking-[0.3em] text-[var(--color-accent)] mb-6"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        Selected Works
-                    </motion.span>
-
-                    <h2 className="text-headline mb-8">
-                        <KineticWords
-                            text="Featured Projects"
-                            className="text-white"
-                            delay={0.2}
-                        />
-                    </h2>
-
-                    <motion.p
-                        className="text-body-lg max-w-2xl mx-auto text-[var(--color-text-muted)]"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        A curated selection of standout work, demonstrating precision in design, full-stack development, and innovative solutions across diverse domains.
-                    </motion.p>
-                </div>
+                <SectionHeader
+                    eyebrow="Selected Works"
+                    title="Featured"
+                    gradientText="Projects"
+                    description="A curated selection of standout work, demonstrating precision in design, full-stack development, and innovative solutions across diverse domains."
+                    center
+                    className="mb-20"
+                />
 
 
                 {/* Featured Projects Grid - 2 Rows Layout */}

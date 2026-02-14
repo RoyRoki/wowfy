@@ -115,13 +115,13 @@ export const ExperienceHero = () => {
 
                     <div className="max-w-5xl lg:-translate-y-8 pr-12">
                         <h1 className="text-[clamp(3rem,8vw,10rem)] font-black leading-[0.9] tracking-tighter text-white uppercase italic-none font-display mb-6">
-                            Startup <br /> <span className="text-outline">Accelerated</span>
+                            Digital <br /> <span className="text-outline">Excellence</span>
                         </h1>
                         <p className="font-mono text-[13px] text-white/80 uppercase tracking-[0.15em] max-w-xl leading-relaxed border-l-2 border-white/20 pl-6">
-                            Premium Websites + Apps for Indian Startups. <span className="text-white font-bold">Delivered Fast.</span>
+                            Premium Digital Experiences. <span className="text-white font-bold">Unbeatable Indian Pricing.</span>
                             <br /><br />
-                            Full-stack solo execution. Weeks, not months. <br />
-                            Awwwards-quality design on startup budgets.
+                            Awwwards-quality design. Solid engineering. <br />
+                            Fraction of the cost of western agencies.
                         </p>
                     </div>
 

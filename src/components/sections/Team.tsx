@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TeamCarousel } from "@/components/ui/team-carousel";
+import { SectionHeader } from "@/components/ui/section-header";
 import teamData from "@/data/team.json";
 
 export function Team() {
@@ -15,23 +16,13 @@ export function Team() {
 
             <div className="container-wide relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-sm uppercase tracking-widest text-[var(--color-accent)] mb-4 block">
-                        The Team
-                    </span>
-                    <h2 className="text-headline mb-6">
-                        Meet the <span className="text-gradient">Creators</span>
-                    </h2>
-                    <p className="text-body-lg max-w-2xl mx-auto">
-                        Passionate developers crafting premium digital experiences.
-                    </p>
-                </motion.div>
+                <SectionHeader
+                    eyebrow="The Team"
+                    title="Meet the"
+                    gradientText="Creators"
+                    description="Passionate developers crafting premium digital experiences."
+                    center
+                />
 
                 {/* Team Carousel */}
                 <TeamCarousel members={teamData} />

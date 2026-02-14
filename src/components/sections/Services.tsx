@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import servicesData from "@/data/services.json";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,78 +18,26 @@ const icons: Record<string, React.ReactNode> = {
     cloud: <CloudIcon />,
     brain: <BrainIcon />,
     settings: <SettingsIcon />,
+    code: <CodeIcon />,
 };
 
 export function Services() {
-    const headingRef = useRef<HTMLHeadingElement>(null);
-    const text = "Choose Your Tier";
-    const chars = text.split("");
-
-    useEffect(() => {
-        if (chars.length === 0) return;
-
-        const ctx = gsap.context(() => {
-            gsap.from(".char", {
-                scrollTrigger: {
-                    trigger: headingRef.current,
-                    start: "top 80%",
-                    toggleActions: "play none none reverse",
-                },
-                opacity: 0,
-                y: 50,
-                rotateX: -90,
-                stagger: 0.02,
-                duration: 0.8,
-                ease: "back.out(1.7)",
-            });
-        });
-
-        return () => ctx.revert();
-    }, [chars]);
 
     return (
         <section id="services" className="section-padding relative overflow-hidden">
             <div className="container-wide">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
+                <SectionHeader
+                    eyebrow="Our Services"
+                    title="Select Your"
+                    gradientText="Package"
+                    description="Transparent pricing. Fixed timelines. Global quality."
+                    center
                 >
-                    <span className="text-sm uppercase tracking-widest text-[var(--color-accent)] mb-4 block">
-                        Our Services
-                    </span>
-                    <h2 ref={headingRef} className="text-headline mb-6" style={{ perspective: "1000px" }}>
-                        {chars.length > 0 ? (
-                            chars.map((char, i) => (
-                                <span
-                                    key={i}
-                                    className={cn(
-                                        "char inline-block",
-                                        char === " " ? "w-2" : "",
-                                        i >= 7 ? "text-gradient" : ""
-                                    )}
-                                    style={{ transformOrigin: "50% 100%" }}
-                                >
-                                    {char === " " ? "\u00A0" : char}
-                                </span>
-                            ))
-                        ) : (
-                            <>
-                                Choose Your <span className="text-gradient">Tier</span>
-                            </>
-                        )}
-                    </h2>
-                    <p className="text-body-lg max-w-2xl mx-auto">
-                        Transparent pricing. Fixed timelines. Premium quality.
-                        <br />
-                        <span className="text-sm text-[var(--color-text-muted)] mt-2 block">
-                            (50% upfront, 50% on delivery)
-                        </span>
-                    </p>
-                </motion.div>
+                    <div className="mt-2 text-sm text-[var(--color-text-muted)]">
+                        (50% upfront, 50% on delivery)
+                    </div>
+                </SectionHeader>
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -320,6 +269,14 @@ function SettingsIcon() {
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+    );
+}
+
+function CodeIcon() {
+    return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
         </svg>
     );
 }

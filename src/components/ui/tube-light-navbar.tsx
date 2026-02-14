@@ -147,20 +147,24 @@ export function NavBar({ items, className }: NavBarProps) {
 
                             {/* More Button */}
                             <button
-                                onClick={() => setIsMenuOpen(true)}
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 className="relative cursor-pointer flex flex-col items-center justify-center px-1 py-1 rounded-xl group"
                             >
                                 <div className={cn(
                                     "w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors",
                                     isMenuOpen ? "text-accent bg-white/10" : "text-muted-foreground group-hover:text-accent"
                                 )}>
-                                    <Menu size={20} strokeWidth={2.5} />
+                                    {isMenuOpen ? (
+                                        <X size={20} strokeWidth={2.5} />
+                                    ) : (
+                                        <Menu size={20} strokeWidth={2.5} />
+                                    )}
                                 </div>
                                 <span className={cn(
                                     "text-[10px] font-medium mt-1 leading-none transition-colors",
                                     isMenuOpen ? "text-accent" : "text-muted-foreground group-hover:text-accent"
                                 )}>
-                                    Menu
+                                    {isMenuOpen ? "Close" : "Menu"}
                                 </span>
                             </button>
                         </>

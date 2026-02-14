@@ -17,26 +17,25 @@ export function AnimatedFavicon() {
             iconIndex = (iconIndex + 1) % icons.length;
             const currentIconPath = assetPath(icons[iconIndex]);
 
-            // Update standard icon
-            const link: HTMLLinkElement | null = document.querySelector("link[rel*='icon']");
-            if (link) {
-                link.href = currentIconPath;
-            } else {
+            // Update all icon links
+            const links = document.querySelectorAll("link[rel*='icon']");
+            links.forEach((link) => {
+                (link as HTMLLinkElement).href = currentIconPath;
+            });
+
+            // If no links found, create one (fallback)
+            if (links.length === 0) {
                 const newLink = document.createElement("link");
                 newLink.rel = "icon";
                 newLink.href = currentIconPath;
                 document.head.appendChild(newLink);
             }
-
-            // Also try to update other icon types if they exist to be thorough
-            const appleLink: HTMLLinkElement | null = document.querySelector("link[rel='apple-touch-icon']");
-            if (appleLink) {
-                appleLink.href = currentIconPath;
-            }
         }, 1000); // Change every 1 second
 
         return () => clearInterval(intervalId);
     }, []);
+
+
 
     return null;
 }

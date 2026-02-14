@@ -1,74 +1,62 @@
 [
     {
-        "id": "web-development",
-        "title": "Premium Web Development",
-        "description": "Award-worthy websites built with Next.js and React. From landing pages to complex web applications, we create digital experiences that make your audience go WOW.",
+        "id": "tier-1",
+        "title": "Tier 1: Premium Landing Page",
+        "description": "Single-page, scroll-driven, Awwwards-quality animations. Perfect for product launches, events, or luxury brands.",
         "icon": "rocket",
         "features": [
-            "Next.js & React Development",
-            "Responsive Design (Mobile-First)",
-            "GSAP & Smooth Animations",
-            "SEO Optimized & Fast Performance"
+            "Timeline: 5-7 Days",
+            "Price: ₹3-5 Lakhs ($3.6K-6K)",
+            "Scroll-driven UI (Lenis+GSAP)",
+            "90+ Lighthouse Score Guaranteed"
         ]
     },
     {
-        "id": "mobile-apps",
-        "title": "Mobile App Development",
-        "description": "Cross-platform mobile applications with Flutter. Build once, deploy on iOS and Android. Beautiful interfaces, native performance.",
-        "icon": "settings",
-        "features": [
-            "Flutter Cross-Platform Apps",
-            "Android & iOS Development",
-            "Native Performance & UX",
-            "API Integration & Backend"
-        ]
-    },
-    {
-        "id": "ui-ux",
-        "title": "UI/UX Design",
-        "description": "Not just developers—we're creative developers. Beautiful, functional designs with micro-interactions and animations that elevate user experience.",
-        "icon": "palette",
-        "features": [
-            "Modern UI/UX Design",
-            "Interactive Prototypes",
-            "Design Systems & Branding",
-            "3D & Motion Design"
-        ]
-    },
-    {
-        "id": "3d-interactive",
-        "title": "Interactive Experiences",
-        "description": "Bring your website to life with 3D graphics, smooth scroll magic, and immersive animations using Three.js, GSAP, and Framer Motion.",
-        "icon": "brain",
-        "features": [
-            "Three.js 3D Graphics",
-            "GSAP Advanced Animations",
-            "Smooth Scroll (Lenis)",
-            "Framer Motion Interactions"
-        ]
-    },
-    {
-        "id": "api-integration",
-        "title": "API Integration",
-        "description": "Connect your application to any service. Payment gateways, CRM systems, third-party APIs—we make integrations seamless and reliable.",
+        "id": "tier-2",
+        "title": "Tier 2: Business Website",
+        "description": "Multi-page site with CMS, SEO, and analytics. Ideal for SMBs, agencies, and early-stage startups needing a solid presence.",
         "icon": "server",
         "features": [
-            "REST & GraphQL APIs",
-            "Payment Gateway Integration",
-            "Firebase & Supabase",
-            "Real-time Data Sync"
+            "Timeline: 2-3 Weeks",
+            "Price: ₹5-10 Lakhs ($6K-12K)",
+            "CMS Integration (Easy Updates)",
+            "SEO & Analytics Setup"
         ]
     },
     {
-        "id": "deployment",
-        "title": "Deployment & Support",
-        "description": "From local development to production deployment on Vercel, AWS, or your preferred platform. Ongoing support and maintenance included.",
+        "id": "tier-3",
+        "title": "Tier 3: Full-Stack MVP",
+        "description": "Custom web app with auth, database, and admin dashboard. For SaaS, E-commerce, and Platforms validating their idea.",
+        "icon": "brain",
+        "features": [
+            "Timeline: 4-8 Weeks",
+            "Price: ₹10-30 Lakhs ($12K-36K)",
+            "Auth + Database + Admin",
+            "Scalable Architecture"
+        ]
+    },
+    {
+        "id": "tier-4",
+        "title": "Tier 4: Mobile App",
+        "description": "Native iOS & Android apps built with Flutter. For mobile-first startups and enterprise tools requiring native features.",
+        "icon": "settings",
+        "features": [
+            "Timeline: 6-12 Weeks",
+            "Price: ₹15-40 Lakhs ($18K-48K)",
+            "iOS + Android (Flutter)",
+            "Native Features & Offline Mode"
+        ]
+    },
+    {
+        "id": "tier-5",
+        "title": "Tier 5: Retainer / Support",
+        "description": "Ongoing dev support, updates, and feature additions. Your on-demand dev team without the overhead.",
         "icon": "cloud",
         "features": [
-            "Vercel & AWS Deployment",
-            "CI/CD Setup",
-            "Performance Optimization",
-            "Ongoing Maintenance"
+            "Timeline: Monthly",
+            "Price: ₹30K-100K/mo",
+            "Priority Support",
+            "Fast Feature Updates"
         ]
     }
 ]

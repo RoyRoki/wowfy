@@ -110,15 +110,18 @@ export const ExperienceHero = () => {
                         <div className="relative w-2.5 h-2.5 bg-white rounded-full">
                             <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-30" />
                         </div>
-                        <span className="font-mono text-[11px] font-bold text-white tracking-[0.2em] uppercase">ROKIROY</span>
+                        <span className="font-mono text-[11px] font-bold text-white tracking-[0.2em] uppercase">ROKIROY DIGITAL</span>
                     </div>
 
-                    <div className="max-w-4xl lg:-translate-y-8 pr-12">
-                        <h1 className="text-[clamp(3.5rem,9.5vw,11.5rem)] font-black leading-[0.87] tracking-tighter text-white uppercase italic-none font-display">
-                            ROKIROY <br /> <span className="text-outline">Digital</span>
+                    <div className="max-w-5xl lg:-translate-y-8 pr-12">
+                        <h1 className="text-[clamp(3rem,8vw,10rem)] font-black leading-[0.9] tracking-tighter text-white uppercase italic-none font-display mb-6">
+                            Startup <br /> <span className="text-outline">Accelerated</span>
                         </h1>
-                        <p className="mt-8 font-mono text-[11px] text-white/40 uppercase tracking-[0.35em] max-w-sm leading-relaxed">
-                            Premium digital experiences that make your audience go WOW. From India to Dubai, we create award-worthy websites & apps.
+                        <p className="font-mono text-[13px] text-white/80 uppercase tracking-[0.15em] max-w-xl leading-relaxed border-l-2 border-white/20 pl-6">
+                            Premium Websites + Apps for Indian Startups. <span className="text-white font-bold">Delivered Fast.</span>
+                            <br /><br />
+                            Full-stack solo execution. Weeks, not months. <br />
+                            Awwwards-quality design on startup budgets.
                         </p>
                     </div>
 
@@ -137,7 +140,7 @@ export const ExperienceHero = () => {
                                 <path d="M7 17L17 7M17 7H8M17 7V16" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </div>
-                        <span className="font-mono text-[11px] font-bold text-white uppercase tracking-[0.2em]">Start a Project</span>
+                        <span className="font-mono text-[11px] font-bold text-white uppercase tracking-[0.2em]">Book a 15-Min Call</span>
                     </button>
                 </div>
             </div>

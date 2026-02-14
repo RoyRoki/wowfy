@@ -3,8 +3,8 @@
         "id": "formula-shop",
         "title": "The Formula Shop",
         "year": "2025",
-        "role": "Frontend Development (Team Project at Fordel Studios)",
-        "description": "Korean beauty product e-commerce website featuring modern design, product catalog, and seamless shopping experience.",
+        "role": "Frontend Development",
+        "description": "High-conversion e-commerce store for premium K-Beauty products. Features a custom shopping cart, seamless checkout, and a design that builds instant trust.",
         "tech": [
             "Next.js",
             "Tailwind CSS",
@@ -43,8 +43,8 @@
         "id": "dubai-luxury-apartments",
         "title": "Dubai Luxury Apartments",
         "year": "2025",
-        "role": "UI/UX Design & Frontend Development",
-        "description": "Curating the world's most exceptional properties for those who accept nothing less than perfection. A legacy of excellence in Dubai real estate.",
+        "role": "UI/UX & Frontend",
+        "description": "An ultra-premium landing page for Dubai's most exclusive properties. Uses smooth scroll and cinematic animations to sell the dream, not just the house.",
         "tech": [
             "Next.js",
             "Tailwind CSS",
@@ -82,7 +82,7 @@
         "title": "Astra Terra Properties",
         "year": "2026",
         "role": "Full-Stack Development",
-        "description": "A dynamic, one-stop-shop, full-service real estate provider dedicated to delivering exceptional property solutions across Dubai, UAE.",
+        "description": "A complex real estate platform built for scale. Features interactive map search, advanced filtering, and a custom CMS. Speed and utility combined.",
         "tech": [
             "Next.js",
             "Tailwind CSS",
@@ -121,7 +121,7 @@
         "title": "RokiRoy Digital - 3D Portfolio",
         "year": "2026",
         "role": "Full-Stack & 3D Development",
-        "description": "3D portfolio website showcasing modern web development capabilities with Three.js, GSAP animations, and immersive user experience.",
+        "description": "This website. A showcase of what's possible when technical mastery meets creative design. 3D monoliths, particle systems, and buttery smooth animations.",
         "tech": [
             "Next.js",
             "Tailwind CSS",
@@ -160,7 +160,7 @@
         "title": "emSigner Digital Signature",
         "year": "2025-2026",
         "role": "Flutter Mobile Development",
-        "description": "emSigner Digital Signature Platform - Cross-platform mobile application for secure digital signatures on Android and iOS. Developed at Fordel Studios.",
+        "description": "Enterprise-grade mobile app for secure digital signatures. Built with Flutter for iOS and Android. Bank-grade security, millions of users.",
         "tech": [
             "Flutter",
             "Dart",

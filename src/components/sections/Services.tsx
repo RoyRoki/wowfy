@@ -21,8 +21,7 @@ const icons: Record<string, React.ReactNode> = {
 
 export function Services() {
     const headingRef = useRef<HTMLHeadingElement>(null);
-    // Define text directly instead of reading from DOM to avoid sync state update in effect
-    const text = "Full-Stack Expertise";
+    const text = "Choose Your Tier";
     const chars = text.split("");
 
     useEffect(() => {
@@ -59,7 +58,7 @@ export function Services() {
                     className="text-center mb-16"
                 >
                     <span className="text-sm uppercase tracking-widest text-[var(--color-accent)] mb-4 block">
-                        What We Do
+                        Our Services
                     </span>
                     <h2 ref={headingRef} className="text-headline mb-6" style={{ perspective: "1000px" }}>
                         {chars.length > 0 ? (
@@ -69,7 +68,7 @@ export function Services() {
                                     className={cn(
                                         "char inline-block",
                                         char === " " ? "w-2" : "",
-                                        i >= 11 ? "text-gradient" : ""
+                                        i >= 7 ? "text-gradient" : ""
                                     )}
                                     style={{ transformOrigin: "50% 100%" }}
                                 >
@@ -78,12 +77,16 @@ export function Services() {
                             ))
                         ) : (
                             <>
-                                Full-Stack <span className="text-gradient">Expertise</span>
+                                Choose Your <span className="text-gradient">Tier</span>
                             </>
                         )}
                     </h2>
                     <p className="text-body-lg max-w-2xl mx-auto">
-                        End-to-end solutions covering every aspect of modern software development.
+                        Transparent pricing. Fixed timelines. Premium quality.
+                        <br />
+                        <span className="text-sm text-[var(--color-text-muted)] mt-2 block">
+                            (50% upfront, 50% on delivery)
+                        </span>
                     </p>
                 </motion.div>
 
@@ -207,11 +210,11 @@ function ServiceCard({ service }: ServiceCardProps) {
             customSize
             className="h-full !aspect-auto !grid-rows-none"
         >
-            <div ref={cardRef} className="relative z-10 p-6 md:p-8" style={{ transformStyle: "preserve-3d" }}>
+            <div ref={cardRef} className="relative z-10 p-6 md:p-8 flex flex-col h-full" style={{ transformStyle: "preserve-3d" }}>
                 {/* Icon */}
                 <div
                     ref={iconRef}
-                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-highlight)]/20 flex items-center justify-center mb-6 text-[var(--color-accent)] cursor-pointer"
+                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-highlight)]/20 flex items-center justify-center mb-6 text-[var(--color-accent)] cursor-pointer shrink-0"
                 >
                     {icons[service.icon] || <RocketIcon />}
                 </div>
@@ -222,22 +225,50 @@ function ServiceCard({ service }: ServiceCardProps) {
                 </h3>
 
                 {/* Description */}
-                <p className="text-[var(--color-text-secondary)] mb-6 text-sm leading-relaxed">
+                <p className="text-[var(--color-text-secondary)] mb-6 text-sm leading-relaxed grow">
                     {service.description}
                 </p>
 
                 {/* Features */}
-                <ul className="space-y-2">
+                <ul className="space-y-2 mt-auto">
                     {service.features.map((feature, index) => (
                         <li
                             key={index}
-                            className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]"
+                            className={cn(
+                                "flex items-center gap-2 text-sm",
+                                index < 2 ? "text-[var(--color-text-primary)] font-medium" : "text-[var(--color-text-muted)]"
+                            )}
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-highlight)]" />
+                            <span className={cn(
+                                "w-1.5 h-1.5 rounded-full",
+                                index < 2 ? "bg-[var(--color-accent)]" : "bg-[var(--color-highlight)]"
+                            )} />
                             {feature}
                         </li>
                     ))}
                 </ul>
+
+                {/* CTA Button */}
+                <button
+                    className="mt-6 w-full py-2 px-4 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium transition-colors text-[var(--color-text-primary)]"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        const contactSection = document.getElementById('contact');
+                        if (contactSection) {
+                            try {
+                                const messageInput = contactSection.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+                                if (messageInput) {
+                                    messageInput.value = `I'm interested in the ${service.title} package.`;
+                                }
+                            } catch (err) {
+                                console.error("Could not pre-fill message", err);
+                            }
+                            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }}
+                >
+                    Book This Tier
+                </button>
             </div>
         </SpotlightCard>
     );

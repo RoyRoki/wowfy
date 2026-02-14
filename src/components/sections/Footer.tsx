@@ -127,8 +127,7 @@ export function Footer() {
                         className="pt-8 border-t border-white/10 text-center"
                     >
                         <p className="text-xs text-[var(--color-text-muted)]">
-                            © {currentYear} RokiRoy Digital. Crafted with{" "}
-                            <span className="text-red-400">♥</span> by creative developers.
+                            © {currentYear} RokiRoy Digital. Proudly building in <span className="text-white">Siliguri, India 🇮🇳</span>.
                         </p>
                     </motion.div>
                 </div>

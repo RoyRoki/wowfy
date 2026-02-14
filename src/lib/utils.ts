@@ -20,9 +20,9 @@ export function assetPath(path: string): string {
     // Ensure path starts with /
     const normalizedPath = path.startsWith('/') ? path : `/${path}`;
 
-    // In production, return full GitHub Pages URL
+    // In production, return the path as-is (relative) since we are using a custom domain
     if (process.env.NODE_ENV === 'production') {
-        return `https://royroki.github.io/wowfy${normalizedPath}`;
+        return normalizedPath;
     }
 
     // In development, return local path

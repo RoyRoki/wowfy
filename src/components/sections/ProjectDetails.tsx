@@ -27,7 +27,6 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
     const heroRef = useRef<HTMLDivElement>(null);
     const narrativeRef = useRef<HTMLDivElement>(null);
     const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-    const [isReducedMotion, setIsReducedMotion] = useState(false);
     const isMobile = useMediaQuery("(max-width: 768px)");
 
     // Modal-specific cursor
@@ -75,10 +74,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
     }, []);
 
     // Check for reduced motion preference
-    useEffect(() => {
-        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-        setIsReducedMotion(mediaQuery.matches);
-    }, []);
+    const isReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
     // Modal cursor tracking
     useEffect(() => {

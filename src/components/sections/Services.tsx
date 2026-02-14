@@ -21,14 +21,9 @@ const icons: Record<string, React.ReactNode> = {
 
 export function Services() {
     const headingRef = useRef<HTMLHeadingElement>(null);
-    const [chars, setChars] = useState<string[]>([]);
-
-    useEffect(() => {
-        if (headingRef.current) {
-            const text = headingRef.current.textContent || "";
-            setChars(text.split(""));
-        }
-    }, []);
+    // Define text directly instead of reading from DOM to avoid sync state update in effect
+    const text = "Full-Stack Expertise";
+    const chars = text.split("");
 
     useEffect(() => {
         if (chars.length === 0) return;

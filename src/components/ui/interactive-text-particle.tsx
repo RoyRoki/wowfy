@@ -16,8 +16,8 @@ interface Particle {
     ov: number;
     f: number;
     rgb: number[];
-    draw(): void;
-    move(interactionRadius: number, hasPointer: boolean): boolean;
+    draw(ctx: CanvasRenderingContext2D): void;
+    move(interactionRadius: number, hasPointer: boolean, pointer: Pointer, isForming: boolean, ctx: CanvasRenderingContext2D): boolean;
 }
 
 interface TextBox {
@@ -26,6 +26,93 @@ interface TextBox {
     y?: number;
     w?: number;
     h?: number;
+}
+
+class ParticleClass implements Particle {
+    ox: number;
+    oy: number;
+    cx: number;
+    cy: number;
+    or: number;
+    cr: number;
+    pv: number;
+    ov: number;
+    f: number;
+    rgb: number[];
+    animationForce: number;
+
+    constructor(
+        x: number,
+        y: number,
+        rgb: number[],
+        shouldScatter: boolean,
+        canvasWidth: number,
+        canvasHeight: number,
+        animationForce: number = 80
+    ) {
+        this.ox = x;
+        this.oy = y;
+        this.animationForce = animationForce;
+
+        if (shouldScatter) {
+            this.cx = Math.random() * canvasWidth;
+            this.cy = Math.random() * canvasHeight;
+        } else {
+            this.cx = x;
+            this.cy = y;
+        }
+
+        this.or = Math.random() * 4 + 1; // rand(5, 1) equivalent
+        this.cr = this.or;
+        this.pv = 0;
+        this.ov = 0;
+        this.f = (animationForce + 15) - Math.random() * 30; // rand(force+15, force-15)
+        this.rgb = rgb.map(c => Math.max(0, c + (Math.random() * 26 - 13)));
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = `rgb(${this.rgb.join(',')})`;
+        ctx.beginPath();
+        ctx.arc(this.cx, this.cy, this.cr, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    move(
+        interactionRadius: number,
+        hasPointer: boolean,
+        pointer: Pointer,
+        isForming: boolean,
+        ctx: CanvasRenderingContext2D
+    ) {
+        let moved = false;
+
+        if (hasPointer && pointer.x !== undefined && pointer.y !== undefined) {
+            const dx = this.cx - pointer.x;
+            const dy = this.cy - pointer.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < interactionRadius && dist > 0) {
+                const force = Math.min(this.f, (interactionRadius - dist) / dist * 2);
+                this.cx += (dx / dist) * force;
+                this.cy += (dy / dist) * force;
+                moved = true;
+            }
+        }
+
+        const odx = this.ox - this.cx;
+        const ody = this.oy - this.cy;
+        const od = Math.hypot(odx, ody);
+
+        if (od > 1) {
+            const restoreMultiplier = isForming ? 0.08 : 0.1;
+            const restore = Math.min(od * restoreMultiplier, isForming ? 8 : 3);
+            this.cx += (odx / od) * restore;
+            this.cy += (ody / od) * restore;
+            moved = true;
+        }
+
+        this.draw(ctx);
+        return moved;
+    }
 }
 
 export interface ParticleTextEffectProps {
@@ -69,80 +156,7 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
         return +(min + Math.random() * (max - min)).toFixed(dec);
     };
 
-    class ParticleClass implements Particle {
-        ox: number;
-        oy: number;
-        cx: number;
-        cy: number;
-        or: number;
-        cr: number;
-        pv: number;
-        ov: number;
-        f: number;
-        rgb: number[];
-
-        constructor(x: number, y: number, rgb: number[] = [rand(128), rand(128), rand(128)], shouldScatter: boolean = false) {
-            this.ox = x;
-            this.oy = y;
-
-            // If initial animation is enabled, start particles at random positions
-            if (shouldScatter && canvasRef.current) {
-                this.cx = rand(canvasRef.current.width);
-                this.cy = rand(canvasRef.current.height);
-            } else {
-                this.cx = x;
-                this.cy = y;
-            }
-
-            this.or = rand(5, 1);
-            this.cr = this.or;
-            this.pv = 0;
-            this.ov = 0;
-            this.f = rand(animationForce + 15, animationForce - 15);
-            this.rgb = rgb.map(c => Math.max(0, c + rand(13, -13)));
-        }
-
-        draw() {
-            const ctx = ctxRef.current;
-            if (!ctx) return;
-            ctx.fillStyle = `rgb(${this.rgb.join(',')})`;
-            ctx.beginPath();
-            ctx.arc(this.cx, this.cy, this.cr, 0, 2 * Math.PI);
-            ctx.fill();
-        }
-
-        move(interactionRadius: number, hasPointer: boolean) {
-            let moved = false;
-
-            if (hasPointer && pointerRef.current.x !== undefined && pointerRef.current.y !== undefined) {
-                const dx = this.cx - pointerRef.current.x;
-                const dy = this.cy - pointerRef.current.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < interactionRadius && dist > 0) {
-                    const force = Math.min(this.f, (interactionRadius - dist) / dist * 2);
-                    this.cx += (dx / dist) * force;
-                    this.cy += (dy / dist) * force;
-                    moved = true;
-                }
-            }
-
-            const odx = this.ox - this.cx;
-            const ody = this.oy - this.cy;
-            const od = Math.hypot(odx, ody);
-
-            if (od > 1) {
-                // During forming animation, use stronger restore force
-                const restoreMultiplier = isFormingRef.current ? 0.08 : 0.1;
-                const restore = Math.min(od * restoreMultiplier, isFormingRef.current ? 8 : 3);
-                this.cx += (odx / od) * restore;
-                this.cy += (ody / od) * restore;
-                moved = true;
-            }
-
-            this.draw();
-            return moved;
-        }
-    }
+    // ParticleClass removed from here. 
 
     const dottify = () => {
         const ctx = ctxRef.current;
@@ -168,9 +182,11 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
                 textBox.x! + p.x,
                 textBox.y! + p.y,
                 p.rgb.slice(0, 3),
-                enableInitialAnimation
+                enableInitialAnimation,
+                canvas.width,
+                canvas.height
             );
-            particlesRef.current[i].draw();
+            if (ctxRef.current) particlesRef.current[i].draw(ctxRef.current);
         });
 
         particlesRef.current.splice(pixels.length, particlesRef.current.length);
@@ -219,7 +235,9 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
             }
         }
 
-        particlesRef.current.forEach(p => p.move(interactionRadiusRef.current, hasPointerRef.current));
+        particlesRef.current.forEach(p => {
+            if (ctx) p.move(interactionRadiusRef.current, hasPointerRef.current, pointerRef.current, isFormingRef.current, ctx);
+        });
         animationIdRef.current = requestAnimationFrame(animate);
     };
 
@@ -236,17 +254,37 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
     };
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
-
-        const handleResize = () => {
-            setCanvasSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
+        const updateSize = () => {
+            if (canvasRef.current?.parentElement) {
+                const { clientWidth, clientHeight } = canvasRef.current.parentElement;
+                setCanvasSize({ width: clientWidth, height: clientHeight });
+            } else if (typeof window !== 'undefined') {
+                setCanvasSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                });
+            }
         };
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        updateSize();
+
+        let resizeObserver: ResizeObserver | null = null;
+        if (canvasRef.current?.parentElement) {
+            resizeObserver = new ResizeObserver(() => {
+                updateSize();
+            });
+            resizeObserver.observe(canvasRef.current.parentElement);
+        } else {
+            window.addEventListener('resize', updateSize);
+        }
+
+        return () => {
+            if (resizeObserver) {
+                resizeObserver.disconnect();
+            } else {
+                window.removeEventListener('resize', updateSize);
+            }
+        };
     }, []);
 
     useEffect(() => {

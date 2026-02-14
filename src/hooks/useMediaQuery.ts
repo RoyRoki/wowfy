@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore, useCallback } from "react";
 
 /**
  * Custom hook for responsive breakpoint detection
@@ -8,39 +8,39 @@ import { useEffect, useState } from "react";
  * @returns boolean - true if media query matches
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  const subscribe = useCallback(
+    (callback: () => void) => {
+      const matchMedia = window.matchMedia(query);
 
-  useEffect(() => {
-    // Check if window is defined (client-side only)
-    if (typeof window === "undefined") return;
+      const handleChange = () => {
+        callback();
+      };
 
-    const media = window.matchMedia(query);
-    
-    // Set initial value
-    setMatches(media.matches);
-
-    // Create event listener
-    const listener = (event: MediaQueryListEvent) => {
-      setMatches(event.matches);
-    };
-
-    // Modern browsers
-    if (media.addEventListener) {
-      media.addEventListener("change", listener);
-    } else {
-      // Fallback for older browsers
-      media.addListener(listener);
-    }
-
-    // Cleanup
-    return () => {
-      if (media.removeEventListener) {
-        media.removeEventListener("change", listener);
+      // Modern browsers
+      if (matchMedia.addEventListener) {
+        matchMedia.addEventListener("change", handleChange);
       } else {
-        media.removeListener(listener);
+        // Fallback for older browsers
+        matchMedia.addListener(handleChange);
       }
-    };
-  }, [query]);
 
-  return matches;
+      return () => {
+        if (matchMedia.removeEventListener) {
+          matchMedia.removeEventListener("change", handleChange);
+        } else {
+          matchMedia.removeListener(handleChange);
+        }
+      };
+    },
+    [query]
+  );
+
+  const getSnapshot = () => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(query).matches;
+  };
+
+  const getServerSnapshot = () => false;
+
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

@@ -1,2 +1,2 @@
-Korian beauti product e-commerce website, next js + tailwind css, Team Project 
+Korean beauty product e-commerce website, next js + tailwind css, Team Project at Fordel Studios
 https://theformulashop.com/

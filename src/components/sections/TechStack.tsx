@@ -61,12 +61,15 @@ if (typeof window !== "undefined") {
     preloadModels(getTechCategories().map(cat => cat.modelPath));
 }
 
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+
 export function TechStack() {
     const sectionRef = useRef<HTMLElement>(null);
     const textContainerRef = useRef<HTMLDivElement>(null);
     const sphereContainerRef = useRef<HTMLDivElement>(null);
     const [activeModel, setActiveModel] = useState<string | null>(null);
     const [isSectionVisible, setIsSectionVisible] = useState(false);
+    const isMobile = useMediaQuery("(max-width: 768px)");
 
     // Track section visibility with Intersection Observer
     useEffect(() => {
@@ -262,8 +265,8 @@ export function TechStack() {
                                     >
                                         <SphereImageGrid
                                             images={TECH_LOGOS}
-                                            containerSize={typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : 600}
-                                            sphereRadius={typeof window !== 'undefined' && window.innerWidth < 768 ? 130 : 220}
+                                            containerSize={isMobile ? 350 : 600}
+                                            sphereRadius={isMobile ? 130 : 220}
                                             dragSensitivity={0.8}
                                             momentumDecay={0.96}
                                             maxRotationSpeed={6}
@@ -279,8 +282,9 @@ export function TechStack() {
                             </AnimatePresence>
 
                             {/* 3D Model Viewer - Only render when section is visible */}
-                            {isSectionVisible && (
+                            {isSectionVisible && activeModel && (
                                 <TechModelViewer
+                                    key={activeModel}
                                     modelPath={activeModel}
                                     onHide={() => setActiveModel(null)}
                                     autoHideDuration={3000}

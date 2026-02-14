@@ -1,0 +1,47 @@
+[
+    {
+        "id": "roki-roy",
+        "name": "Roki Roy",
+        "role": "Founder & Full-Stack Architect",
+        "bio": "Results-driven technologist specializing in the end-to-end delivery of scalable, high-performance products. I translate complex business requirements into robust technical architectures, leveraging deep expertise in DevOps and performance optimization to ensure seamless growth. Proven track record of maintaining delivery excellence and high-touch client communication while transforming innovative concepts into production-ready solutions.",
+        "avatar": "/team/roki-roy.jpg",
+        "social": {
+            "github": "https://github.com/royroki",
+            "twitter": "https://x.com/MRrokiroy",
+            "linkedin": "https://linkedin.com/in/rokiroy",
+            "instagram": "https://www.instagram.com/rokiroydev/"
+        },
+        "skills": [
+            "Next.js",
+            "React",
+            "Node.js",
+            "AWS",
+            "Docker",
+            "Flutter",
+            "Three.js",
+            "PostgreSQL"
+        ]
+    },
+    {
+        "id": "kalyan-paul",
+        "name": "Kalyan Paul",
+        "role": "Lead Frontend & UI/UX Engineer",
+        "bio": "User-centric engineer dedicated to crafting pixel-perfect interfaces. I bridge the gap between design and development by translating client requirements into intuitive UI/UX experiences. My expertise lies in rigorous quality assurance, ensuring every bug is squashed, and leveraging strategic marketing insights to drive user engagement and product success.",
+        "avatar": "/team/kalyan-paul.jpeg",
+        "social": {
+            "github": "https://github.com/kalyanpaulfs",
+            "twitter": "https://x.com/paulkalyan17",
+            "linkedin": "https://linkedin.com/in/kalyanpaul17",
+            "instagram": "https://www.instagram.com/kalyanpaulkp/"
+        },
+        "skills": [
+            "React.js",
+            "Tailwind CSS",
+            "Figma",
+            "Firebase",
+            "HTML/CSS",
+            "Performance Optimization",
+            "SEO"
+        ]
+    }
+]

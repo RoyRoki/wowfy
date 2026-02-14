@@ -3,7 +3,7 @@
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 
 export function WhyUs() {
-    const particleWords = ["WHY", "CHOOSE", "US?", "EXCELLENCE", "INNOVATION"];
+    const particleWords = ["EXCELLENCE", "INNOVATION", "QUALITY", "CREATIVITY", "PASSION", "PRECISION"];
 
     return (
         <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-start justify-center">
@@ -23,8 +23,8 @@ export function WhyUs() {
 
             {/* Section Header - Content Layer */}
             <div className="relative z-20 px-4 pt-20 w-full text-center pointer-events-none">
-                <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
-                    Why Choose wowfy?
+                <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent py-2">
+                    Why Choose RokiRoy Digital?
                 </h2>
                 <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto">
                     Creative developers who build award-worthy experiences. Premium quality at unbeatable prices. Serving clients from India to Dubai with passion and precision.

@@ -353,7 +353,7 @@ export function LetsWorkTogether() {
                                 transitionDelay: "200ms",
                             }}
                         >
-                            Let's talk
+                            Let&apos;s talk
                         </h3>
                     </div>
 
@@ -542,7 +542,7 @@ export function LetsWorkTogether() {
                     }}
                 >
                     <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                        Have a project in mind? I'd love to hear about it. Let's create something exceptional together.
+                        Have a project in mind? I&apos;d love to hear about it. Let&apos;s create something exceptional together.
                     </p>
                     <span className="text-xs tracking-widest uppercase text-muted-foreground/60">
                         {contactData?.email || "rokiroydev@gmail.com"}

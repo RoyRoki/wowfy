@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ParticleTextEffect } from "@/components/ui/interactive-text-particle";
+import { ContactForm } from "@/components/ui/contact-form";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -19,25 +20,7 @@ export function Footer() {
 
     return (
         <footer className="relative pt-16 pb-16 border-t border-white/10 min-h-[800px]">
-            {/* Particle Text Effect - Full Footer Background */}
-            <div className="absolute inset-0">
-                <ParticleTextEffect
-                    text="Wowfy"
-                    className="w-full h-full"
-                    colors={[
-                        '8B5CF6',  // Purple
-                        'A78BFA',  // Light Purple
-                        'C084FC',  // Pink Purple
-                        'E879F9',  // Magenta
-                        'F472B6',  // Pink
-                        '06B6D4',  // Cyan
-                        '0EA5E9',  // Sky Blue
-                    ]}
-                    animationForce={60}
-                    particleDensity={4}
-                    enableInitialAnimation={true}
-                />
-            </div>
+
 
             <div className="container-wide relative z-10">
                 {/* Top Section - Social Links and Back to Top */}
@@ -96,6 +79,44 @@ export function Footer() {
                 </div>
             </div>
 
+            {/* Minimal Contact Form */}
+            <div className="container-wide relative z-10 mb-16">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col items-center justify-center text-center mb-8"
+                >
+                    <h3 className="text-xl md:text-2xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/60">
+                        Get in touch
+                    </h3>
+                    <p className="text-sm text-[var(--color-text-muted)] mb-6 max-w-sm">
+                        Have a project in mind? Let&apos;s build something amazing together.
+                    </p>
+                    <ContactForm />
+                </motion.div>
+            </div>
+
+            {/* Particle Text Effect - Below Contact Form */}
+            <div className="w-full h-[300px] md:h-[400px] relative mb-16">
+                <ParticleTextEffect
+                    text="RokiRoy"
+                    className="w-full h-full"
+                    colors={[
+                        '8B5CF6',  // Purple
+                        'A78BFA',  // Light Purple
+                        'C084FC',  // Pink Purple
+                        'E879F9',  // Magenta
+                        'F472B6',  // Pink
+                        '06B6D4',  // Cyan
+                        '0EA5E9',  // Sky Blue
+                    ]}
+                    animationForce={60}
+                    particleDensity={4}
+                    enableInitialAnimation={true}
+                />
+            </div>
+
             {/* Bottom Bar - Below Particle Text */}
             <div className="absolute bottom-8 left-0 right-0 z-10">
                 <div className="container-wide">
@@ -106,7 +127,7 @@ export function Footer() {
                         className="pt-8 border-t border-white/10 text-center"
                     >
                         <p className="text-xs text-[var(--color-text-muted)]">
-                            © {currentYear} wowfy. Crafted with{" "}
+                            © {currentYear} RokiRoy Digital. Crafted with{" "}
                             <span className="text-red-400">♥</span> by creative developers.
                         </p>
                     </motion.div>

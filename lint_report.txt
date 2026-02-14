@@ -1,0 +1,290 @@
+
+> rokiroy-digital@0.1.0 lint
+> eslint
+
+
+/Users/test/agent/works/wowfy/src/app/page.tsx
+   3:10  warning  'Journey' is defined but never used       @typescript-eslint/no-unused-vars
+   8:10  warning  'Testimonials' is defined but never used  @typescript-eslint/no-unused-vars
+  12:18  warning  'HomeIcon' is defined but never used      @typescript-eslint/no-unused-vars
+  12:28  warning  'Briefcase' is defined but never used     @typescript-eslint/no-unused-vars
+  12:39  warning  'DollarSign' is defined but never used    @typescript-eslint/no-unused-vars
+  12:51  warning  'Mail' is defined but never used          @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/components/sections/Footer.tsx
+  94:52  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/test/agent/works/wowfy/src/components/sections/Portfolio.tsx
+  35:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/components/sections/Portfolio.tsx:35:9
+  33 |     useEffect(() => {
+  34 |         const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+> 35 |         setIsReducedMotion(mediaQuery.matches);
+     |         ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |         const handler = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
+  37 |         mediaQuery.addEventListener("change", handler);
+  38 |         return () => mediaQuery.removeEventListener("change", handler);  react-hooks/set-state-in-effect
+
+/Users/test/agent/works/wowfy/src/components/sections/ProjectDetails.tsx
+    4:18  warning  'AnimatePresence' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   80:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/components/sections/ProjectDetails.tsx:80:9
+  78 |     useEffect(() => {
+  79 |         const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+> 80 |         setIsReducedMotion(mediaQuery.matches);
+     |         ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  81 |     }, []);
+  82 |
+  83 |     // Modal cursor tracking  react-hooks/set-state-in-effect
+  120:40  warning  'i' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  160:11  warning  'parseMetricValue' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+  165:11  warning  'getMetricSuffix' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  174:11  warning  'getMetricPrefix' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/components/sections/Services.tsx
+  29:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/components/sections/Services.tsx:29:13
+  27 |         if (headingRef.current) {
+  28 |             const text = headingRef.current.textContent || "";
+> 29 |             setChars(text.split(""));
+     |             ^^^^^^^^ Avoid calling setState() directly within an effect
+  30 |         }
+  31 |     }, []);
+  32 |  react-hooks/set-state-in-effect
+
+/Users/test/agent/works/wowfy/src/components/sections/TechStack.tsx
+  134:23  warning  'labelChars' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  135:23  warning  'techChars' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  294:61  warning  'index' is defined but never used                @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/components/sections/Testimonials.tsx
+    3:10  warning  'useRef' is defined but never used                               @typescript-eslint/no-unused-vars
+    3:18  warning  'useEffect' is defined but never used                            @typescript-eslint/no-unused-vars
+   26:28  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  112:17  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  112:37  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/test/agent/works/wowfy/src/components/ui/Project3DCard.tsx
+   3:28  warning  'useEffect' is defined but never used                @typescript-eslint/no-unused-vars
+   5:8   warning  'gsap' is defined but never used                     @typescript-eslint/no-unused-vars
+   7:10  warning  'ParticleBurst' is defined but never used            @typescript-eslint/no-unused-vars
+  40:12  warning  'hoveredTech' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  40:25  warning  'setHoveredTech' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/components/ui/contact-form.tsx
+  4:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/components/ui/experience-hero.tsx
+  8:10  warning  'SpotlightCard' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/components/ui/hero-3.tsx
+  139:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/test/agent/works/wowfy/src/components/ui/image-sphere.tsx
+  138:5   warning  'hoverScale' is assigned a value but never used                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  155:12  warning  'clickedIndex' is assigned a value but never used                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  586:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/test/agent/works/wowfy/src/components/ui/interactive-text-particle.tsx
+   72:5   warning  Compilation Skipped: Inline `class` declarations are not supported
+
+Move class declarations outside of components/hooks.
+
+/Users/test/agent/works/wowfy/src/components/ui/interactive-text-particle.tsx:72:5
+   70 |     };
+   71 |
+>  72 |     class ParticleClass implements Particle {
+      |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  73 |         ox: number;
+      | ^^^^^^^^^^^^^^^^^^^
+>  74 |         oy: number;
+      …
+      | ^^^^^^^^^^^^^^^^^^^
+> 144 |         }
+      | ^^^^^^^^^^^^^^^^^^^
+> 145 |     }
+      | ^^^^^^ Inline `class` declarations are not supported
+  146 |
+  147 |     const dottify = () => {
+  148 |         const ctx = ctxRef.current;
+
+  react-hooks/unsupported-syntax
+  153:42  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  274:8   warning  React Hook useEffect has a missing dependency: 'initialize'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               react-hooks/exhaustive-deps
+  316:8   warning  React Hook useEffect has missing dependencies: 'animate', 'enableInitialAnimation', and 'initialize'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react-hooks/exhaustive-deps
+
+/Users/test/agent/works/wowfy/src/components/ui/lets-work-section.tsx
+   52:11  warning  'handleMouseLeave' is assigned a value but never used                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  140:44  warning  The ref value 'lineRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'lineRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+  275:26  warning  'e' is defined but never used                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  356:32  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                react/no-unescaped-entities
+  545:50  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                react/no-unescaped-entities
+  545:79  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                react/no-unescaped-entities
+
+/Users/test/agent/works/wowfy/src/components/ui/particle-text-effect.tsx
+  373:8  warning  React Hook useEffect has missing dependencies: 'animate', 'nextWord', and 'words'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/test/agent/works/wowfy/src/components/ui/radial-orbital-timeline.tsx
+  30:22  warning  'setViewMode' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  34:26  warning  'setCenterOffset' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  87:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/components/ui/radial-orbital-timeline.tsx:87:9
+  85 |
+  86 |     useEffect(() => {
+> 87 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  88 |     }, []);
+  89 |
+  90 |     useEffect(() => {  react-hooks/set-state-in-effect
+
+/Users/test/agent/works/wowfy/src/components/ui/scattered-gallery.tsx
+   78:8   warning  React Hook useMemo has a missing dependency: 'images'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      react-hooks/exhaustive-deps
+  388:38  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+/Users/test/agent/works/wowfy/src/components/ui/scattered-gallery.tsx:388:38
+  386 |                         className="absolute w-1 h-1 rounded-full bg-[var(--color-accent)]/30"
+  387 |                         style={{
+> 388 |                             left: `${Math.random() * 100}%`,
+      |                                      ^^^^^^^^^^^^^ Cannot call impure function
+  389 |                             top: `${Math.random() * 100}%`,
+  390 |                         }}
+  391 |                         animate={{  react-hooks/purity
+  389:37  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+/Users/test/agent/works/wowfy/src/components/ui/scattered-gallery.tsx:389:37
+  387 |                         style={{
+  388 |                             left: `${Math.random() * 100}%`,
+> 389 |                             top: `${Math.random() * 100}%`,
+      |                                     ^^^^^^^^^^^^^ Cannot call impure function
+  390 |                         }}
+  391 |                         animate={{
+  392 |                             y: [0, -20, 0],                                                     react-hooks/purity
+  396:43  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+/Users/test/agent/works/wowfy/src/components/ui/scattered-gallery.tsx:396:43
+  394 |                         }}
+  395 |                         transition={{
+> 396 |                             duration: 3 + Math.random() * 2,
+      |                                           ^^^^^^^^^^^^^ Cannot call impure function
+  397 |                             repeat: Infinity,
+  398 |                             delay: Math.random() * 2,
+  399 |                         }}                                                      react-hooks/purity
+  398:36  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+/Users/test/agent/works/wowfy/src/components/ui/scattered-gallery.tsx:398:36
+  396 |                             duration: 3 + Math.random() * 2,
+  397 |                             repeat: Infinity,
+> 398 |                             delay: Math.random() * 2,
+      |                                    ^^^^^^^^^^^^^ Cannot call impure function
+  399 |                         }}
+  400 |                     />
+  401 |                 ))}                                                                                   react-hooks/purity
+
+/Users/test/agent/works/wowfy/src/components/ui/tech-model-viewer.tsx
+   98:32  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  202:13  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/components/ui/tech-model-viewer.tsx:202:13
+  200 |         if (!modelPath) {
+  201 |             // Clean up state when no model is visible
+> 202 |             setScrollRotation(0);
+      |             ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  203 |             isScrolling.current = false;
+  204 |             if (scrollTimeout.current) {
+  205 |                 clearTimeout(scrollTimeout.current);  react-hooks/set-state-in-effect
+  261:8   warning  React Hook useEffect has missing dependencies: 'isInteracting' and 'startTimer'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+
+/Users/test/agent/works/wowfy/src/components/ui/tube-light-navbar.tsx
+    6:89  warning  'X' is defined but never used           @typescript-eslint/no-unused-vars
+    6:92  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+  113:53  warning  'index' is defined but never used       @typescript-eslint/no-unused-vars
+  233:49  warning  'index' is defined but never used       @typescript-eslint/no-unused-vars
+
+/Users/test/agent/works/wowfy/src/hooks/useDeviceDetection.ts
+  30:13  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/ban-ts-comment
+  41:13  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/ban-ts-comment
+  55:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/hooks/useDeviceDetection.ts:55:9
+  53 |         })();
+  54 |
+> 55 |         setCapabilities({
+     |         ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  56 |             isTouchDevice,
+  57 |             isLowPerformance,
+  58 |             prefersReducedMotion,  react-hooks/set-state-in-effect
+
+/Users/test/agent/works/wowfy/src/hooks/useGSAPTimeline.ts
+   65:8  warning  React Hook useEffect was passed a dependency list that is not an array literal. This means we can't statically verify whether you've passed the correct dependencies                                                                                                                                                                                                                                                                                      react-hooks/exhaustive-deps
+   65:8  warning  React Hook useEffect has missing dependencies: 'callback', 'options.end', 'options.markers', 'options.onEnter', 'options.onEnterBack', 'options.onLeave', 'options.onLeaveBack', 'options.pin', 'options.scrub', 'options.start', 'options.toggleActions', and 'options.trigger'. Either include them or remove the dependency array. If 'callback' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+  118:8  warning  React Hook useEffect has missing dependencies: 'containerRef', 'options.from', 'options.stagger', 'options.start', and 'options.to'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                   react-hooks/exhaustive-deps
+  158:8  warning  React Hook useEffect has a missing dependency: 'ref'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                    react-hooks/exhaustive-deps
+
+/Users/test/agent/works/wowfy/src/hooks/useMediaQuery.ts
+  20:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/test/agent/works/wowfy/src/hooks/useMediaQuery.ts:20:5
+  18 |     
+  19 |     // Set initial value
+> 20 |     setMatches(media.matches);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  21 |
+  22 |     // Create event listener
+  23 |     const listener = (event: MediaQueryListEvent) => {  react-hooks/set-state-in-effect
+
+✖ 68 problems (22 errors, 46 warnings)
+

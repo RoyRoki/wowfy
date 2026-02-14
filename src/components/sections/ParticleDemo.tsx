@@ -4,14 +4,14 @@ import { ParticleTextEffect } from "@/components/ui/interactive-text-particle";
 
 /**
  * Demo component for the Interactive Text Particle Effect
- * Displays "WOWFY" text with vibrant particle animation
+ * Displays "ROKIROY" text with vibrant particle animation
  */
 export const ParticleDemo = () => {
     return (
         <section className="relative w-full h-screen bg-black overflow-hidden">
             {/* Interactive Particle Text Background */}
             <ParticleTextEffect
-                text="WOWFY"
+                text="ROKIROY"
                 className="absolute inset-0 z-0"
                 colors={[
                     'ff6b6b',  // Red

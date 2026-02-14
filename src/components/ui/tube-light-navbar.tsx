@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Home, Briefcase, DollarSign, Mail, LucideIcon, User, Star, Code, Folder } from "lucide-react"
+import { Home, Briefcase, DollarSign, Mail, LucideIcon, User, Star, Code, Folder, Menu, X, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 
@@ -31,7 +31,13 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function NavBar({ items, className }: NavBarProps) {
     const [activeTab, setActiveTab] = useState(items[0].name)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const isMobile = useMediaQuery("(max-width: 768px)")
+
+    // Mobile Navigation Logic
+    // Desired: Home, Services, Works (Most Imp), Contact, More
+    const mobileImportant = ["Home", "Services", "Works", "Contact"]
+    const mobileItems = mobileImportant.map(name => items.find(item => item.name === name)).filter(Boolean) as NavItem[]
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,7 +45,7 @@ export function NavBar({ items, className }: NavBarProps) {
             const windowHeight = window.innerHeight
             const docHeight = document.documentElement.scrollHeight
 
-            // Handle bottom of page - force the last item to be active if we're at the bottom
+            // Handle bottom of page
             if (scrollPosition + windowHeight >= docHeight - 50) {
                 const lastItem = items[items.length - 1]
                 if (activeTab !== lastItem.name) {
@@ -49,14 +55,12 @@ export function NavBar({ items, className }: NavBarProps) {
             }
 
             let maxVisibleHeight = 0
-            let currentSection = activeTab // Default to keeping current if no better match found
+            let currentSection = activeTab
 
             for (const item of items) {
                 const element = document.querySelector(item.url) as HTMLElement
                 if (element) {
                     const rect = element.getBoundingClientRect()
-
-                    // visible height calculation
                     const visibleHeight = Math.min(windowHeight, rect.bottom) - Math.max(0, rect.top)
 
                     if (visibleHeight > maxVisibleHeight) {
@@ -76,103 +80,182 @@ export function NavBar({ items, className }: NavBarProps) {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [items, activeTab])
 
-    return (
-        <div
-            className={cn(
-                "fixed z-[200] h-max",
-                // Mobile: Bottom navigation with safe-area padding
-                isMobile
-                    ? "bottom-0 left-0 right-0 pb-safe"
-                    : "top-0 right-0 pt-6 pr-6 md:pr-12 lg:pr-24",
-                className,
-            )}
-        >
-            <div className={cn(
-                "flex items-center bg-background/5 border border-border backdrop-blur-lg shadow-lg",
-                // Mobile: Full-width bottom bar
-                isMobile
-                    ? "w-full justify-around px-2 py-2 rounded-none"
-                    : "gap-3 py-1 px-1 rounded-full"
-            )}>
-                {items.map((item) => {
-                    const Icon = iconMap[item.icon] || Home // Fallback to Home if icon not found
-                    const isActive = activeTab === item.name
+    const handleLinkClick = (e: React.MouseEvent, item: NavItem) => {
+        e.preventDefault()
+        setActiveTab(item.name)
+        setIsMenuOpen(false)
+        const element = document.querySelector(item.url)
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" })
+        }
+    }
 
-                    return (
-                        <Link
-                            key={item.name}
-                            href={item.url}
-                            onClick={(e) => {
-                                e.preventDefault()
-                                setActiveTab(item.name)
-                                const element = document.querySelector(item.url)
-                                if (element) {
-                                    element.scrollIntoView({ behavior: "smooth" })
-                                }
-                            }}
-                            className={cn(
-                                "relative cursor-pointer font-semibold transition-colors flex items-center justify-center",
-                                // Mobile: Touch-optimized sizing (44x44px minimum)
-                                isMobile
-                                    ? "flex-col gap-1 min-h-[44px] min-w-[44px] px-2 py-2 rounded-lg"
-                                    : "text-sm px-6 py-2 rounded-full",
-                                "text-foreground/80 hover:text-accent",
-                                isActive && "bg-muted text-accent",
-                            )}
-                        >
-                            {/* Mobile: Show icon + text label */}
-                            {isMobile ? (
-                                <>
-                                    <Icon size={20} strokeWidth={2.5} />
-                                    <span className="text-[10px] leading-none">{item.name}</span>
-                                </>
-                            ) : (
-                                <>
-                                    {/* Desktop: Text only, icons on smaller desktop screens */}
+    return (
+        <>
+            <div
+                className={cn(
+                    "fixed z-[200] h-max",
+                    isMobile
+                        ? "bottom-0 left-0 right-0 pb-safe"
+                        : "top-0 right-0 pt-6 pr-6 md:pr-12 lg:pr-24",
+                    className,
+                )}
+            >
+                <div className={cn(
+                    "flex items-center bg-background/5 border border-border backdrop-blur-lg shadow-lg transition-all duration-300",
+                    isMobile
+                        ? "w-full justify-around px-1 py-2 rounded-t-2xl border-b-0 bg-black/80 backdrop-blur-xl border-white/10"
+                        : "gap-3 py-1 px-1 rounded-full"
+                )}>
+                    {isMobile ? (
+                        /* Mobile Render */
+                        <>
+                            {mobileItems.map((item, index) => {
+                                const Icon = iconMap[item.icon] || Home
+                                const isActive = activeTab === item.name
+
+                                return (
+                                    <Link
+                                        key={item.name}
+                                        href={item.url}
+                                        onClick={(e) => handleLinkClick(e, item)}
+                                        className={cn(
+                                            "relative cursor-pointer flex flex-col items-center justify-center transition-all duration-300",
+                                            "px-1 py-1 rounded-xl",
+                                        )}
+                                    >
+                                        <div className={cn(
+                                            "relative flex items-center justify-center transition-all duration-300",
+                                            "w-10 h-10 rounded-xl hover:bg-white/10",
+                                            isActive && "text-accent bg-white/10",
+                                            !isActive && "text-muted-foreground"
+                                        )}>
+                                            <Icon
+                                                size={20}
+                                                strokeWidth={2.5}
+                                            />
+                                        </div>
+                                        <span className={cn(
+                                            "text-[10px] font-medium mt-1 leading-none transition-colors",
+                                            isActive ? "text-accent" : "text-muted-foreground",
+                                        )}>
+                                            {item.name}
+                                        </span>
+                                    </Link>
+                                )
+                            })}
+
+                            {/* More Button */}
+                            <button
+                                onClick={() => setIsMenuOpen(true)}
+                                className="relative cursor-pointer flex flex-col items-center justify-center px-1 py-1 rounded-xl group"
+                            >
+                                <div className={cn(
+                                    "w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors",
+                                    isMenuOpen ? "text-accent bg-white/10" : "text-muted-foreground group-hover:text-accent"
+                                )}>
+                                    <Menu size={20} strokeWidth={2.5} />
+                                </div>
+                                <span className={cn(
+                                    "text-[10px] font-medium mt-1 leading-none transition-colors",
+                                    isMenuOpen ? "text-accent" : "text-muted-foreground group-hover:text-accent"
+                                )}>
+                                    Menu
+                                </span>
+                            </button>
+                        </>
+                    ) : (
+                        /* Desktop Render */
+                        items.map((item) => {
+                            const Icon = iconMap[item.icon] || Home
+                            const isActive = activeTab === item.name
+
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={item.url}
+                                    onClick={(e) => handleLinkClick(e, item)}
+                                    className={cn(
+                                        "relative cursor-pointer font-semibold transition-colors flex items-center justify-center text-sm px-6 py-2 rounded-full",
+                                        "text-foreground/80 hover:text-accent",
+                                        isActive && "bg-muted text-accent",
+                                    )}
+                                >
                                     <span className="hidden md:inline">{item.name}</span>
                                     <span className="md:hidden">
                                         <Icon size={18} strokeWidth={2.5} />
                                     </span>
-                                </>
-                            )}
-
-                            {/* Tube light effect (only on desktop) */}
-                            {isActive && !isMobile && (
-                                <motion.div
-                                    layoutId="lamp"
-                                    className="absolute inset-0 w-full bg-accent/5 rounded-full -z-10"
-                                    initial={false}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 300,
-                                        damping: 30,
-                                    }}
-                                >
-                                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-accent rounded-t-full">
-                                        <div className="absolute w-12 h-6 bg-accent/20 rounded-full blur-md -top-2 -left-2" />
-                                        <div className="absolute w-8 h-6 bg-accent/20 rounded-full blur-md -top-1" />
-                                        <div className="absolute w-4 h-4 bg-accent/20 rounded-full blur-sm top-0 left-2" />
-                                    </div>
-                                </motion.div>
-                            )}
-
-                            {/* Mobile: Simple active indicator */}
-                            {isActive && isMobile && (
-                                <motion.div
-                                    layoutId="mobile-indicator"
-                                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-accent rounded-full"
-                                    initial={false}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 300,
-                                        damping: 30,
-                                    }}
-                                />
-                            )}
-                        </Link>
-                    )
-                })}
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="lamp"
+                                            className="absolute inset-0 w-full bg-accent/5 rounded-full -z-10"
+                                            initial={false}
+                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        >
+                                            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-accent rounded-t-full">
+                                                <div className="absolute w-12 h-6 bg-accent/20 rounded-full blur-md -top-2 -left-2" />
+                                                <div className="absolute w-8 h-6 bg-accent/20 rounded-full blur-md -top-1" />
+                                                <div className="absolute w-4 h-4 bg-accent/20 rounded-full blur-sm top-0 left-2" />
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </Link>
+                            )
+                        })
+                    )}
+                </div>
             </div>
-        </div>
+
+            {/* Mobile "More" Menu Overlay */}
+            <AnimatePresence>
+                {isMenuOpen && isMobile && (
+                    <>
+                        {/* Backdrop to close menu when clicking outside */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="fixed inset-0 z-[190] bg-black/50 backdrop-blur-sm"
+                        />
+
+                        {/* Menu Popover */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            className="fixed bottom-24 right-4 z-[200] w-64 bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                        >
+                            <div className="p-2 space-y-1">
+                                {items
+                                    .filter(item => !mobileImportant.includes(item.name)) // Filter out already visible items
+                                    .map((item, index) => {
+                                        const Icon = iconMap[item.icon] || Home
+                                        const isActive = activeTab === item.name
+
+                                        return (
+                                            <Link
+                                                key={item.name}
+                                                href={item.url}
+                                                onClick={(e) => handleLinkClick(e, item)}
+                                                className={cn(
+                                                    "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200",
+                                                    isActive
+                                                        ? "bg-white/10 text-accent"
+                                                        : "text-white/70 hover:bg-white/5 hover:text-white"
+                                                )}
+                                            >
+                                                <Icon size={18} strokeWidth={2} />
+                                                <span className="text-sm font-medium">{item.name}</span>
+                                            </Link>
+                                        )
+                                    })}
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+        </>
     )
 }

@@ -27,7 +27,7 @@ export function useDeviceDetection(): DeviceCapabilities {
         const isTouchDevice =
             "ontouchstart" in window ||
             navigator.maxTouchPoints > 0 ||
-            // @ts-ignore - legacy property
+            // @ts-expect-error - legacy property
             navigator.msMaxTouchPoints > 0;
 
         // Detect reduced motion preference
@@ -38,7 +38,7 @@ export function useDeviceDetection(): DeviceCapabilities {
         // Detect low performance device (heuristic)
         // Check for hardware concurrency (CPU cores) and device memory
         const isLowPerformance = (() => {
-            // @ts-ignore - experimental API
+            // @ts-expect-error - experimental API
             const deviceMemory = navigator.deviceMemory;
             const hardwareConcurrency = navigator.hardwareConcurrency || 4;
 
@@ -52,6 +52,7 @@ export function useDeviceDetection(): DeviceCapabilities {
             return false;
         })();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- We want to run this detection once on mount
         setCapabilities({
             isTouchDevice,
             isLowPerformance,

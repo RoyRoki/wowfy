@@ -9,6 +9,7 @@ import projectsData from "@/data/projects.json";
 import { cn } from "@/lib/utils";
 import { Project3DCard, type Project } from "@/components/ui/Project3DCard";
 import { KineticWords } from "@/components/ui/KineticText";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -19,8 +20,6 @@ export function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
-    const [isReducedMotion, setIsReducedMotion] = useState(false);
-
     // Parallax scroll effect for background
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -30,13 +29,7 @@ export function Portfolio() {
     const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
     // Check for reduced motion preference
-    useEffect(() => {
-        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-        setIsReducedMotion(mediaQuery.matches);
-        const handler = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
-        mediaQuery.addEventListener("change", handler);
-        return () => mediaQuery.removeEventListener("change", handler);
-    }, []);
+    const isReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
     // GSAP header animation
     useEffect(() => {
@@ -179,6 +172,7 @@ export function Portfolio() {
                         )}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={() => router.push('/projects')}
                     >
                         <span className="absolute inset-0 bg-[var(--color-accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                         <span className="relative">View All Projects</span>

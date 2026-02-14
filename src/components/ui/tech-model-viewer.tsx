@@ -199,7 +199,7 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
     useEffect(() => {
         if (!modelPath) {
             // Clean up state when no model is visible
-            setScrollRotation(0);
+            setTimeout(() => setScrollRotation(0), 0);
             isScrolling.current = false;
             if (scrollTimeout.current) {
                 clearTimeout(scrollTimeout.current);

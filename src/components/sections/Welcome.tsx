@@ -62,7 +62,7 @@ export const Welcome: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020202] to-transparent z-20 pointer-events-none" />
 
             <AnimatedMarqueeHero
-                tagline="Welcome to wowfy"
+                tagline="Welcome to RokiRoy Digital"
                 title={
                     <>
                         Where Creativity <span className="bg-gradient-to-r from-red-500 via-pink-500 to-violet-500 bg-clip-text text-transparent">Meets</span>

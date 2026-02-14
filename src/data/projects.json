@@ -3,14 +3,16 @@
         "id": "formula-shop",
         "title": "The Formula Shop",
         "year": "2025",
-        "role": "Frontend Development (Team Project)",
+        "role": "Frontend Development (Team Project at Fordel Studios)",
         "description": "Korean beauty product e-commerce website featuring modern design, product catalog, and seamless shopping experience.",
         "tech": [
             "Next.js",
             "Tailwind CSS",
+            "Magento",
             "E-commerce",
             "Responsive Design"
         ],
+        "projectType": "Team Project",
         "image": "/projects/Works_Best/Formula/images/image.png",
         "liveUrl": "https://theformulashop.com/",
         "featured": true,
@@ -115,8 +117,8 @@
         "results": "Successfully launched full-service real estate platform serving Dubai market."
     },
     {
-        "id": "wowfy-portfolio",
-        "title": "wowfy - 3D Portfolio",
+        "id": "rokiroy-digital-portfolio",
+        "title": "RokiRoy Digital - 3D Portfolio",
         "year": "2026",
         "role": "Full-Stack & 3D Development",
         "description": "3D portfolio website showcasing modern web development capabilities with Three.js, GSAP animations, and immersive user experience.",
@@ -158,7 +160,7 @@
         "title": "emSigner Digital Signature",
         "year": "2025-2026",
         "role": "Flutter Mobile Development",
-        "description": "emSigner Digital Signature Platform - Cross-platform mobile application for secure digital signatures on Android and iOS.",
+        "description": "emSigner Digital Signature Platform - Cross-platform mobile application for secure digital signatures on Android and iOS. Developed at Fordel Studios.",
         "tech": [
             "Flutter",
             "Dart",

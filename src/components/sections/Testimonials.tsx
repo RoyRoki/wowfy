@@ -23,7 +23,7 @@ export function Testimonials() {
                         Loved by <span className="text-gradient">Clients</span>
                     </h2>
                     <p className="text-body-lg max-w-2xl mx-auto">
-                        Don't just take our word for it — hear what our partners have to say.
+                        Don&apos;t just take our word for it — hear what our partners have to say.
                     </p>
                 </motion.div>
             </div>

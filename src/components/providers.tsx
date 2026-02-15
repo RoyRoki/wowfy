@@ -18,14 +18,24 @@ export function Providers({ children }: ProvidersProps) {
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
-        // Initialize Lenis smooth scrolling
+        // Skip Lenis on touch devices — native scroll is more performant
+        const isTouchDevice =
+            "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+        if (isTouchDevice) {
+            // Still need ScrollTrigger updates via native scroll
+            ScrollTrigger.defaults({ scroller: window });
+            ScrollTrigger.refresh();
+            return;
+        }
+
+        // Initialize Lenis smooth scrolling (desktop only)
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
-            touchMultiplier: 2,
         });
 
         lenisRef.current = lenis;
@@ -33,25 +43,18 @@ export function Providers({ children }: ProvidersProps) {
         // Connect Lenis to GSAP ScrollTrigger
         lenis.on("scroll", ScrollTrigger.update);
 
-        gsap.ticker.add((time) => {
+        // Single RAF via GSAP ticker (removed duplicate requestAnimationFrame loop)
+        const tickerCallback = (time: number) => {
             lenis.raf(time * 1000);
-        });
-
+        };
+        gsap.ticker.add(tickerCallback);
         gsap.ticker.lagSmoothing(0);
-
-        // RAF loop
-        function raf(time: number) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
 
         // Cleanup
         return () => {
             lenis.destroy();
-            gsap.ticker.remove((time) => {
-                lenis.raf(time * 1000);
-            });
+            gsap.ticker.remove(tickerCallback);
+            lenisRef.current = null;
         };
     }, []);
 

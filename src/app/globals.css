@@ -290,6 +290,36 @@ html.lenis body {
   }
 }
 
+/* ======== Mobile Performance Optimizations ======== */
+@media (max-width: 768px) {
+
+  /* Reduce expensive CSS blur filters on mobile */
+  .blur-3xl {
+    filter: blur(20px) !important;
+  }
+
+
+  /* Disable noise overlay on mobile — saves compositing layer */
+  .noise-overlay,
+  .noise-overlay::before {
+    display: none !important;
+  }
+
+  /* Reduce backdrop-blur intensity */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(2px) !important;
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(4px) !important;
+  }
+
+  .backdrop-blur-lg {
+    backdrop-filter: blur(6px) !important;
+  }
+}
+
+
 /* ========================================
    Layout Utilities
    ======================================== */

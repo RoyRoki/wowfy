@@ -9,6 +9,8 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { motion, AnimatePresence } from "framer-motion";
 import { assetPath } from "@/lib/utils";
 import techStackData from "@/data/tech-stack.json";
+import Image from "next/image";
+import { useMobileDetect } from "@/hooks/useMobileDetect";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -24,12 +26,15 @@ const getTechCategories = () => TECH_CATEGORIES.map(cat => ({
     modelPath: assetPath(cat.modelPath)
 }));
 
-// Preload all 3D models
-if (typeof window !== "undefined") {
-    preloadModels(getTechCategories().map(cat => cat.modelPath));
+// Preload all 3D models — desktop only (checked at call site)
+function preloadModelsIfDesktop() {
+    if (typeof window === "undefined") return;
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (!isTouchDevice) {
+        preloadModels(getTechCategories().map(cat => cat.modelPath));
+    }
 }
-
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+preloadModelsIfDesktop();
 
 export function TechStack() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -37,7 +42,7 @@ export function TechStack() {
     const sphereContainerRef = useRef<HTMLDivElement>(null);
     const [activeModel, setActiveModel] = useState<string | null>(null);
     const [isSectionVisible, setIsSectionVisible] = useState(false);
-    const isMobile = useMediaQuery("(max-width: 768px)");
+    const { isMobile, isTouchDevice } = useMobileDetect();
 
     // Track section visibility with Intersection Observer
     useEffect(() => {
@@ -55,7 +60,7 @@ export function TechStack() {
                 });
             },
             {
-                threshold: 0.1, // Trigger when at least 10% of section is visible
+                threshold: 0.1,
                 rootMargin: '0px'
             }
         );
@@ -85,7 +90,7 @@ export function TechStack() {
                 ease: "power3.out"
             });
 
-            // Animate each tech category with high-level GSAP effects
+            // Animate each tech category
             const categories = textContainerRef.current?.querySelectorAll(".tech-category");
             categories?.forEach((category, index) => {
                 const label = category.querySelector(".tech-label");
@@ -101,10 +106,6 @@ export function TechStack() {
                     }
                 });
 
-                // Split text into characters for label
-                const labelChars = label?.textContent?.split("") || [];
-                const techChars = tech?.textContent?.split("") || [];
-
                 // Animate label with clip-path reveal
                 tl.fromTo(label,
                     {
@@ -119,7 +120,7 @@ export function TechStack() {
                         delay: index * 0.15
                     }
                 )
-                    // Animate slash with rotation and scale
+                    // Animate slash
                     .fromTo(slash,
                         {
                             scale: 0,
@@ -135,12 +136,12 @@ export function TechStack() {
                         },
                         "-=0.4"
                     )
-                    // Animate tech name with clip-path and blur
+                    // Animate tech name
                     .fromTo(tech,
                         {
                             clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
                             opacity: 0,
-                            filter: "blur(10px)"
+                            filter: isMobile ? "none" : "blur(10px)"
                         },
                         {
                             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
@@ -150,22 +151,23 @@ export function TechStack() {
                             ease: "power3.out"
                         },
                         "-=0.5"
-                    )
-                    // Add subtle float animation
-                    .to([label, tech], {
+                    );
+
+                // Infinite float animation — desktop only (saves CPU on mobile)
+                if (!isMobile && !isTouchDevice) {
+                    tl.to([label, tech], {
                         y: -5,
                         duration: 2,
                         ease: "sine.inOut",
                         yoyo: true,
                         repeat: -1
                     }, "-=0.2");
+                }
             });
-
-
         });
 
         return () => ctx.revert();
-    }, []);
+    }, [isMobile, isTouchDevice]);
 
     return (
         <section
@@ -201,59 +203,90 @@ export function TechStack() {
 
                 {/* Main Content: Sphere + Text */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
-                    {/* Left: 3D Sphere with Model Overlay */}
+                    {/* Left: 3D Sphere (desktop) or Logo Grid (mobile) */}
                     <div
                         ref={sphereContainerRef}
                         className="flex justify-center relative w-full"
                     >
-                        <div className="relative w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] aspect-square mx-auto">
-                            {/* Globe - fades out when model is active */}
-                            <AnimatePresence>
-                                {!activeModel && (
+                        {isMobile || isTouchDevice ? (
+                            /* Mobile: Lightweight CSS grid of tech logos */
+                            <div className="grid grid-cols-4 gap-4 w-full max-w-[350px] mx-auto py-8">
+                                {TECH_LOGOS.slice(0, 16).map((logo) => (
                                     <motion.div
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.9 }}
-                                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                                        className="absolute inset-0"
+                                        key={logo.id}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.3 }}
+                                        className="aspect-square rounded-xl bg-white/5 border border-white/10 p-3 flex items-center justify-center"
                                     >
-                                        <SphereImageGrid
-                                            images={TECH_LOGOS}
-                                            containerSize={isMobile ? 350 : 600}
-                                            sphereRadius={isMobile ? 130 : 220}
-                                            dragSensitivity={0.8}
-                                            momentumDecay={0.96}
-                                            maxRotationSpeed={6}
-                                            baseImageScale={0.15}
-                                            hoverScale={1.3}
-                                            perspective={1000}
-                                            autoRotate={true}
-                                            autoRotateSpeed={0.2}
-                                            className="mx-auto w-full h-full"
+                                        <Image
+                                            src={assetPath(logo.src)}
+                                            alt={logo.alt}
+                                            width={40}
+                                            height={40}
+                                            className="w-full h-full object-contain"
+                                            loading="lazy"
                                         />
                                     </motion.div>
-                                )}
-                            </AnimatePresence>
+                                ))}
+                            </div>
+                        ) : (
+                            /* Desktop: Full 3D Sphere */
+                            <div className="relative w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] aspect-square mx-auto">
+                                {/* Globe - fades out when model is active */}
+                                <AnimatePresence>
+                                    {!activeModel && (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.9 }}
+                                            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                                            className="absolute inset-0"
+                                        >
+                                            <SphereImageGrid
+                                                images={TECH_LOGOS}
+                                                containerSize={600}
+                                                sphereRadius={220}
+                                                dragSensitivity={0.8}
+                                                momentumDecay={0.96}
+                                                maxRotationSpeed={6}
+                                                baseImageScale={0.15}
+                                                hoverScale={1.3}
+                                                perspective={1000}
+                                                autoRotate={true}
+                                                autoRotateSpeed={0.2}
+                                                className="mx-auto w-full h-full"
+                                            />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
 
-                            {/* 3D Model Viewer - Only render when section is visible */}
-                            {isSectionVisible && activeModel && (
-                                <TechModelViewer
-                                    key={activeModel}
-                                    modelPath={activeModel}
-                                    onHide={() => setActiveModel(null)}
-                                    autoHideDuration={3000}
-                                />
-                            )}
-                        </div>
+                                {/* 3D Model Viewer - Only render when section is visible */}
+                                {isSectionVisible && activeModel && (
+                                    <TechModelViewer
+                                        key={activeModel}
+                                        modelPath={activeModel}
+                                        onHide={() => setActiveModel(null)}
+                                        autoHideDuration={3000}
+                                    />
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     {/* Right: GSAP Animated Text */}
                     <div ref={textContainerRef} className="space-y-16">
-                        {getTechCategories().map((category, index) => (
+                        {getTechCategories().map((category) => (
                             <div
                                 key={category.label}
                                 className="tech-category flex items-baseline gap-6 justify-center cursor-pointer transition-transform hover:scale-105"
-                                onClick={() => setActiveModel(category.modelPath)}
+                                onClick={() => {
+                                    // Only show 3D model on desktop
+                                    if (!isMobile && !isTouchDevice) {
+                                        setActiveModel(category.modelPath);
+                                    }
+                                }}
                             >
                                 {/* Label */}
                                 <div className="text-right">

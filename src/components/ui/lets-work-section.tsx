@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { ArrowUpRight, Calendar, MessageCircle } from "lucide-react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useMobileDetect } from "@/hooks/useMobileDetect"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -143,6 +144,8 @@ function AnimatedTextLine({
     }, [delay])
 
     const chars = text.split('')
+    const { isMobile, isTouchDevice } = useMobileDetect()
+    const skipMagnetic = isMobile || isTouchDevice
 
     return (
         <div
@@ -161,11 +164,19 @@ function AnimatedTextLine({
                             transformStyle: 'preserve-3d',
                         }}
                     >
-                        <MagneticChar
-                            char={char}
-                            index={index}
-                            isSpace={char === ' '}
-                        />
+                        {skipMagnetic ? (
+                            char === ' ' ? (
+                                <span className="inline-block w-[0.3em]">&nbsp;</span>
+                            ) : (
+                                <span className="magnetic-char inline-block">{char}</span>
+                            )
+                        ) : (
+                            <MagneticChar
+                                char={char}
+                                index={index}
+                                isSpace={char === ' '}
+                            />
+                        )}
                     </span>
                 ))}
             </div>
@@ -183,9 +194,12 @@ export function LetsWorkTogether() {
     const [isButtonHovered, setIsButtonHovered] = useState(false)
     const [contactData, setContactData] = useState<ContactData | null>(null)
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+    const { isMobile, isTouchDevice } = useMobileDetect()
 
-    // Track mouse for glow effect
+    // Track mouse for glow effect — desktop only
     useEffect(() => {
+        if (isMobile || isTouchDevice) return
+
         const handleMouseMove = (e: MouseEvent) => {
             if (!sectionRef.current) return
             const rect = sectionRef.current.getBoundingClientRect()
@@ -197,11 +211,11 @@ export function LetsWorkTogether() {
 
         window.addEventListener('mousemove', handleMouseMove)
         return () => window.removeEventListener('mousemove', handleMouseMove)
-    }, [])
+    }, [isMobile, isTouchDevice])
 
-    // GSAP hover glow animation
+    // GSAP hover glow animation — desktop only
     useEffect(() => {
-        if (!glowRef.current) return
+        if (!glowRef.current || isMobile || isTouchDevice) return
 
         gsap.to(glowRef.current, {
             x: mousePos.x,
@@ -209,7 +223,7 @@ export function LetsWorkTogether() {
             duration: 0.8,
             ease: "power2.out",
         })
-    }, [mousePos])
+    }, [mousePos, isMobile, isTouchDevice])
 
     useEffect(() => {
         fetch('/data/contact.json')
@@ -313,16 +327,18 @@ export function LetsWorkTogether() {
             ref={sectionRef}
             className="relative flex min-h-screen items-center justify-center px-6 overflow-hidden"
         >
-            {/* Animated glow that follows mouse */}
-            <div
-                ref={glowRef}
-                className="pointer-events-none absolute w-[600px] h-[600px] rounded-full opacity-20"
-                style={{
-                    background: 'radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.1) 40%, transparent 70%)',
-                    transform: 'translate(-50%, -50%)',
-                    filter: 'blur(60px)',
-                }}
-            />
+            {/* Animated glow that follows mouse — hidden on mobile */}
+            {!isMobile && !isTouchDevice && (
+                <div
+                    ref={glowRef}
+                    className="pointer-events-none absolute w-[600px] h-[600px] rounded-full opacity-20"
+                    style={{
+                        background: 'radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.1) 40%, transparent 70%)',
+                        transform: 'translate(-50%, -50%)',
+                        filter: 'blur(60px)',
+                    }}
+                />
+            )}
 
             <div ref={containerRef} className="relative flex flex-col items-center gap-12">
                 {/* Success state overlay */}

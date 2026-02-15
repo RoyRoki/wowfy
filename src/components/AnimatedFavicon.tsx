@@ -31,6 +31,10 @@ export function AnimatedFavicon() {
             if (cancelled) return;
             cachedDataUrls.current = dataUrls;
 
+            // Slower interval on mobile to reduce overhead
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            const interval = isMobile ? 3000 : 1000;
+
             let iconIndex = 0;
             intervalId = setInterval(() => {
                 iconIndex = (iconIndex + 1) % dataUrls.length;
@@ -47,7 +51,7 @@ export function AnimatedFavicon() {
                     newLink.href = dataUrl;
                     document.head.appendChild(newLink);
                 }
-            }, 1000);
+            }, interval);
         });
 
         return () => {

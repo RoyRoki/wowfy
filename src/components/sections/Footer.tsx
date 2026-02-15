@@ -6,6 +6,8 @@ import { ContactForm } from "@/components/ui/contact-form";
 
 import socialsData from "@/data/socials.json";
 
+import { useMobileDetect } from "@/hooks/useMobileDetect";
+
 const iconMap: Record<string, React.ReactNode> = {
     GitHub: <GitHubIcon />,
     Twitter: <TwitterIcon />,
@@ -15,6 +17,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
+    const { isMobile, isTouchDevice } = useMobileDetect();
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -101,24 +104,38 @@ export function Footer() {
                 </motion.div>
             </div>
 
-            {/* Particle Text Effect - Below Contact Form */}
+            {/* Particle Text Effect (desktop) / Static Gradient Text (mobile) */}
             <div className="w-full h-[300px] md:h-[400px] relative mb-16">
-                <ParticleTextEffect
-                    text="RokiRoy"
-                    className="w-full h-full"
-                    colors={[
-                        '8B5CF6',  // Purple
-                        'A78BFA',  // Light Purple
-                        'C084FC',  // Pink Purple
-                        'E879F9',  // Magenta
-                        'F472B6',  // Pink
-                        '06B6D4',  // Cyan
-                        '0EA5E9',  // Sky Blue
-                    ]}
-                    animationForce={60}
-                    particleDensity={4}
-                    enableInitialAnimation={true}
-                />
+                {isMobile || isTouchDevice ? (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <h2
+                            className="text-7xl md:text-8xl font-black tracking-tighter bg-clip-text text-transparent select-none"
+                            style={{
+                                backgroundImage: 'linear-gradient(135deg, #8B5CF6, #A78BFA, #E879F9, #F472B6, #06B6D4)',
+                                opacity: 0.6,
+                            }}
+                        >
+                            RokiRoy
+                        </h2>
+                    </div>
+                ) : (
+                    <ParticleTextEffect
+                        text="RokiRoy"
+                        className="w-full h-full"
+                        colors={[
+                            '8B5CF6',
+                            'A78BFA',
+                            'C084FC',
+                            'E879F9',
+                            'F472B6',
+                            '06B6D4',
+                            '0EA5E9',
+                        ]}
+                        animationForce={60}
+                        particleDensity={4}
+                        enableInitialAnimation={true}
+                    />
+                )}
             </div>
 
             {/* Bottom Bar - Below Particle Text */}

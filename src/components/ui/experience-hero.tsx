@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
-import { SpotlightCard } from './spotlight-card';
+import { useMobileDetect } from '@/hooks/useMobileDetect';
 
 const LiquidBackground = () => {
     const meshRef = useRef<THREE.Mesh>(null);
@@ -65,6 +65,7 @@ export const ExperienceHero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const revealRef = useRef<HTMLDivElement>(null);
     const ctaRef = useRef<HTMLButtonElement>(null);
+    const { isMobile, isTouchDevice } = useMobileDetect();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -77,32 +78,44 @@ export const ExperienceHero = () => {
                 x: 60, opacity: 0, stagger: 0.1, duration: 1.5, ease: "power4.out", delay: 1, clearProps: "all"
             });
 
-            const handleMouseMove = (e: MouseEvent) => {
-                if (!ctaRef.current) return;
-                const rect = ctaRef.current.getBoundingClientRect();
-                const dist = Math.hypot(e.clientX - (rect.left + rect.width / 2), e.clientY - (rect.top + rect.height / 2));
-                if (dist < 150) {
-                    gsap.to(ctaRef.current, { x: (e.clientX - (rect.left + rect.width / 2)) * 0.4, y: (e.clientY - (rect.top + rect.height / 2)) * 0.4, duration: 0.6 });
-                } else {
-                    gsap.to(ctaRef.current, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
-                }
-            };
-            window.addEventListener("mousemove", handleMouseMove);
-            return () => window.removeEventListener("mousemove", handleMouseMove);
+            // Magnetic CTA — desktop only
+            if (!isTouchDevice) {
+                const handleMouseMove = (e: MouseEvent) => {
+                    if (!ctaRef.current) return;
+                    const rect = ctaRef.current.getBoundingClientRect();
+                    const dist = Math.hypot(e.clientX - (rect.left + rect.width / 2), e.clientY - (rect.top + rect.height / 2));
+                    if (dist < 150) {
+                        gsap.to(ctaRef.current, { x: (e.clientX - (rect.left + rect.width / 2)) * 0.4, y: (e.clientY - (rect.top + rect.height / 2)) * 0.4, duration: 0.6 });
+                    } else {
+                        gsap.to(ctaRef.current, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
+                    }
+                };
+                window.addEventListener("mousemove", handleMouseMove);
+                return () => window.removeEventListener("mousemove", handleMouseMove);
+            }
         }, containerRef);
         return () => ctx.revert();
-    }, []);
+    }, [isTouchDevice]);
 
     return (
         <section ref={containerRef} className="relative min-h-screen w-full bg-[#020202] flex flex-col selection:bg-white selection:text-black overflow-hidden">
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                <Canvas camera={{ position: [0, 0, 60], fov: 35 }}>
-                    <ambientLight intensity={0.4} />
-                    <spotLight position={[50, 50, 50]} intensity={3} />
-                    <LiquidBackground />
-                    <Monolith />
-                </Canvas>
-            </div>
+            {/* Background: Canvas on desktop, CSS gradient on mobile */}
+            {isMobile || isTouchDevice ? (
+                <div className="fixed inset-0 z-0 pointer-events-none"
+                    style={{
+                        background: 'radial-gradient(ellipse at 30% 50%, rgba(30,30,40,1) 0%, rgba(2,2,2,1) 70%)',
+                    }}
+                />
+            ) : (
+                <div className="fixed inset-0 z-0 pointer-events-none">
+                    <Canvas camera={{ position: [0, 0, 60], fov: 35 }}>
+                        <ambientLight intensity={0.4} />
+                        <spotLight position={[50, 50, 50]} intensity={3} />
+                        <LiquidBackground />
+                        <Monolith />
+                    </Canvas>
+                </div>
+            )}
 
             <div ref={revealRef} className="relative z-10 w-full flex flex-col md:flex-row p-8 md:p-14 lg:p-20 min-h-screen items-center md:items-stretch gap-10">
                 <div className="flex-1 min-w-0 flex flex-col justify-between pb-12 md:pb-8 w-full">

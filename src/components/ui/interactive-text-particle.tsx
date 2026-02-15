@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 interface Pointer {
     x?: number;
@@ -150,76 +150,81 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
         height: typeof window !== 'undefined' ? window.innerHeight : 1080,
     });
 
-    const [textBox] = useState<TextBox>({ str: text });
+    const textBoxRef = useRef<TextBox>({ str: text });
 
-    const rand = (max = 1, min = 0, dec = 0): number => {
-        return +(min + Math.random() * (max - min)).toFixed(dec);
-    };
-
-    // ParticleClass removed from here. 
-
-    const dottify = () => {
+    const dottify = useCallback(() => {
         const ctx = ctxRef.current;
         const canvas = canvasRef.current;
-        if (!ctx || !canvas || !textBox.x || !textBox.y || !textBox.w || !textBox.h) return;
+        if (!ctx || !canvas || !textBoxRef.current.x || !textBoxRef.current.y || !textBoxRef.current.w || !textBoxRef.current.h) return;
 
-        const data = ctx.getImageData(textBox.x, textBox.y, textBox.w, textBox.h).data;
-        const pixels = data.reduce((arr: any[], _, i, d) => {
-            if (i % 4 === 0) {
-                arr.push({
-                    x: (i / 4) % textBox.w!,
-                    y: Math.floor((i / 4) / textBox.w!),
-                    rgb: d.slice(i, i + 4),
+        const data = ctx.getImageData(textBoxRef.current.x, textBoxRef.current.y, textBoxRef.current.w, textBoxRef.current.h).data;
+
+        // Filter and map pixels
+        const pixels: { x: number; y: number; rgb: number[] }[] = [];
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const a = data[i + 3];
+
+            const x = (i / 4) % textBoxRef.current.w!;
+            const y = Math.floor((i / 4) / textBoxRef.current.w!);
+
+            if (a && !(x % particleDensity) && !(y % particleDensity)) {
+                pixels.push({
+                    x,
+                    y,
+                    rgb: [r, g, b, a],
                 });
             }
-            return arr;
-        }, []).filter(p => p.rgb[3] && !(p.x % particleDensity) && !(p.y % particleDensity));
+        }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         pixels.forEach((p, i) => {
             particlesRef.current[i] = new ParticleClass(
-                textBox.x! + p.x,
-                textBox.y! + p.y,
+                textBoxRef.current.x! + p.x,
+                textBoxRef.current.y! + p.y,
                 p.rgb.slice(0, 3),
                 enableInitialAnimation,
                 canvas.width,
-                canvas.height
+                canvas.height,
+                animationForce
             );
             if (ctxRef.current) particlesRef.current[i].draw(ctxRef.current);
         });
 
         particlesRef.current.splice(pixels.length, particlesRef.current.length);
-    };
+    }, [particleDensity, enableInitialAnimation, animationForce]);
 
-    const write = () => {
+    const write = useCallback(() => {
         const canvas = canvasRef.current;
         const ctx = ctxRef.current;
         if (!canvas || !ctx) return;
 
-        textBox.str = text;
-        textBox.h = Math.floor(canvas.width / textBox.str.length);
+        textBoxRef.current.str = text;
+        textBoxRef.current.h = Math.floor(canvas.width / textBoxRef.current.str.length);
 
-        interactionRadiusRef.current = Math.max(50, textBox.h * 1.5);
+        interactionRadiusRef.current = Math.max(50, textBoxRef.current.h * 1.5);
 
-        ctx.font = `900 ${textBox.h}px Verdana, sans-serif`;
+        ctx.font = `900 ${textBoxRef.current.h}px Verdana, sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
-        textBox.w = Math.round(ctx.measureText(textBox.str).width);
-        textBox.x = 0.5 * (canvas.width - textBox.w);
-        textBox.y = 0.5 * (canvas.height - textBox.h);
+        textBoxRef.current.w = Math.round(ctx.measureText(textBoxRef.current.str).width);
+        textBoxRef.current.x = 0.5 * (canvas.width - textBoxRef.current.w);
+        textBoxRef.current.y = 0.5 * (canvas.height - textBoxRef.current.h);
 
-        const gradient = ctx.createLinearGradient(textBox.x, textBox.y, textBox.x + textBox.w, textBox.y + textBox.h);
+        const gradient = ctx.createLinearGradient(textBoxRef.current.x, textBoxRef.current.y, textBoxRef.current.x + textBoxRef.current.w, textBoxRef.current.y + textBoxRef.current.h);
         const N = colors.length - 1;
         colors.forEach((c, i) => gradient.addColorStop(i / N, `#${c}`));
         ctx.fillStyle = gradient;
 
-        ctx.fillText(textBox.str, 0.5 * canvas.width, 0.5 * canvas.height);
+        ctx.fillText(textBoxRef.current.str, 0.5 * canvas.width, 0.5 * canvas.height);
         dottify();
-    };
+    }, [text, colors, dottify]);
 
-    const animate = () => {
+    const animate = useCallback(function animateLoop() {
         const ctx = ctxRef.current;
         const canvas = canvasRef.current;
         if (!ctx || !canvas) return;
@@ -238,10 +243,10 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
         particlesRef.current.forEach(p => {
             if (ctx) p.move(interactionRadiusRef.current, hasPointerRef.current, pointerRef.current, isFormingRef.current, ctx);
         });
-        animationIdRef.current = requestAnimationFrame(animate);
-    };
+        animationIdRef.current = requestAnimationFrame(animateLoop);
+    }, []);
 
-    const initialize = () => {
+    const initialize = useCallback(() => {
         const canvas = canvasRef.current;
         const ctx = ctxRef.current;
         if (!canvas || !ctx) return;
@@ -251,7 +256,7 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         write();
-    };
+    }, [canvasSize, write]);
 
     useEffect(() => {
         const updateSize = () => {
@@ -289,7 +294,7 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
 
     useEffect(() => {
         initialize();
-    }, [text, colors, animationForce, particleDensity, canvasSize]);
+    }, [initialize]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -331,7 +336,7 @@ const ParticleTextEffect: React.FC<ParticleTextEffectProps> = ({
         return () => {
             if (animationIdRef.current) cancelAnimationFrame(animationIdRef.current);
         };
-    }, []);
+    }, [enableInitialAnimation, initialize, animate]);
 
     const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
         const canvas = canvasRef.current;

@@ -176,7 +176,7 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
     });
 
     // Memoize startTimer logic
-    const startTimerLogic = useEffect(() => {
+    useEffect(() => {
         startTimer.current = () => {
             // Clear any existing timer
             if (timerRef.current) {

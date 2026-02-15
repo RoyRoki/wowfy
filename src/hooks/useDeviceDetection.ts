@@ -52,6 +52,7 @@ export function useDeviceDetection(): DeviceCapabilities {
             return false;
         })();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/set-state-in-effect
         setCapabilities({
             isTouchDevice,
             isLowPerformance,

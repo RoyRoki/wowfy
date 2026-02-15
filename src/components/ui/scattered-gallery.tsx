@@ -35,6 +35,7 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
 
     // Set mounted after hydration
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
@@ -75,7 +76,7 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
         });
 
         return positions;
-    }, [images.length]);
+    }, [images]);
 
     // Handle mouse move for card positioning
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -101,26 +102,41 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
         setCardPos({ x: cardX, y: cardY });
     };
 
-    // Calculate line path from image top to card
-    const getLinePath = (imgElement: HTMLElement | null) => {
-        if (!imgElement || !containerRef.current) return "";
+    const [linePath, setLinePath] = useState("");
 
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const imgRect = imgElement.getBoundingClientRect();
+    // Update line path when hovered image or card position changes
+    useEffect(() => {
+        if (!hoveredImage || !containerRef.current) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setLinePath("");
+            return;
+        }
 
-        // Start from top center of the image
-        const imgCenterX = imgRect.left - containerRect.left + imgRect.width / 2;
-        const imgTopY = imgRect.top - containerRect.top;
+        const imgElement = containerRef.current.querySelector(
+            `[data-image-id="${hoveredImage.id}"] > div`
+        ) as HTMLElement;
 
-        // Bezier curve from image top to card
-        const cardCenterY = cardPos.y + 90;
-        const cardEdgeX = cardPos.x < imgCenterX ? cardPos.x + 280 : cardPos.x;
+        if (imgElement) {
+            const containerRect = containerRef.current.getBoundingClientRect();
+            const imgRect = imgElement.getBoundingClientRect();
 
-        const controlX = (imgCenterX + cardEdgeX) / 2;
-        const controlY = Math.min(imgTopY, cardCenterY) - 50;
+            // Start from top center of the image
+            const imgCenterX = imgRect.left - containerRect.left + imgRect.width / 2;
+            const imgTopY = imgRect.top - containerRect.top;
 
-        return `M ${imgCenterX} ${imgTopY} Q ${controlX} ${controlY} ${cardEdgeX} ${cardCenterY}`;
-    };
+            // Bezier curve from image top to card
+            const cardCenterY = cardPos.y + 90;
+            const cardEdgeX = cardPos.x < imgCenterX ? cardPos.x + 280 : cardPos.x;
+
+            const controlX = (imgCenterX + cardEdgeX) / 2;
+            const controlY = Math.min(imgTopY, cardCenterY) - 50;
+
+            const path = `M ${imgCenterX} ${imgTopY} Q ${controlX} ${controlY} ${cardEdgeX} ${cardCenterY}`;
+
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setLinePath(path);
+        }
+    }, [hoveredImage, cardPos]);
 
     return (
         <section
@@ -272,17 +288,13 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
 
                 {/* Connecting Line SVG */}
                 <AnimatePresence>
-                    {hoveredImage && (
+                    {hoveredImage && linePath && (
                         <svg
                             className="absolute inset-0 w-full h-full pointer-events-none z-40"
                             style={{ overflow: "visible" }}
                         >
                             <motion.path
-                                d={getLinePath(
-                                    containerRef.current?.querySelector(
-                                        `[data-image-id="${hoveredImage.id}"] > div`
-                                    ) as HTMLElement
-                                )}
+                                d={linePath}
                                 fill="none"
                                 stroke="url(#lineGradient)"
                                 strokeWidth="2"
@@ -398,6 +410,7 @@ const DecorativeParticles = React.memo(() => {
     }>>([]);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setParticles([...Array(20)].map((_, i) => ({
             id: i,
             left: `${Math.random() * 100}%`,
@@ -431,3 +444,5 @@ const DecorativeParticles = React.memo(() => {
         </>
     );
 });
+
+DecorativeParticles.displayName = "DecorativeParticles";

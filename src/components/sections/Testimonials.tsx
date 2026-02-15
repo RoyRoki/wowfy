@@ -101,7 +101,7 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
 
             {/* Quote */}
             <p className="text-[var(--color-text-secondary)] mb-6 text-sm leading-relaxed">
-                "{testimonial.quote}"
+                &quot;{testimonial.quote}&quot;
             </p>
 
             {/* Author */}

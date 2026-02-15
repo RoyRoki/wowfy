@@ -95,6 +95,7 @@ function Scene({ modelPath, isExiting, scrollRotation, onInteractionStart, onInt
     onInteractionStart: () => void;
     onInteractionEnd: () => void;
 }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const controlsRef = useRef<any>(null);
     const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -164,22 +165,40 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
     const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
     const lastInteractionTime = useRef<number>(0);
 
-    const startTimer = () => {
-        // Clear any existing timer
-        if (timerRef.current) {
-            clearTimeout(timerRef.current);
-        }
+    // Keep track of latest isInteracting state for event listeners
+    const isInteractingRef = useRef(isInteracting);
+    useEffect(() => {
+        isInteractingRef.current = isInteracting;
+    }, [isInteracting]);
 
-        // Set new timer
-        timerRef.current = setTimeout(() => {
-            setIsExiting(true);
-            // Give time for exit animation
-            setTimeout(() => {
-                onHide();
-                setIsExiting(false);
-            }, 500);
-        }, autoHideDuration);
-    };
+    const startTimer = useRef(() => {
+        // Placeholder, will be updated
+    });
+
+    // Memoize startTimer logic
+    const startTimerLogic = useEffect(() => {
+        startTimer.current = () => {
+            // Clear any existing timer
+            if (timerRef.current) {
+                clearTimeout(timerRef.current);
+            }
+
+            // Set new timer
+            timerRef.current = setTimeout(() => {
+                setIsExiting(true);
+                // Give time for exit animation
+                setTimeout(() => {
+                    onHide();
+                    setIsExiting(false);
+                }, 500);
+            }, autoHideDuration);
+        };
+    }, [autoHideDuration, onHide]);
+
+    // Simple wrapper to call the current ref
+    const triggerTimer = () => {
+        startTimer.current();
+    }
 
     const handleInteractionStart = () => {
         setIsInteracting(true);
@@ -193,7 +212,7 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
     const handleInteractionEnd = () => {
         setIsInteracting(false);
         // Restart timer when user stops interacting
-        startTimer();
+        triggerTimer();
     };
 
     useEffect(() => {
@@ -234,8 +253,8 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
             scrollTimeout.current = setTimeout(() => {
                 isScrolling.current = false;
                 // Restart timer after scrolling stops
-                if (!isInteracting) {
-                    startTimer();
+                if (!isInteractingRef.current) {
+                    triggerTimer();
                 }
             }, 500);
         };
@@ -244,8 +263,8 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
         window.addEventListener('wheel', handleWheel, { passive: false });
 
         // Start timer if not interacting or scrolling
-        if (!isInteracting && !isScrolling.current) {
-            startTimer();
+        if (!isInteractingRef.current && !isScrolling.current) {
+            triggerTimer();
         }
 
         return () => {
@@ -258,7 +277,7 @@ export function TechModelViewer({ modelPath, onHide, autoHideDuration = 3000 }: 
                 clearTimeout(timerRef.current);
             }
         };
-    }, [modelPath]); // Only trigger on modelPath change
+    }, [modelPath]); // Only trigger on modelPath change. Using refs for others.
 
     return (
         <AnimatePresence mode="wait">

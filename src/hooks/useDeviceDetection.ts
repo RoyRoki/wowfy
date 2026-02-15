@@ -52,7 +52,6 @@ export function useDeviceDetection(): DeviceCapabilities {
             return false;
         })();
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- We want to run this detection once on mount
         setCapabilities({
             isTouchDevice,
             isLowPerformance,

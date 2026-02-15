@@ -389,15 +389,22 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
 }
 
 const DecorativeParticles = React.memo(() => {
-    // Generate static particles to avoid hydration mismatch and re-renders
-    const particles = useMemo(() => {
-        return [...Array(20)].map((_, i) => ({
+    const [particles, setParticles] = useState<Array<{
+        id: number;
+        left: string;
+        top: string;
+        duration: number;
+        delay: number;
+    }>>([]);
+
+    useEffect(() => {
+        setParticles([...Array(20)].map((_, i) => ({
             id: i,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             duration: 3 + Math.random() * 2,
             delay: Math.random() * 2,
-        }));
+        })));
     }, []);
 
     return (

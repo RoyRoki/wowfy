@@ -75,32 +75,32 @@
             "glowColor": "#47A248"
         },
         {
-            "id": "tensorflow",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-            "alt": "TensorFlow",
-            "title": "TensorFlow",
-            "glowColor": "#FF6F00"
+            "id": "vite",
+            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
+            "alt": "Vite",
+            "title": "Vite",
+            "glowColor": "#646CFF"
         },
         {
-            "id": "pytorch",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
-            "alt": "PyTorch",
-            "title": "PyTorch",
-            "glowColor": "#EE4C2C"
+            "id": "java",
+            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+            "alt": "Java",
+            "title": "Java",
+            "glowColor": "#007396"
         },
         {
-            "id": "openai",
-            "src": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
-            "alt": "OpenAI",
-            "title": "OpenAI",
-            "glowColor": "#10A37F"
+            "id": "php",
+            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+            "alt": "PHP",
+            "title": "PHP",
+            "glowColor": "#777BB4"
         },
         {
-            "id": "huggingface",
-            "src": "https://huggingface.co/front/assets/huggingface_logo.svg",
-            "alt": "Hugging Face",
-            "title": "Hugging Face",
-            "glowColor": "#FFD21E"
+            "id": "wordpress",
+            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg",
+            "alt": "WordPress",
+            "title": "WordPress",
+            "glowColor": "#21759B"
         },
         {
             "id": "flutter",

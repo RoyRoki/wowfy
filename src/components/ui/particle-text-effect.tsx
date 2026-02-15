@@ -163,6 +163,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     }
 
     const nextWord = (word: string, canvas: HTMLCanvasElement) => {
+        // Guard against zero dimensions which cause IndexSizeError in getImageData
+        if (canvas.width === 0 || canvas.height === 0) return
+
         // const ctx = canvas.getContext("2d")!
 
         // Create off-screen canvas for text rendering

@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { assetPath } from "@/lib/utils";
 
-const icons = [
+const iconPaths = [
     "/favicons/server.svg",
     "/favicons/mobile.svg",
     "/favicons/web.svg",
@@ -11,31 +11,50 @@ const icons = [
 ];
 
 export function AnimatedFavicon() {
+    const cachedDataUrls = useRef<string[]>([]);
+
     useEffect(() => {
-        let iconIndex = 0;
-        const intervalId = setInterval(() => {
-            iconIndex = (iconIndex + 1) % icons.length;
-            const currentIconPath = assetPath(icons[iconIndex]);
+        let intervalId: ReturnType<typeof setInterval>;
+        let cancelled = false;
 
-            // Update all icon links
-            const links = document.querySelectorAll("link[rel*='icon']");
-            links.forEach((link) => {
-                (link as HTMLLinkElement).href = currentIconPath;
-            });
+        // Fetch all SVGs once and convert to data URLs
+        Promise.all(
+            iconPaths.map((p) =>
+                fetch(assetPath(p))
+                    .then((r) => r.text())
+                    .then(
+                        (svg) =>
+                            `data:image/svg+xml,${encodeURIComponent(svg)}`
+                    )
+            )
+        ).then((dataUrls) => {
+            if (cancelled) return;
+            cachedDataUrls.current = dataUrls;
 
-            // If no links found, create one (fallback)
-            if (links.length === 0) {
-                const newLink = document.createElement("link");
-                newLink.rel = "icon";
-                newLink.href = currentIconPath;
-                document.head.appendChild(newLink);
-            }
-        }, 1000); // Change every 1 second
+            let iconIndex = 0;
+            intervalId = setInterval(() => {
+                iconIndex = (iconIndex + 1) % dataUrls.length;
+                const dataUrl = dataUrls[iconIndex];
 
-        return () => clearInterval(intervalId);
+                const links = document.querySelectorAll("link[rel*='icon']");
+                links.forEach((link) => {
+                    (link as HTMLLinkElement).href = dataUrl;
+                });
+
+                if (links.length === 0) {
+                    const newLink = document.createElement("link");
+                    newLink.rel = "icon";
+                    newLink.href = dataUrl;
+                    document.head.appendChild(newLink);
+                }
+            }, 1000);
+        });
+
+        return () => {
+            cancelled = true;
+            clearInterval(intervalId);
+        };
     }, []);
-
-
 
     return null;
 }

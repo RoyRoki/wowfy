@@ -10,7 +10,7 @@ interface GalleryImage {
     src: string;
     title?: string;
     description?: string;
-    metrics?: Record<string, string>;
+    metrics?: Record<string, string | undefined>;
     features?: string[];
 }
 

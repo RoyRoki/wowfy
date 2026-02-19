@@ -30,6 +30,107 @@
             "/projects/Works_Best/Formula/images/image copy 9.png",
             "/projects/Works_Best/Formula/images/image copy 10.png"
         ],
+        "screenshotInfo": [
+            {
+                "title": "Hair Care Page",
+                "description": "Dedicated Hair Care section with category tiles — Shop by Concerns, Styling Essentials — and editorial hero banners like 'Silky, Healthy Hair Made Simple'.",
+                "features": [
+                    "Hair Care",
+                    "Category Tiles",
+                    "Editorial Hero"
+                ]
+            },
+            {
+                "title": "Categories + Promotions",
+                "description": "Product category carousel (Shampoo, Conditioner, Serums, Oils) paired with sitewide discount banners: Upto 60% on skin products and Flat 60% off on orders above ₹3500.",
+                "features": [
+                    "Upto 60% Off",
+                    "Product Categories",
+                    "Promo Banners"
+                ]
+            },
+            {
+                "title": "Shop by Look",
+                "description": "Curated 'Shop by Look' section pairing lifestyle model photography with product recommendations like Bellavita Concealer and Sun Stick — drives cross-category discovery.",
+                "features": [
+                    "Shop by Look",
+                    "Product Pairing",
+                    "Conversion UX"
+                ]
+            },
+            {
+                "title": "On Sale — Deals",
+                "description": "Dedicated sale section with full-bleed product banners: Flat 50% off skin products, 50% off on facewash (Purite), 15% off — plus trust bar with Free Shipping, 24/7 Chat, 100% Authentic.",
+                "features": [
+                    "Flat 50% Off",
+                    "Deal Banners",
+                    "Trust Bar"
+                ]
+            },
+            {
+                "title": "Product Detail — Serum",
+                "description": "Full product detail page for 'Hair Growth Actives 18% Hair Serum' by The Minimalist — size selector, ₹4,000 pricing with 40% off, Add to Bag CTA, delivery options, and 5-image gallery.",
+                "features": [
+                    "Add to Bag",
+                    "Size Selector",
+                    "Product Gallery"
+                ]
+            },
+            {
+                "title": "Customer Reviews",
+                "description": "Review section showing 4.5★ based on 23 reviews with star distribution chart, 70% recommendation rate, verified purchase filters, and user-photo reviews.",
+                "features": [
+                    "4.5★ Rating",
+                    "70% Recommend",
+                    "Verified Purchase"
+                ]
+            },
+            {
+                "title": "Login & Auth",
+                "description": "Clean login flow set against a natural lifestyle product photo — OTP via phone, or Continue with Google — seamless account creation for personalised experience.",
+                "features": [
+                    "OTP Login",
+                    "Google Auth",
+                    "Personalised UX"
+                ]
+            },
+            {
+                "title": "Skincare Routine Builder",
+                "description": "'Build your Routine' — an interactive 5-step Day Routine guide (Cleanse → Balance → Treat → Hydrate → Protect) with curated top recommendations at each step.",
+                "features": [
+                    "5-Step Routine",
+                    "Top Picks",
+                    "Guided Shopping"
+                ]
+            },
+            {
+                "title": "Mobile — Home",
+                "description": "Mobile-first homepage with hero banner ('Indulge in everyday luxury — Bath & Body Works'), Popular Categories grid, and 'Build your Routine' CTA — pixel-perfect on iPhone.",
+                "features": [
+                    "Mobile Home",
+                    "iPhone Ready",
+                    "Responsive Design"
+                ]
+            },
+            {
+                "title": "Mobile — Gift Sets",
+                "description": "Mobile gifting section: 'Show Your Love with the Perfect Gift' hero, curated gift sets grid, and WhatsApp live chat support — optimised for zero-friction gifting.",
+                "features": [
+                    "Gift Sets",
+                    "WhatsApp Chat",
+                    "Mobile Checkout"
+                ]
+            },
+            {
+                "title": "Tablet — Full Experience",
+                "description": "Tablet view showcasing the full homepage: hero banner (Treecell hair care), Popular Categories, and dual Routine cards — '5-step for Face' and '3-step for Hair'. Flawless at every breakpoint.",
+                "features": [
+                    "Tablet View",
+                    "Routine Cards",
+                    "100% Responsive"
+                ]
+            }
+        ],
         "metrics": {
             "type": "E-commerce",
             "products": "Beauty",
@@ -67,6 +168,80 @@
             "/projects/Works_Best/Dubai_Apartment/images/image copy 7.png",
             "/projects/Works_Best/Dubai_Apartment/images/image copy 8.png",
             "/projects/Works_Best/Dubai_Apartment/images/image copy 9.png"
+        ],
+        "screenshotInfo": [
+            {
+                "title": "Cinematic Hero",
+                "description": "Full-bleed hero with GSAP-powered entrance animations and a bold luxury statement.",
+                "features": [
+                    "GSAP Animations",
+                    "Cinematic Feel",
+                    "First Impression"
+                ]
+            },
+            {
+                "title": "Property Showcase",
+                "description": "Featured property cards with high-res imagery and key highlights on hover.",
+                "features": [
+                    "Property Cards",
+                    "Framer Motion",
+                    "Premium UI"
+                ]
+            },
+            {
+                "title": "Smooth Scroll Experience",
+                "description": "Lenis smooth scroll transforms every page section into a fluid, magazine-like journey.",
+                "features": [
+                    "Smooth Scroll",
+                    "Scroll-driven",
+                    "Immersive UX"
+                ]
+            },
+            {
+                "title": "Amenities & Lifestyle",
+                "description": "Detailed amenity section with icons and parallax imagery to evoke premium living.",
+                "features": [
+                    "Parallax",
+                    "Lifestyle Design",
+                    "Tailwind CSS"
+                ]
+            },
+            {
+                "title": "Floor Plans",
+                "description": "Interactive floor plan viewer showcasing unit configurations and sq. ft. details.",
+                "features": [
+                    "Interactive Maps",
+                    "Property Detail",
+                    "Responsive"
+                ]
+            },
+            {
+                "title": "Gallery Section",
+                "description": "Masonry photo gallery with lightbox to present interiors in editorial quality.",
+                "features": [
+                    "Photo Gallery",
+                    "Lightbox",
+                    "Visual Impact"
+                ]
+            },
+            {
+                "title": "Location & Connectivity",
+                "description": "Google Maps integration and proximity highlights for the most sought-after Dubai areas.",
+                "features": [
+                    "Maps Integration",
+                    "Location UX",
+                    "Dubai Market"
+                ]
+            },
+            {
+                "title": "Lead Capture Form",
+                "description": "High-conversion enquiry form with validation, designed to capture serious buyers.",
+                "features": [
+                    "Lead Gen",
+                    "Form UX",
+                    "Conversions"
+                ]
+            }
         ],
         "metrics": {
             "type": "Landing Page",
@@ -107,6 +282,80 @@
             "/projects/Works_Best/Astera/images/image copy 8.png",
             "/projects/Works_Best/Astera/images/image copy 9.png"
         ],
+        "screenshotInfo": [
+            {
+                "title": "Homepage — Dubai Properties",
+                "description": "Premium hero showcasing Dubai's most exclusive properties with a bold brand statement.",
+                "features": [
+                    "Next.js",
+                    "Live Platform",
+                    "Dubai UAE"
+                ]
+            },
+            {
+                "title": "Property Listings",
+                "description": "Filterable listing grid with real-time search, price range, and bedroom filters.",
+                "features": [
+                    "Property Search",
+                    "Live Filters",
+                    "Firebase"
+                ]
+            },
+            {
+                "title": "Interactive Map Search",
+                "description": "Leaflet.js map lets buyers search by area, pin-dropping exact property locations.",
+                "features": [
+                    "Leaflet Maps",
+                    "Geo Search",
+                    "Interactive"
+                ]
+            },
+            {
+                "title": "Property Detail Page",
+                "description": "Full-detail property view with gallery, specs, floor plan, and enquiry CTA.",
+                "features": [
+                    "Detail View",
+                    "Image Gallery",
+                    "Lead CTA"
+                ]
+            },
+            {
+                "title": "Advanced Filters",
+                "description": "Multi-parameter sidebar filters for type, bedrooms, price, and amenity criteria.",
+                "features": [
+                    "Advanced Filters",
+                    "UX Design",
+                    "Tailwind CSS"
+                ]
+            },
+            {
+                "title": "Agent Profiles",
+                "description": "Dedicated agent pages with listings, credentials, and direct WhatsApp contacts.",
+                "features": [
+                    "Agent CRM",
+                    "WhatsApp Lead",
+                    "Trust Building"
+                ]
+            },
+            {
+                "title": "Off-Plan Projects",
+                "description": "Curated off-plan project section with developer info and payment plan detail.",
+                "features": [
+                    "Off-Plan",
+                    "CMS Content",
+                    "Project Pages"
+                ]
+            },
+            {
+                "title": "Contact & Enquiry",
+                "description": "Multi-channel enquiry form with Firebase backend capturing every qualified lead.",
+                "features": [
+                    "Firebase Forms",
+                    "Lead Capture",
+                    "Conversions"
+                ]
+            }
+        ],
         "metrics": {
             "status": "Live",
             "client": "Dubai UAE",
@@ -130,6 +379,7 @@
             "Framer Motion",
             "3D Graphics"
         ],
+        "projectType": "Personal Project",
         "image": "/projects/Works_Best/Wowfy/images/image.png",
         "liveUrl": "https://royroki.github.io/wowfy/",
         "featured": true,
@@ -145,6 +395,80 @@
             "/projects/Works_Best/Wowfy/images/image copy 7.png",
             "/projects/Works_Best/Wowfy/images/image copy 8.png",
             "/projects/Works_Best/Wowfy/images/image copy 9.png"
+        ],
+        "screenshotInfo": [
+            {
+                "title": "3D Hero — Monolith Scene",
+                "description": "Three.js-powered 3D monolith with particle system and reactive lighting on scroll.",
+                "features": [
+                    "Three.js",
+                    "3D Graphics",
+                    "Particle System"
+                ]
+            },
+            {
+                "title": "Works — Project Gallery",
+                "description": "3D card gallery showcasing client work with magnetic hover and depth effects.",
+                "features": [
+                    "3D Cards",
+                    "Framer Motion",
+                    "Portfolio UX"
+                ]
+            },
+            {
+                "title": "Scattered Gallery",
+                "description": "This very view — an interactive scattered image gallery with hover info cards.",
+                "features": [
+                    "Scattered Layout",
+                    "Glassmorphism",
+                    "GSAP"
+                ]
+            },
+            {
+                "title": "Skills & Tech Stack",
+                "description": "Animated tech stack section with 3D icons and proficiency indicators.",
+                "features": [
+                    "Tech Stack",
+                    "Animations",
+                    "Interactive"
+                ]
+            },
+            {
+                "title": "Services Section",
+                "description": "Service cards with particle burst effects and custom cursor interaction.",
+                "features": [
+                    "Particle Burst",
+                    "Custom Cursor",
+                    "Premium UX"
+                ]
+            },
+            {
+                "title": "Contact & Connect",
+                "description": "Animated contact section with social links and a minimal enquiry form.",
+                "features": [
+                    "Contact Form",
+                    "Social Links",
+                    "Smooth Transitions"
+                ]
+            },
+            {
+                "title": "Mobile Experience",
+                "description": "Fully responsive at every breakpoint — same premium feel on phone and tablet.",
+                "features": [
+                    "100% Responsive",
+                    "Mobile First",
+                    "Touch Friendly"
+                ]
+            },
+            {
+                "title": "Dark Mode & Themes",
+                "description": "Precision dark mode with CSS variable theming and smooth toggle transitions.",
+                "features": [
+                    "Dark Mode",
+                    "CSS Variables",
+                    "Theme System"
+                ]
+            }
         ],
         "metrics": {
             "tech": "3D + Animations",
@@ -168,6 +492,7 @@
             "Android",
             "iOS"
         ],
+        "projectType": "Team Project",
         "image": "/projects/Works_Best/emSigner/images/image.png",
         "liveUrl": "https://play.google.com/store/apps/details?id=com.emudhra.emSigner&hl=en_IN",
         "featured": true,
@@ -184,6 +509,80 @@
             "/projects/Works_Best/emSigner/images/image copy 8.png",
             "/projects/Works_Best/emSigner/images/image copy 9.png"
         ],
+        "screenshotInfo": [
+            {
+                "title": "Secure Login",
+                "description": "Multi-factor login with biometric and PIN options — enterprise-grade authentication.",
+                "features": [
+                    "Biometric Auth",
+                    "Flutter",
+                    "Enterprise Security"
+                ]
+            },
+            {
+                "title": "Document Inbox",
+                "description": "Centralized inbox for all pending and completed signing requests.",
+                "features": [
+                    "Document Queue",
+                    "Real-time Sync",
+                    "Dart"
+                ]
+            },
+            {
+                "title": "Signature Pad",
+                "description": "Smooth on-screen signature capture with pressure sensitivity and ink rendering.",
+                "features": [
+                    "Signature Capture",
+                    "Touch Input",
+                    "Smooth UX"
+                ]
+            },
+            {
+                "title": "Document Viewer",
+                "description": "Full-screen PDF viewer with zoom, scroll, and annotation support built-in.",
+                "features": [
+                    "PDF Viewer",
+                    "Annotations",
+                    "Native Performance"
+                ]
+            },
+            {
+                "title": "Certificate Management",
+                "description": "DSC (Digital Signature Certificate) management panel for enterprise users.",
+                "features": [
+                    "DSC Management",
+                    "PKI",
+                    "API Integration"
+                ]
+            },
+            {
+                "title": "Audit Trail",
+                "description": "Tamper-proof audit log showing every signing action — who, when, and where.",
+                "features": [
+                    "Audit Log",
+                    "Compliance",
+                    "Bank-Grade"
+                ]
+            },
+            {
+                "title": "Workflow Approvals",
+                "description": "Multi-party workflows with sequential and parallel approval routing.",
+                "features": [
+                    "Workflow Engine",
+                    "Multi-Party",
+                    "Enterprise"
+                ]
+            },
+            {
+                "title": "Cross-Platform",
+                "description": "Single codebase — identical features on Android and iOS with native performance.",
+                "features": [
+                    "Android",
+                    "iOS",
+                    "100% Flutter"
+                ]
+            }
+        ],
         "metrics": {
             "platform": "Android & iOS",
             "client": "emudhra",
@@ -192,5 +591,122 @@
         "problem": "Enterprise clients needed secure, cross-platform digital signature solution for mobile devices.",
         "solution": "Developed Flutter-based mobile application with robust security features, API integrations, and native performance for both Android and iOS platforms.",
         "results": "Live on Google Play Store, serving enterprise clients with secure digital signature capabilities."
+    },
+    {
+        "id": "pathsathi",
+        "title": "PathSathi — Himalayan Route Explorer",
+        "year": "2026",
+        "role": "Full-Stack Development",
+        "description": "Scroll-driven 3D travel platform for North Bengal & Sikkim. 1,920+ cinematic frames let you virtually drive mountain roads before you book. Zero-commission agency marketplace included.",
+        "tech": [
+            "Next.js",
+            "Tailwind CSS",
+            "Three.js",
+            "GSAP",
+            "Framer Motion",
+            "Firebase"
+        ],
+        "projectType": "Personal Project",
+        "image": "/projects/Works_Best/Pathsathi/images/image.png",
+        "liveUrl": "https://pathsathi.vercel.app/",
+        "githubUrl": "https://github.com/RoyRoki/PathSathi",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/Pathsathi/images/image.png",
+            "/projects/Works_Best/Pathsathi/images/image copy.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 2.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 3.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 4.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 5.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 6.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 7.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 8.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 9.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 10.png",
+            "/projects/Works_Best/Pathsathi/images/image copy 11.png"
+        ],
+        "screenshotInfo": [
+            {
+                "title": "Cinematic Hero",
+                "description": "Immersive hero section inviting travelers to virtually drive Himalayan roads before they book.",
+                "features": [
+                    "Next.js",
+                    "Framer Motion",
+                    "Cinematic UX"
+                ]
+            },
+            {
+                "title": "Scroll-Driven 3D Route",
+                "description": "1,920+ frames of mountain road rendered frame-by-frame as you scroll — a full virtual drive.",
+                "features": [
+                    "1920+ Frames",
+                    "Three.js",
+                    "Scroll-Driven"
+                ]
+            },
+            {
+                "title": "Route Listing",
+                "description": "Browse iconic Himalayan routes — Darjeeling, Gangtok, Gurudongmar, Yumthang and more.",
+                "features": [
+                    "Route Catalog",
+                    "North Bengal",
+                    "Sikkim"
+                ]
+            },
+            {
+                "title": "360° Road View",
+                "description": "Road-level cinematic experience — every bend, valley, and viewpoint visible before booking.",
+                "features": [
+                    "360° View",
+                    "GSAP",
+                    "Immersive"
+                ]
+            },
+            {
+                "title": "Agency Marketplace",
+                "description": "Zero-commission platform where agencies list routes with direct WhatsApp and phone contacts.",
+                "features": [
+                    "Zero Commission",
+                    "Agency Platform",
+                    "Direct Connect"
+                ]
+            },
+            {
+                "title": "Route Detail Page",
+                "description": "Full route info: distance, duration, highlights, stops, and a launch button for the 3D drive.",
+                "features": [
+                    "Route Detail",
+                    "65–190 KM Routes",
+                    "Firebase"
+                ]
+            },
+            {
+                "title": "For Agencies",
+                "description": "Agency onboarding page — free Beta plan with 100% booking profit retention guaranteed.",
+                "features": [
+                    "Free Beta",
+                    "Agency Onboarding",
+                    "Lead Gen"
+                ]
+            },
+            {
+                "title": "Custom Route Request",
+                "description": "Form for travelers or agencies to request new 3D routes to be built and added.",
+                "features": [
+                    "Route Requests",
+                    "Firebase Forms",
+                    "Community"
+                ]
+            }
+        ],
+        "metrics": {
+            "type": "Travel Platform",
+            "tech": "Scroll-Driven 3D",
+            "model": "Zero Commission"
+        },
+        "problem": "Travelers in North Bengal & Sikkim had no way to preview mountain routes before committing to a booking, and agencies lacked a direct channel to showcase their expertise.",
+        "solution": "Built an immersive scroll-driven platform with 1,920+ cinematic frames per route, giving travelers a 360° virtual drive experience, paired with a zero-commission agency marketplace for direct connections.",
+        "results": "Live on Vercel — serving travelers and agencies across North Bengal & Sikkim with immersive 3D route previews and a direct booking pipeline."
     }
 ]

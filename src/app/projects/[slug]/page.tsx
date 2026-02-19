@@ -11,7 +11,7 @@ interface ProjectPageProps {
 
 // Required for static export
 export async function generateStaticParams() {
-    const projects = projectsData as Project[];
+    const projects = projectsData as unknown as Project[];
     return projects.map((project) => ({
         slug: project.id,
     }));
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
     const { slug } = await params;
-    const projects = projectsData as Project[];
+    const projects = projectsData as unknown as Project[];
     const project = projects.find((p) => p.id === slug);
 
     if (!project) {

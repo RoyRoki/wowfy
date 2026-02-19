@@ -19,9 +19,10 @@ if (typeof window !== "undefined") {
 interface ProjectDetailsProps {
     project: Project;
     onClose: () => void;
+    backLabel?: string;
 }
 
-export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
+export function ProjectDetails({ project, onClose, backLabel = "Back to Works" }: ProjectDetailsProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
@@ -246,146 +247,197 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 exit={{ y: 100 }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
             >
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className={cn(
-                        "fixed z-50 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors group",
-                        isMobile ? "top-4 right-4" : "top-6 right-6"
-                    )}
-                >
-                    <svg className="w-6 h-6 group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+
+
 
                 {/* Hero Section with 3D Device */}
                 <section ref={heroRef} className={cn(
-                    "relative flex items-center justify-center",
+                    "relative flex justify-center",
                     isMobile ? "min-h-[80vh] py-12 px-4" : "min-h-screen py-20"
                 )}>
                     <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/10 via-transparent to-[var(--color-background)]" />
 
-                    <div className={cn(
-                        "container-wide relative z-10 items-center",
-                        isMobile ? "flex flex-col gap-8" : "grid lg:grid-cols-2 gap-12"
-                    )}>
-                        {/* Hero Project Images - Stack Card */}
-                        <motion.div
-                            className={cn(isMobile ? "order-2 w-full" : "order-2 lg:order-1")}
-                            initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 20 : 0 }}
-                            animate={{ opacity: 1, x: 0, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
+                    <div className="container-wide relative z-10 flex flex-col gap-48">
+                        {/* Back Button — row 1, top-left */}
+                        <button
+                            onClick={onClose}
+                            className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors group self-start"
                         >
-                            {project.screenshots && project.screenshots.length > 0 ? (
-                                <StackCard
-                                    cards={project.screenshots.slice(0, 5).map((src, i) => ({
-                                        id: `card-${i}`,
-                                        src,
-                                        alt: `${project.title} screenshot ${i + 1}`,
-                                    }))}
-                                    className="max-w-lg mx-auto"
-                                />
-                            ) : (
-                                <div className="aspect-video rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/30 to-[var(--color-highlight)]/30 flex items-center justify-center">
-                                    <span className="text-8xl font-bold text-white/10">{project.title.charAt(0)}</span>
-                                </div>
-                            )}
-                        </motion.div>
+                            <svg
+                                className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                            {backLabel}
+                        </button>
 
-                        {/* Content */}
+                        {/* Row 2 — Cards + Description */}
                         <div className={cn(
-                            "order-1",
-                            isMobile ? "text-center w-full" : "lg:order-2 text-center lg:text-left"
+                            "items-center",
+                            isMobile ? "flex flex-col gap-8" : "grid lg:grid-cols-2 gap-12"
                         )}>
-                            <motion.span
-                                className="inline-block text-sm text-[var(--color-highlight)] uppercase tracking-widest mb-4"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                {project.year} • {project.role}
-                            </motion.span>
-
-                            <motion.h1
-                                className={cn(
-                                    "font-bold text-white mb-6",
-                                    isMobile ? "text-3xl" : "text-4xl md:text-6xl lg:text-7xl"
-                                )}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                            >
-                                {project.title}
-                            </motion.h1>
-
-                            <motion.p
-                                className={cn(
-                                    "text-[var(--color-text-muted)] mb-8",
-                                    isMobile ? "text-sm max-w-full px-4" : "text-lg md:text-xl max-w-xl"
-                                )}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
-                            >
-                                {project.description}
-                            </motion.p>
-
-                            {/* Tech Stack with Particle Burst */}
+                            {/* Hero Project Images - Stack Card */}
                             <motion.div
-                                className={cn(
-                                    "flex flex-wrap gap-3",
-                                    isMobile ? "justify-center px-4" : "justify-center lg:justify-start"
-                                )}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.5 }}
+                                className={cn(isMobile ? "order-2 w-full" : "order-2 lg:order-1")}
+                                initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 20 : 0 }}
+                                animate={{ opacity: 1, x: 0, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.6 }}
                             >
-                                {project.tech.map((tech, i) => (
-                                    <motion.span
-                                        key={tech}
-                                        className={cn(
-                                            "relative rounded-full font-medium",
-                                            "bg-[#7c3aed] backdrop-blur-sm",
-                                            "border border-[#a78bfa]",
-                                            "text-white",
-                                            "transition-all duration-300",
-                                            isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm cursor-pointer"
-                                        )}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: 0.5 + i * 0.05 }}
-                                        whileHover={!isMobile ? {
-                                            scale: 1.1,
-                                            boxShadow: "0 0 25px rgba(139, 92, 246, 0.6)",
-                                        } : undefined}
-                                        onMouseEnter={() => !isMobile && setHoveredTech(tech)}
-                                        onMouseLeave={() => setHoveredTech(null)}
-                                    >
-                                        {tech}
-                                        {!isMobile && hoveredTech === tech && <ParticleBurst trigger={true} />}
-                                    </motion.span>
-                                ))}
+                                {project.screenshots && project.screenshots.length > 0 ? (
+                                    <StackCard
+                                        cards={project.screenshots.slice(0, 5).map((src, i) => ({
+                                            id: `card-${i}`,
+                                            src,
+                                            alt: `${project.title} screenshot ${i + 1}`,
+                                        }))}
+                                        className="max-w-lg mx-auto"
+                                    />
+                                ) : (
+                                    <div className="aspect-video rounded-2xl bg-gradient-to-br from-[var(--color-accent)]/30 to-[var(--color-highlight)]/30 flex items-center justify-center">
+                                        <span className="text-8xl font-bold text-white/10">{project.title.charAt(0)}</span>
+                                    </div>
+                                )}
                             </motion.div>
-                        </div>
-                    </div>
 
-                    {/* Scroll Indicator (Desktop only) */}
-                    {!isMobile && (
-                        <motion.div
-                            className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                            animate={{ y: [0, 10, 0] }}
-                            transition={{ repeat: Infinity, duration: 2 }}
-                        >
-                            <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
+                            {/* Content */}
+                            <div className={cn(
+                                "order-1",
+                                isMobile ? "text-center w-full" : "lg:order-2 text-center lg:text-left"
+                            )}>
+                                <motion.span
+                                    className="inline-block text-sm text-[var(--color-highlight)] uppercase tracking-widest mb-4"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    {project.year} • {project.role}
+                                </motion.span>
+
+                                <motion.h1
+                                    className={cn(
+                                        "font-bold text-white mb-6",
+                                        isMobile ? "text-3xl" : "text-4xl md:text-6xl lg:text-7xl"
+                                    )}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                >
+                                    {project.title}
+                                </motion.h1>
+
+                                <motion.p
+                                    className={cn(
+                                        "text-[var(--color-text-muted)] mb-8",
+                                        isMobile ? "text-sm max-w-full px-4" : "text-lg md:text-xl max-w-xl"
+                                    )}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                >
+                                    {project.description}
+                                </motion.p>
+
+                                {/* Tech Stack with Particle Burst */}
                                 <motion.div
-                                    className="w-1.5 h-1.5 rounded-full bg-white/60"
-                                    animate={{ y: [0, 12, 0] }}
-                                    transition={{ repeat: Infinity, duration: 2 }}
-                                />
+                                    className={cn(
+                                        "flex flex-wrap gap-3",
+                                        isMobile ? "justify-center px-4" : "justify-center lg:justify-start"
+                                    )}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    {project.tech.map((tech, i) => (
+                                        <motion.span
+                                            key={tech}
+                                            className={cn(
+                                                "relative rounded-full font-medium",
+                                                "bg-[#7c3aed] backdrop-blur-sm",
+                                                "border border-[#a78bfa]",
+                                                "text-white",
+                                                "transition-all duration-300",
+                                                isMobile ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm cursor-pointer"
+                                            )}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 0.5 + i * 0.05 }}
+                                            whileHover={!isMobile ? {
+                                                scale: 1.1,
+                                                boxShadow: "0 0 25px rgba(139, 92, 246, 0.6)",
+                                            } : undefined}
+                                            onMouseEnter={() => !isMobile && setHoveredTech(tech)}
+                                            onMouseLeave={() => setHoveredTech(null)}
+                                        >
+                                            {tech}
+                                            {!isMobile && hoveredTech === tech && <ParticleBurst trigger={true} />}
+                                        </motion.span>
+                                    ))}
+                                </motion.div>
+
+                                {/* Live & GitHub Links */}
+                                {(project.liveUrl || project.githubUrl) && (
+                                    <motion.div
+                                        className={cn(
+                                            "flex gap-3 mt-4",
+                                            isMobile ? "justify-center" : "justify-center lg:justify-start"
+                                        )}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.7 }}
+                                    >
+                                        {project.githubUrl && (
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                title="View on GitHub"
+                                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-sm transition-all hover:scale-105"
+                                            >
+                                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                        )}
+                                        {project.liveUrl && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                title="View Live Site"
+                                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/40 backdrop-blur-sm border border-[var(--color-accent)]/40 text-white text-sm transition-all hover:scale-105"
+                                            >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                </svg>
+                                                Live Site
+                                            </a>
+                                        )}
+                                    </motion.div>
+                                )}
                             </div>
-                        </motion.div>
-                    )}
+                        </div>
+
+                        {/* Scroll Indicator (Desktop only) */}
+                        {!isMobile && (
+                            <motion.div
+                                className="flex justify-center"
+                                animate={{ y: [0, 10, 0] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                            >
+                                <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
+                                    <motion.div
+                                        className="w-1.5 h-1.5 rounded-full bg-white/60"
+                                        animate={{ y: [0, 12, 0] }}
+                                        transition={{ repeat: Infinity, duration: 2 }}
+                                    />
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
                 </section>
 
                 {/* Gallery Section - Conditional Mobile/Desktop */}
@@ -396,15 +448,9 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                                 images={project.screenshots.slice(0, 6).map((src, i) => ({
                                     id: `gallery-${i}`,
                                     src,
-                                    title: i === 0 ? "Main Dashboard" : i === 1 ? "Core Features" : i === 2 ? "User Interface" : i === 3 ? "Analytics View" : i === 4 ? "Mobile View" : "Settings Panel",
-                                    description: i === 0 ? project.description?.slice(0, 80) + "..." : undefined,
-                                    features: i === 0
-                                        ? project.tech?.slice(0, 3)
-                                        : i === 1
-                                            ? ["Real-time", "Interactive", "Responsive"]
-                                            : i === 2
-                                                ? ["Modern UI", "Dark Mode", "Accessible"]
-                                                : ["Optimized", "Scalable"],
+                                    title: project.screenshotInfo?.[i]?.title ?? `Screen ${i + 1}`,
+                                    description: project.screenshotInfo?.[i]?.description ?? (i === 0 ? project.description?.slice(0, 80) + "..." : undefined),
+                                    features: project.screenshotInfo?.[i]?.features ?? project.tech?.slice(0, 3),
                                 }))}
                                 projectTitle={project.title}
                                 className="py-4 pb-20"
@@ -414,15 +460,9 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                                 images={project.screenshots.slice(0, 8).map((src, i) => ({
                                     id: `gallery-${i}`,
                                     src,
-                                    title: i === 0 ? "Main Dashboard" : i === 1 ? "Core Features" : i === 2 ? "User Interface" : i === 3 ? "Analytics View" : i === 4 ? "Mobile View" : i === 5 ? "Settings Panel" : i === 6 ? "Integration Hub" : "Advanced Tools",
-                                    description: i === 0 ? project.description?.slice(0, 80) + "..." : undefined,
-                                    features: i === 0
-                                        ? project.tech?.slice(0, 3)
-                                        : i === 1
-                                            ? ["Real-time", "Interactive", "Responsive"]
-                                            : i === 2
-                                                ? ["Modern UI", "Dark Mode", "Accessible"]
-                                                : ["Optimized", "Scalable"],
+                                    title: project.screenshotInfo?.[i]?.title ?? `Screen ${i + 1}`,
+                                    description: project.screenshotInfo?.[i]?.description ?? (i === 0 ? project.description?.slice(0, 80) + "..." : undefined),
+                                    features: project.screenshotInfo?.[i]?.features ?? project.tech?.slice(0, 3),
                                 }))}
                                 projectTitle={project.title}
                                 className="py-8"

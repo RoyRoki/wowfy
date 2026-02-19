@@ -10,7 +10,7 @@ interface GalleryImage {
     src: string;
     title?: string;
     description?: string;
-    metrics?: Record<string, string>;
+    metrics?: Record<string, string | undefined>;
     features?: string[];
 }
 
@@ -231,61 +231,6 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
                     );
                 })}
 
-                {/* Decorative Info Cards */}
-                {mounted && (
-                    <>
-                        {/* Card 1 - Tech Stack */}
-                        <motion.div
-                            className="absolute"
-                            style={{ left: "75%", top: "25%" }}
-                            initial={{ opacity: 0, scale: 0.8, x: "-50%", rotate: 3 }}
-                            animate={{ opacity: 1, scale: 1, x: "-50%", rotate: 3 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                        >
-                            <div className="w-40 md:w-48 p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-600/10 backdrop-blur-md border border-white/10 shadow-xl">
-                                <div className="text-xs text-purple-300 uppercase tracking-wider mb-1">Tech Stack</div>
-                                <div className="text-2xl font-bold text-white">8+</div>
-                                <div className="text-xs text-white/60 mt-1">Technologies Used</div>
-                            </div>
-                        </motion.div>
-
-                        {/* Card 2 - Performance */}
-                        <motion.div
-                            className="absolute"
-                            style={{ left: "20%", top: "65%" }}
-                            initial={{ opacity: 0, scale: 0.8, x: "-50%", rotate: -4 }}
-                            animate={{ opacity: 1, scale: 1, x: "-50%", rotate: -4 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
-                        >
-                            <div className="w-40 md:w-48 p-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-600/10 backdrop-blur-md border border-white/10 shadow-xl">
-                                <div className="text-xs text-emerald-300 uppercase tracking-wider mb-1">Performance</div>
-                                <div className="text-2xl font-bold text-white">98<span className="text-lg">/100</span></div>
-                                <div className="text-xs text-white/60 mt-1">Lighthouse Score</div>
-                            </div>
-                        </motion.div>
-
-                        {/* Card 3 - User Rating */}
-                        <motion.div
-                            className="absolute"
-                            style={{ left: "85%", top: "70%" }}
-                            initial={{ opacity: 0, scale: 0.8, x: "-50%", rotate: 2 }}
-                            animate={{ opacity: 1, scale: 1, x: "-50%", rotate: 2 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
-                        >
-                            <div className="w-40 md:w-48 p-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-600/10 backdrop-blur-md border border-white/10 shadow-xl">
-                                <div className="text-xs text-amber-300 uppercase tracking-wider mb-1">User Rating</div>
-                                <div className="text-2xl font-bold text-white flex items-center gap-1">
-                                    4.9
-                                    <svg className="w-5 h-5 text-amber-400 fill-current" viewBox="0 0 20 20">
-                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                    </svg>
-                                </div>
-                                <div className="text-xs text-white/60 mt-1">Client Satisfaction</div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-
                 {/* Connecting Line SVG */}
                 <AnimatePresence>
                     {hoveredImage && linePath && (
@@ -388,13 +333,13 @@ export function ScatteredGallery({ images, projectTitle, className }: ScatteredG
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </div>
 
-            {/* Decorative particles */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {mounted && (
-                    <DecorativeParticles />
-                )}
+                {/* Decorative particles */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    {mounted && (
+                        <DecorativeParticles />
+                    )}
+                </div>
             </div>
         </section>
     );

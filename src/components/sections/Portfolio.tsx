@@ -33,11 +33,12 @@ export function Portfolio() {
 
 
     // Cast projects data with proper typing
-    const projects = projectsData as Project[];
+    const projects = projectsData as unknown as Project[];
     const featuredProjects = projects.filter((p) => p.featured);
 
     // Navigate to project detail page
     const handleProjectClick = (projectId: string) => {
+        sessionStorage.setItem('projectFrom', 'home');
         router.push(`/projects/${projectId}`);
     };
 

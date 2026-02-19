@@ -32,6 +32,18 @@ function LinkedInIcon() {
     );
 }
 
+function ResumeIcon() {
+    return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+        </svg>
+    );
+}
+
 function InstagramIcon() {
     return (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -46,6 +58,7 @@ interface TeamMember {
     role: string;
     bio: string;
     avatar: string | null;
+    resume?: string;
     social: {
         github?: string;
         twitter?: string;
@@ -159,7 +172,7 @@ export function TeamCarousel({ members, className }: TeamCarouselProps) {
 
 
                             {/* Social Icons */}
-                            <div className="flex space-x-3">
+                            <div className="flex space-x-3 flex-wrap gap-y-2">
                                 {socialLinks.map(({ key, url, Icon, label }) => (
                                     <motion.a
                                         key={key}
@@ -174,6 +187,19 @@ export function TeamCarousel({ members, className }: TeamCarouselProps) {
                                         <Icon />
                                     </motion.a>
                                 ))}
+                                {current.resume && (
+                                    <motion.a
+                                        href={current.resume}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/10 transition-all duration-300"
+                                        whileHover={{ scale: 1.1, y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        aria-label="Resume / Portfolio"
+                                    >
+                                        <ResumeIcon />
+                                    </motion.a>
+                                )}
                             </div>
                         </motion.div>
                     </AnimatePresence>
@@ -239,7 +265,7 @@ export function TeamCarousel({ members, className }: TeamCarouselProps) {
 
 
                             {/* Social Icons */}
-                            <div className="flex justify-center space-x-3">
+                            <div className="flex justify-center space-x-3 flex-wrap gap-y-2">
                                 {socialLinks.map(({ key, url, Icon, label }) => (
                                     <a
                                         key={key}
@@ -252,6 +278,17 @@ export function TeamCarousel({ members, className }: TeamCarouselProps) {
                                         <Icon />
                                     </a>
                                 ))}
+                                {current.resume && (
+                                    <a
+                                        href={current.resume}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all duration-300"
+                                        aria-label="Resume / Portfolio"
+                                    >
+                                        <ResumeIcon />
+                                    </a>
+                                )}
                             </div>
                         </motion.div>
                     </AnimatePresence>

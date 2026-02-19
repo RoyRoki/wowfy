@@ -16,7 +16,7 @@ export default function ProjectsPage() {
     const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
     // specific type casting
-    const projects = projectsData as Project[];
+    const projects = projectsData as unknown as Project[];
 
     const filteredProjects = projects.filter((project) => {
         if (activeFilter === "all") return true;
@@ -26,6 +26,7 @@ export default function ProjectsPage() {
     });
 
     const handleProjectClick = (projectId: string) => {
+        sessionStorage.setItem('projectFrom', 'projects');
         router.push(`/projects/${projectId}`);
     };
 
@@ -56,7 +57,7 @@ export default function ProjectsPage() {
                 {/* Header */}
                 <div className="mb-12 md:mb-16">
                     <Link
-                        href="/"
+                        href="/#portfolio"
                         className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors mb-8 group"
                     >
                         <svg
@@ -67,7 +68,7 @@ export default function ProjectsPage() {
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
-                        Back to Home
+                        Back to Works
                     </Link>
 
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">

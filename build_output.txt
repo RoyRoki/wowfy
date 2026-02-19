@@ -1,0 +1,34 @@
+
+> rokiroy-digital@0.1.0 build
+> next build
+
+▲ Next.js 16.1.3 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.3s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/13) ...
+  Generating static pages using 7 workers (3/13) 
+  Generating static pages using 7 workers (6/13) 
+  Generating static pages using 7 workers (9/13) 
+✓ Generating static pages using 7 workers (13/13) in 651.6ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/contact
+├ ○ /demo/particle-effect
+├ ○ /projects
+└ ● /projects/[slug]
+  ├ /projects/formula-shop
+  ├ /projects/dubai-luxury-apartments
+  ├ /projects/astra-terra
+  └ [+3 more paths]
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

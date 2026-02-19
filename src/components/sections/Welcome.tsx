@@ -7,18 +7,18 @@ import { assetPath } from "@/lib/utils";
 
 // Portfolio images from the project for the marquee
 const WELCOME_IMAGES = [
-    "/projects/Works_Best/p1/images/image.png",
-    "/projects/Works_Best/p2/images/image.png",
-    "/projects/Works_Best/p3/images/image.png",
-    "/projects/Works_Best/p4/images/image.png",
-    "/projects/Works_Best/p5/images/image.png",
-    "/projects/Works_Best/p6/images/image.png",
-    "/projects/Works_Best/p1/images/image copy.png",
-    "/projects/Works_Best/p2/images/image copy.png",
-    "/projects/Works_Best/p3/images/image copy.png",
-    "/projects/Works_Best/p4/images/image copy.png",
-    "/projects/Works_Best/p5/images/image copy.png",
-    "/projects/Works_Best/p6/images/image copy.png",
+    "/images/welcome/image.webp",
+    "/images/welcome/image copy.webp",
+    "/images/welcome/image copy 2.webp",
+    "/images/welcome/image copy 3.webp",
+    "/images/welcome/image copy 4.webp",
+    "/images/welcome/image copy 5.webp",
+    "/images/welcome/image copy 6.webp",
+    "/images/welcome/image copy 7.webp",
+    "/images/welcome/image copy 8.webp",
+    "/images/welcome/image copy 9.webp",
+    "/images/welcome/image copy 10.webp",
+    "/images/welcome/image copy 11.webp",
 ].map(assetPath);
 
 export const Welcome: React.FC = () => {

@@ -68,6 +68,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${interDisplay.variable} ${manrope.variable} ${outfit.variable} font-sans antialiased noise`}>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9948218546114476"
+          crossOrigin="anonymous"
+        />
         <Providers>
           <CustomCursor />
           <AnimatedFavicon />

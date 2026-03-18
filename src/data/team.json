@@ -2,8 +2,8 @@
     {
         "id": "roki-roy",
         "name": "Roki Roy",
-        "role": "Founder & Full-Stack Architect",
-        "bio": "Results-driven technologist specializing in the end-to-end delivery of scalable, high-performance products. I translate complex business requirements into robust technical architectures, leveraging deep expertise in DevOps and performance optimization to ensure seamless growth. Proven track record of maintaining delivery excellence and high-touch client communication while transforming innovative concepts into production-ready solutions.",
+        "role": "Founder & Full-Stack Developer",
+        "bio": "Full-stack developer building premium websites and apps for startups. I ship fast — weeks, not months. Design + dev + deployment, solo. No handoffs, no coordination overhead, just clean work. Currently based in Siliguri. Recent projects: theformulashop.com, astraterra.ae, PathSathi.",
         "avatar": "/team/roki-roy.jpg",
         "resume": "https://resume.rokiroy.in",
         "social": {
@@ -15,19 +15,21 @@
         "skills": [
             "Next.js",
             "React",
-            "Node.js",
-            "AWS",
-            "Docker",
+            "TypeScript",
             "Flutter",
+            "Firebase",
+            "GSAP",
+            "Framer Motion",
+            "Tailwind CSS",
             "Three.js",
-            "PostgreSQL"
+            "Node.js"
         ]
     },
     {
         "id": "kalyan-paul",
         "name": "Kalyan Paul",
-        "role": "Lead Frontend & UI/UX Engineer",
-        "bio": "User-centric engineer dedicated to crafting pixel-perfect interfaces. I bridge the gap between design and development by translating client requirements into intuitive UI/UX experiences. My expertise lies in rigorous quality assurance, ensuring every bug is squashed, and leveraging strategic marketing insights to drive user engagement and product success.",
+        "role": "Frontend & UI/UX Engineer",
+        "bio": "Frontend engineer focused on pixel-perfect interfaces and intuitive UX. Translates designs into polished, accessible experiences. Key collaborator on several client projects including Astra Terra.",
         "avatar": "/team/kalyan-paul.jpeg",
         "resume": "https://my-digital-hub.vercel.app/",
         "social": {
@@ -42,7 +44,6 @@
             "Figma",
             "Firebase",
             "HTML/CSS",
-            "Performance Optimization",
             "SEO"
         ]
     }

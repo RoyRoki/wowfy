@@ -3,40 +3,40 @@
         "id": "step-1",
         "phase": "01",
         "title": "Discovery",
-        "subtitle": "Idea",
-        "description": "We dive deep into your vision, understand your goals, and map out the perfect strategy for success.",
+        "subtitle": "Day 1–2",
+        "description": "I get into your goals, constraints, and what success looks like. Clear scope, realistic timeline, no surprises later.",
         "icon": "lightbulb"
     },
     {
         "id": "step-2",
         "phase": "02",
         "title": "Design",
-        "subtitle": "Wireframe",
-        "description": "Beautiful, functional designs come to life. Every interaction is crafted to delight your users.",
+        "subtitle": "Day 2–5",
+        "description": "Wireframes and design system locked in before a single line of code. You see exactly what you're getting.",
         "icon": "pencil"
     },
     {
         "id": "step-3",
         "phase": "03",
-        "title": "Development",
-        "subtitle": "Code",
-        "description": "Clean, scalable code transforms designs into reality. Built with the latest technologies.",
+        "title": "Build",
+        "subtitle": "Week 1–3",
+        "description": "Clean, scalable code. Lighthouse 90+ is non-negotiable. 60fps animations, mobile-first, TypeScript throughout.",
         "icon": "code"
     },
     {
         "id": "step-4",
         "phase": "04",
-        "title": "Deployment",
-        "subtitle": "Launch",
-        "description": "Your product goes live with optimized performance, security, and monitoring in place.",
+        "title": "Launch",
+        "subtitle": "Week 3–4",
+        "description": "Deployed to production with performance verified, SEO in place, and zero broken flows. You ship with confidence.",
         "icon": "rocket"
     },
     {
         "id": "step-5",
         "phase": "05",
-        "title": "Growth",
-        "subtitle": "Scale",
-        "description": "Continuous improvement and optimization ensure your product evolves with your business.",
+        "title": "Support",
+        "subtitle": "Post-launch",
+        "description": "30–90 days of included support depending on tier. Need more? Retainer available for ongoing iteration.",
         "icon": "chart"
     }
 ]

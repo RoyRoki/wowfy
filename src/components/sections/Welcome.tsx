@@ -62,16 +62,14 @@ export const Welcome: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020202] to-transparent z-20 pointer-events-none" />
 
             <AnimatedMarqueeHero
-                tagline="Welcome to RokiRoy Digital"
+                tagline="Available for Projects · 2026"
                 title={
                     <>
-                        Where Creativity <span className="text-gradient">Meets</span>
-                        <br />
-                        Code
+                        Premium builds. <span className="text-gradient">Solo speed.</span>
                     </>
                 }
-                description="Founded by Roki, a creative developer with 2 years of experience obsessed with building WOW moments. We're a software agency serving clients from India to Dubai with premium digital solutions at unbeatable prices. From stunning websites to powerful mobile apps, we transform your vision into reality."
-                ctaText="Explore Our Work"
+                description="Full-stack dev based in Siliguri. Design, build, and deploy — solo. No handoffs, no delays, direct accountability."
+                ctaText="See the Work"
                 images={WELCOME_IMAGES}
                 className="bg-transparent relative z-10"
                 onCtaClick={handleCtaClick}

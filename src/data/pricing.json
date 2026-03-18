@@ -1,57 +1,67 @@
 [
     {
-        "id": "growth",
-        "titleBadge": "GROWTH",
-        "priceLabel": "$299",
-        "priceSuffix": "/month",
+        "id": "business",
+        "titleBadge": "BUSINESS WEBSITE",
+        "priceLabel": "₹2.5L",
+        "priceSuffix": "onwards",
         "features": [
-            "Full Stack Development",
-            "SEO Optimization",
-            "Digital Marketing Integration",
-            "Performance Analytics"
+            "Multi-page premium website",
+            "CMS integration (easy updates)",
+            "SEO + analytics setup",
+            "Mobile-first architecture",
+            "Timeline: 2–3 weeks"
         ],
-        "cta": "Contact Now",
+        "cta": "Chat on WhatsApp",
+        "isFeatured": false,
+        "isRecommended": false
+    },
+    {
+        "id": "mvp",
+        "titleBadge": "STARTUP MVP",
+        "priceLabel": "₹5L",
+        "priceSuffix": "onwards",
+        "features": [
+            "Full-stack web app",
+            "Auth + database + admin panel",
+            "API integrations",
+            "Clean scalable architecture",
+            "Production deployment",
+            "Timeline: 4–6 weeks"
+        ],
+        "cta": "Chat on WhatsApp",
         "isFeatured": true,
         "isRecommended": true
     },
     {
-        "id": "basic",
-        "titleBadge": "BASIC",
-        "priceLabel": "$99",
-        "priceSuffix": "/month",
+        "id": "landing",
+        "titleBadge": "LANDING PAGE",
+        "priceLabel": "₹1.5L",
+        "priceSuffix": "onwards",
         "features": [
-            "Static Website",
-            "Basic SEO",
-            "Content Management"
+            "Single-page scroll-driven design",
+            "GSAP animations + Lenis scroll",
+            "Lighthouse 90+ guaranteed",
+            "Deployment + 30 days support",
+            "Timeline: 7–10 days"
         ],
-        "cta": "Contact Now",
-        "isFeatured": false
+        "cta": "Chat on WhatsApp",
+        "isFeatured": false,
+        "isRecommended": false
     },
     {
-        "id": "professional",
-        "titleBadge": "PROFESSIONAL",
-        "priceLabel": "$499",
-        "priceSuffix": "/month",
-        "features": [
-            "E-commerce Solutions",
-            "Custom Web Applications",
-            "API Integrations"
-        ],
-        "cta": "Contact Now",
-        "isFeatured": false
-    },
-    {
-        "id": "enterprise",
-        "titleBadge": "ENTERPRISE",
+        "id": "mobile",
+        "titleBadge": "MOBILE APP",
         "priceLabel": "Custom",
         "priceSuffix": "",
         "features": [
-            "Custom Software Solutions",
-            "Dedicated Support",
-            "Cloud Infrastructure",
-            "Security Audits"
+            "iOS + Android (Flutter)",
+            "Backend integration",
+            "App Store deployment support",
+            "Enterprise-grade architecture",
+            "Timeline: 6–10 weeks"
         ],
-        "cta": "Contact Now",
-        "isFeatured": false
+        "cta": "Chat on WhatsApp",
+        "isFeatured": false,
+        "isRecommended": false
     }
 ]

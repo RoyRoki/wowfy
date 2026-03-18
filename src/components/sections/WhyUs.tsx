@@ -47,16 +47,18 @@ export function WhyUs() {
                     center
                     className="mb-8"
                 >
-                    <div className="flex flex-col items-center gap-6 max-w-4xl mx-auto">
-                        <h3 className="text-2xl md:text-3xl font-medium text-white/90">
+                    <div className="flex flex-col items-center gap-4 max-w-4xl mx-auto">
+                        <h3 className="text-xl md:text-2xl font-medium text-white/90 tracking-tight">
                             {valueProposition.headline} <span className="text-[var(--color-text-muted)]">{valueProposition.subheadline}</span>
                         </h3>
 
-                        <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed max-w-2xl">
-                            {valueProposition.description}
-                        </p>
+                        {valueProposition.description && (
+                            <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed max-w-2xl">
+                                {valueProposition.description}
+                            </p>
+                        )}
 
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mt-2">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mt-1">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>

@@ -48,9 +48,9 @@ function PricingCard({
             <div className="flex items-center gap-3 p-4">
                 <Badge variant="secondary">{titleBadge}</Badge>
                 <div className="ml-auto">
-                    <Link href="#contact">
+                    <a href="https://wa.me/919800881300" target="_blank" rel="noopener noreferrer">
                         <Button variant="outline">{cta}</Button>
-                    </Link>
+                    </a>
                 </div>
             </div>
 
@@ -135,9 +135,9 @@ export function BentoPricing() {
                                     </Badge>
                                 )}
                                 <div className="ml-auto">
-                                    <Link href="#contact">
+                                    <a href="https://wa.me/919800881300" target="_blank" rel="noopener noreferrer">
                                         <Button>{plan.cta}</Button>
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                             <div className="flex flex-col p-4 lg:flex-row">

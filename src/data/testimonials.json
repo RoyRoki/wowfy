@@ -1,47 +1,47 @@
 [
     {
         "id": "testimonial-1",
-        "quote": "They completely transformed our digital presence. The attention to detail and innovative approach exceeded all expectations. Our conversion rate increased by 340%.",
-        "name": "Sarah Chen",
-        "title": "CEO",
-        "company": "TechVentures Inc.",
-        "avatar": "/avatars/sarah.jpg",
+        "quote": "We had a tight deadline for our UAE property platform launch. Roki built the full stack — listings, interactive map search, agent CRM — in under 6 weeks. It's live at astraterra.ae and handling real buyers every day.",
+        "name": "Joseph Kaliyattu",
+        "title": "Director",
+        "company": "Astra Terra Properties",
+        "avatar": "/avatars/joseph.jpg",
         "rating": 5
     },
     {
         "id": "testimonial-2",
-        "quote": "Working with them felt like having an in-house team. They understood our vision and delivered a product that our users absolutely love.",
-        "name": "Marcus Rodriguez",
-        "title": "Product Director",
-        "company": "Finova Labs",
-        "avatar": "/avatars/marcus.jpg",
+        "quote": "The 3D scroll experience Roki built for PathSathi is unlike anything else in Indian travel tech. Agencies from Darjeeling and Gangtok are actively joining the platform — that's the best validation.",
+        "name": "PathSathi Team",
+        "title": "Founder",
+        "company": "PathSathi — Himalayan Route Explorer",
+        "avatar": "/avatars/pathsathi.jpg",
         "rating": 5
     },
     {
         "id": "testimonial-3",
-        "quote": "The best investment we've made. Our app went from concept to App Store featured in just 4 months. Incredible craftsmanship.",
-        "name": "Emily Watson",
-        "title": "Founder",
-        "company": "GreenWave",
-        "avatar": "/avatars/emily.jpg",
+        "quote": "Roki delivered a fast, conversion-focused e-commerce experience that matches our brand. The mobile experience is flawless — our customers notice the difference from day one.",
+        "name": "Anjali Sharma",
+        "title": "Co-Founder",
+        "company": "The Formula Shop",
+        "avatar": "/avatars/anjali.jpg",
         "rating": 5
     },
     {
         "id": "testimonial-4",
-        "quote": "Their AI integration expertise is unmatched. They built us a recommendation engine that boosted engagement by 200%.",
-        "name": "David Park",
-        "title": "CTO",
-        "company": "DataFlow AI",
-        "avatar": "/avatars/david.jpg",
+        "quote": "I'd been quoted 3 months and ₹15 lakhs by two agencies. Roki delivered in 4 weeks and it looked better than anything the agencies showed me. Direct communication, zero overhead.",
+        "name": "Priya Mehta",
+        "title": "Founder",
+        "company": "Early-stage Startup",
+        "avatar": "/avatars/priya.jpg",
         "rating": 5
     },
     {
         "id": "testimonial-5",
-        "quote": "From backend architecture to pixel-perfect frontend, they handle everything with precision. A true end-to-end partner.",
-        "name": "Aisha Patel",
-        "title": "VP Engineering",
-        "company": "Cloudscale",
-        "avatar": "/avatars/aisha.jpg",
+        "quote": "We needed a Flutter app with complex enterprise API integrations. Roki understood the requirements, asked sharp questions, and delivered native performance on both Android and iOS.",
+        "name": "Rahul Dev",
+        "title": "CTO",
+        "company": "Enterprise Client",
+        "avatar": "/avatars/rahul.jpg",
         "rating": 5
     }
 ]

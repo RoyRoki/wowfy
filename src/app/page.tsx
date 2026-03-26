@@ -17,12 +17,11 @@ export default function Home() {
   const navItems = [
     { name: 'Home', url: '#hero', icon: 'Home' },
     // { name: 'Intro', url: '#welcome', icon: 'User' },
-    { name: 'Services', url: '#services', icon: 'Briefcase' },
+    { name: 'Build', url: '#what-we-build', icon: 'Briefcase' },
     { name: 'Why Us', url: '#why-us', icon: 'Star' },
     { name: 'Tech', url: '#tech-stack', icon: 'Code' },
     { name: 'Works', url: '#portfolio', icon: 'Folder' },
     { name: 'Team', url: '#team', icon: 'Users' },
-    { name: 'Build', url: '#what-we-build', icon: 'DollarSign' },
     { name: 'Contact', url: '#contact', icon: 'Mail' }
   ];
 
@@ -36,8 +35,11 @@ export default function Home() {
       <section id="welcome">
         <Welcome />
       </section>
-      <section id="services">
+      {/* <section id="services">
         <Services />
+      </section> */}
+      <section id="what-we-build">
+        <WhatWeBuild />
       </section>
       <section id="why-us">
         <WhyUs />
@@ -50,9 +52,6 @@ export default function Home() {
       </section>
       <section id="team">
         <Team />
-      </section>
-      <section id="what-we-build">
-        <WhatWeBuild />
       </section>
       <section id="contact">
         <Contact />

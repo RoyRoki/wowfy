@@ -44,11 +44,6 @@ export const metadata: Metadata = {
     title: "RokiRoy Digital | Premium Tech Solutions",
     description: "We Build Tomorrow's Tech Today. Full-Stack Freelance Solutions.",
   },
-  icons: {
-    icon: "/favicons/web.svg",
-    shortcut: "/favicons/web.svg",
-    apple: "/favicons/web.svg",
-  },
 };
 
 export const viewport: Viewport = {

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "landing",
+    "badge": "LANDING PAGE",
+    "hook": "Scroll-stopping pages that convert",
+    "description": "High-conversion landing pages with premium animations. Built for serious startups and brands that demand impact.",
+    "features": [
+      "Custom UI/UX — no templates",
+      "GSAP scroll animations",
+      "Lighthouse 90+ guaranteed",
+      "Deploy + 30 days support"
+    ],
+    "stack": ["Next.js", "GSAP", "Vercel"],
+    "timeline": "7–10 days",
+    "featured": false
+  },
+  {
+    "id": "business",
+    "badge": "BUSINESS WEBSITE",
+    "hook": "Your brand's digital HQ, built to last",
+    "description": "Multi-page premium websites built for credibility, SEO, and conversion. Ideal for funded startups and growing companies.",
+    "features": [
+      "CMS integration (easy updates)",
+      "SEO + analytics setup",
+      "Mobile-first architecture",
+      "Performance optimized"
+    ],
+    "stack": ["Next.js", "Sanity", "Tailwind"],
+    "timeline": "2–3 weeks",
+    "featured": true
+  },
+  {
+    "id": "mvp",
+    "badge": "STARTUP MVP",
+    "hook": "From idea to market, in weeks",
+    "description": "Full-stack web apps with auth, dashboards, and scalable backend. Built for founders who need to move fast.",
+    "features": [
+      "Auth + database + admin panel",
+      "API integrations",
+      "Clean scalable architecture",
+      "Production deployment"
+    ],
+    "stack": ["Next.js", "PostgreSQL", "Redis"],
+    "timeline": "4–6 weeks",
+    "featured": true
+  },
+  {
+    "id": "mobile",
+    "badge": "MOBILE APP",
+    "hook": "iOS + Android. One codebase, zero compromise",
+    "description": "Cross-platform apps with production-grade architecture and premium UI that feels truly native.",
+    "features": [
+      "iOS + Android (Flutter)",
+      "Backend integration",
+      "App Store deployment support",
+      "Enterprise-grade architecture"
+    ],
+    "stack": ["Flutter", "Firebase", "Dart"],
+    "timeline": "6–10 weeks",
+    "featured": false
+  },
+  {
+    "id": "refactor",
+    "badge": "REFACTOR & MAINTENANCE",
+    "hook": "We fix what others broke — and keep it running",
+    "description": "Deep audit of your existing product. We kill the bottlenecks, clean the technical debt, and offer ongoing maintenance so you never worry again.",
+    "features": [
+      "Full codebase audit",
+      "Performance optimization",
+      "Architecture improvements",
+      "Ongoing maintenance plans"
+    ],
+    "stack": ["Any Stack", "CI/CD", "Monitoring"],
+    "timeline": "1–2 weeks",
+    "featured": false
+  }
+]

@@ -7,7 +7,7 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Team } from "@/components/sections/Team";
-import { PricingSection } from "@/components/sections/pricing";
+import { WhatWeBuild } from "@/components/sections/WhatWeBuild";
 import { Contact } from "@/components/sections/Contact";
 import { Home as HomeIcon, Briefcase, DollarSign, Mail } from "lucide-react"; // Removed as not needed
 import { NavBar } from "@/components/ui/tube-light-navbar";
@@ -22,7 +22,7 @@ export default function Home() {
     { name: 'Tech', url: '#tech-stack', icon: 'Code' },
     { name: 'Works', url: '#portfolio', icon: 'Folder' },
     { name: 'Team', url: '#team', icon: 'Users' },
-    // { name: 'Pricing', url: '#pricing', icon: 'DollarSign' },
+    { name: 'Build', url: '#what-we-build', icon: 'DollarSign' },
     { name: 'Contact', url: '#contact', icon: 'Mail' }
   ];
 
@@ -51,9 +51,9 @@ export default function Home() {
       <section id="team">
         <Team />
       </section>
-      {/* <section id="pricing">
-        <PricingSection />
-      </section> */}
+      <section id="what-we-build">
+        <WhatWeBuild />
+      </section>
       <section id="contact">
         <Contact />
       </section>

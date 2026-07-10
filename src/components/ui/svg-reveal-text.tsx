@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-import opentype, { type Font } from "opentype.js";
+import { parse, type Font } from "opentype.js";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -16,7 +16,7 @@ function loadFont() {
     if (!fontPromise) {
         fontPromise = fetch(FONT_URL)
             .then((res) => res.arrayBuffer())
-            .then((buffer) => opentype.parse(buffer));
+            .then((buffer) => parse(buffer));
     }
     return fontPromise;
 }

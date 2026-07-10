@@ -29,6 +29,7 @@ const interDisplay = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.rokiroy.in"),
   title: "RokiRoy Digital | Premium Tech Solutions",
   description: "We Build Tomorrow's Tech Today. From Vision to Victory – Full-Stack Freelance Solutions. Web & Mobile Apps, UI/UX Design, Cloud Architecture, AI/ML Integrations.",
   keywords: ["web development", "mobile apps", "UI/UX design", "freelance developer", "tech solutions", "full-stack", "React", "Next.js"],

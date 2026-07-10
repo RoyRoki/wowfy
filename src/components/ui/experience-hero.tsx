@@ -44,7 +44,7 @@ const LiquidBackground = () => {
     );
 };
 
-const Monolith = () => {
+const Monolith = ({ scale = 1 }: { scale?: number }) => {
     const meshRef = useRef<THREE.Mesh>(null);
     useFrame((state) => {
         if (meshRef.current) {
@@ -53,7 +53,7 @@ const Monolith = () => {
     });
     return (
         <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-            <mesh ref={meshRef}>
+            <mesh ref={meshRef} scale={scale}>
                 <icosahedronGeometry args={[13, 1]} />
                 <MeshDistortMaterial color="#0a0a0a" speed={4} distort={0.4} roughness={0.05} metalness={1.0} />
             </mesh>
@@ -65,7 +65,7 @@ export const ExperienceHero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const revealRef = useRef<HTMLDivElement>(null);
     const ctaRef = useRef<HTMLAnchorElement>(null);
-    const { isMobile, isTouchDevice } = useMobileDetect();
+    const { isTouchDevice } = useMobileDetect();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -99,23 +99,20 @@ export const ExperienceHero = () => {
 
     return (
         <section ref={containerRef} className="relative min-h-screen w-full bg-[#020202] flex flex-col selection:bg-white selection:text-black overflow-hidden">
-            {/* Background: Canvas on desktop, CSS gradient on mobile */}
-            {isMobile || isTouchDevice ? (
-                <div className="fixed inset-0 z-0 pointer-events-none"
-                    style={{
-                        background: 'radial-gradient(ellipse at 30% 50%, rgba(30,30,40,1) 0%, rgba(2,2,2,1) 70%)',
-                    }}
-                />
-            ) : (
-                <div className="fixed inset-0 z-0 pointer-events-none">
-                    <Canvas camera={{ position: [0, 0, 60], fov: 35 }}>
-                        <ambientLight intensity={0.4} />
-                        <spotLight position={[50, 50, 50]} intensity={3} />
-                        <LiquidBackground />
-                        <Monolith />
-                    </Canvas>
-                </div>
-            )}
+            {/* Geometric monolith on every device — the liquid shader background is desktop-only for performance */}
+            <div className="fixed inset-0 z-0 pointer-events-none"
+                style={{
+                    background: 'radial-gradient(ellipse at 30% 50%, rgba(30,30,40,1) 0%, rgba(2,2,2,1) 70%)',
+                }}
+            />
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <Canvas camera={{ position: [0, 0, 60], fov: 35 }} dpr={isTouchDevice ? [1, 1.5] : [1, 2]}>
+                    <ambientLight intensity={0.4} />
+                    <spotLight position={[50, 50, 50]} intensity={3} />
+                    {!isTouchDevice && <LiquidBackground />}
+                    <Monolith scale={isTouchDevice ? 0.55 : 1} />
+                </Canvas>
+            </div>
 
             <div ref={revealRef} className="relative z-10 w-full flex flex-col md:flex-row p-8 md:p-14 lg:p-20 min-h-screen items-center md:items-stretch gap-10">
                 <div className="flex-1 min-w-0 flex flex-col justify-between pb-12 md:pb-8 w-full">

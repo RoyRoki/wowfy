@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedMarqueeHero } from "@/components/ui/hero-3";
+import { SvgRevealText } from "@/components/ui/svg-reveal-text";
 import { assetPath } from "@/lib/utils";
 
 // Portfolio images from the project for the marquee
@@ -65,7 +66,8 @@ export const Welcome: React.FC = () => {
                 tagline="Available for Projects · 2026"
                 title={
                     <>
-                        Premium builds. <span className="text-gradient">Solo speed.</span>
+                        Premium builds.{" "}
+                        <SvgRevealText text="Solo speed." />
                     </>
                 }
                 description="Full-stack dev based in Siliguri. Design, build, and deploy — solo. No handoffs, no delays, direct accountability."

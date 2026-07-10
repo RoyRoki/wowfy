@@ -1,12 +1,22 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { SplitText } from "gsap/SplitText";
 import { ParticleTextEffect } from "@/components/ui/interactive-text-particle";
 import { ContactForm } from "@/components/ui/contact-form";
 
 import socialsData from "@/data/socials.json";
 
 import { useMobileDetect } from "@/hooks/useMobileDetect";
+
+gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, SplitText);
+
+// "Roki Roy" transliterated into a few languages, scrambled through one after another before settling on the brand name.
+const NAME_TRANSLATIONS = ["রকি রায়", "रोकी रॉय", "Роки Рой", "ロキ・ロイ", "روكي روي"];
 
 const iconMap: Record<string, React.ReactNode> = {
     GitHub: <GitHubIcon />,
@@ -18,10 +28,56 @@ const iconMap: Record<string, React.ReactNode> = {
 export function Footer() {
     const currentYear = new Date().getFullYear();
     const { isMobile, isTouchDevice } = useMobileDetect();
+    const brandRef = useRef<HTMLHeadingElement>(null);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    // Mobile-only: scrambles through the name in a few languages (2s apart), then resolves to
+    // the brand name, the first time it scrolls into view.
+    useEffect(() => {
+        if (!(isMobile || isTouchDevice) || !brandRef.current) return;
+        const el = brandRef.current;
+
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            });
+
+            tl.fromTo(el, { opacity: 0 }, { opacity: 0.8, duration: 0.4 });
+
+            NAME_TRANSLATIONS.forEach((word) => {
+                tl.to(el, {
+                    scrambleText: { text: word, chars: "upperAndLowerCase", speed: 0.5 },
+                    duration: 0.7,
+                    delay: 2,
+                });
+            });
+
+            // Final reveal: real English text, chars bounce in independently.
+            tl.to({}, { duration: 2 });
+            tl.call(() => {
+                el.textContent = "Roki Roy";
+                const chars = SplitText.create(el, { type: "chars" });
+                chars.chars.forEach((ch) => {
+                    gsap.from(ch, {
+                        y: -200,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "bounce.out",
+                        delay: Math.random() * 0.5,
+                    });
+                });
+            });
+        });
+
+        return () => ctx.revert();
+    }, [isMobile, isTouchDevice]);
 
     const { socialLinks, contactHeading, contactSubHeading, copyrightText } = socialsData;
 
@@ -109,18 +165,15 @@ export function Footer() {
                 {isMobile || isTouchDevice ? (
                     <div className="w-full h-full flex items-center justify-center">
                         <h2
-                            className="text-7xl md:text-8xl font-black tracking-tighter bg-clip-text text-transparent select-none"
-                            style={{
-                                backgroundImage: 'linear-gradient(135deg, #8B5CF6, #A78BFA, #E879F9, #F472B6, #06B6D4)',
-                                opacity: 0.6,
-                            }}
+                            ref={brandRef}
+                            className="text-7xl md:text-8xl font-black tracking-tighter text-white select-none opacity-0"
                         >
-                            RokiRoy
+                            Roki Roy
                         </h2>
                     </div>
                 ) : (
                     <ParticleTextEffect
-                        text="RokiRoy"
+                        text="Roki Roy"
                         className="w-full h-full"
                         colors={[
                             '8B5CF6',

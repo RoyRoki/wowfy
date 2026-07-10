@@ -3,7 +3,6 @@ import { Inter, Outfit, Manrope } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { CustomCursor } from "@/components/CustomCursor";
-import { AnimatedFavicon } from "@/components/AnimatedFavicon";
 
 // Display font - Bold geometric elegance for hero headlines
 const outfit = Outfit({
@@ -70,7 +69,6 @@ export default function RootLayout({
         />
         <Providers>
           <CustomCursor />
-          <AnimatedFavicon />
           {children}
         </Providers>
       </body>

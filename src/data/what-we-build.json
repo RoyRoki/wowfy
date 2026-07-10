@@ -1,77 +1,86 @@
 [
   {
+    "id": "commerce",
+    "code": "01",
+    "category": "FULL WEBSITE",
+    "accent": "violet",
+    "title": "A full website, built to convert",
+    "description": "Multi-page site that works everywhere — phone, tablet, desktop — with a design that actually looks premium on all three.",
+    "features": [
+      "Fully responsive, every device",
+      "Fast, SEO-ready pages",
+      "CMS-friendly content updates"
+    ],
+    "image": "/what-we-build/commerce.jpg"
+  },
+  {
     "id": "landing",
-    "badge": "LANDING PAGE",
-    "hook": "Scroll-stopping pages that convert",
-    "description": "High-conversion landing pages with premium animations. Built for serious startups and brands that demand impact.",
+    "code": "02",
+    "category": "LANDING PAGE",
+    "accent": "cyan",
+    "title": "Landing pages built to be found",
+    "description": "Scroll-stopping design tuned for Google — and for how AI agents read and recommend you.",
     "features": [
-      "Custom UI/UX — no templates",
-      "GSAP scroll animations",
-      "Lighthouse 90+ guaranteed",
-      "Deploy + 30 days support"
+      "Premium animation & motion design",
+      "Technical SEO baked in",
+      "Optimized for AI search (AEO/GEO)"
     ],
-    "stack": ["Next.js", "GSAP", "Vercel"],
-    "timeline": "7–10 days",
-    "featured": false
-  },
-  {
-    "id": "business",
-    "badge": "BUSINESS WEBSITE",
-    "hook": "Your brand's digital HQ, built to last",
-    "description": "Multi-page premium websites built for credibility, SEO, and conversion. Ideal for funded startups and growing companies.",
-    "features": [
-      "CMS integration (easy updates)",
-      "SEO + analytics setup",
-      "Mobile-first architecture",
-      "Performance optimized"
-    ],
-    "stack": ["Next.js", "Sanity", "Tailwind"],
-    "timeline": "2–3 weeks",
-    "featured": true
-  },
-  {
-    "id": "mvp",
-    "badge": "STARTUP MVP",
-    "hook": "From idea to market, in weeks",
-    "description": "Full-stack web apps with auth, dashboards, and scalable backend. Built for founders who need to move fast.",
-    "features": [
-      "Auth + database + admin panel",
-      "API integrations",
-      "Clean scalable architecture",
-      "Production deployment"
-    ],
-    "stack": ["Next.js", "PostgreSQL", "Redis"],
-    "timeline": "4–6 weeks",
-    "featured": true
+    "image": "/what-we-build/landing.jpg"
   },
   {
     "id": "mobile",
-    "badge": "MOBILE APP",
-    "hook": "iOS + Android. One codebase, zero compromise",
-    "description": "Cross-platform apps with production-grade architecture and premium UI that feels truly native.",
+    "code": "03",
+    "category": "MOBILE APP",
+    "accent": "amber",
+    "title": "Mobile apps that ship",
+    "description": "Not a prototype — a polished, production-ready app built for the App Store and Play Store.",
     "features": [
-      "iOS + Android (Flutter)",
-      "Backend integration",
-      "App Store deployment support",
-      "Enterprise-grade architecture"
+      "Native-quality performance",
+      "iOS + Android, one codebase",
+      "App store submission handled"
     ],
-    "stack": ["Flutter", "Firebase", "Dart"],
-    "timeline": "6–10 weeks",
-    "featured": false
+    "image": "/what-we-build/mobile.jpg"
   },
   {
-    "id": "refactor",
-    "badge": "REFACTOR & MAINTENANCE",
-    "hook": "We fix what others broke — and keep it running",
-    "description": "Deep audit of your existing product. We kill the bottlenecks, clean the technical debt, and offer ongoing maintenance so you never worry again.",
+    "id": "shopify",
+    "code": "04",
+    "category": "SHOPIFY",
+    "accent": "emerald",
+    "title": "Shopify, without the templates",
+    "description": "Fast Shopify backend, fully custom storefront — the speed of Shopify with none of the sameness.",
     "features": [
-      "Full codebase audit",
-      "Performance optimization",
-      "Architecture improvements",
-      "Ongoing maintenance plans"
+      "Headless or themed, your call",
+      "Custom checkout experience",
+      "Launch in days, not months"
     ],
-    "stack": ["Any Stack", "CI/CD", "Monitoring"],
-    "timeline": "1–2 weeks",
-    "featured": false
+    "image": "/what-we-build/shopify.jpg"
+  },
+  {
+    "id": "maintenance",
+    "code": "05",
+    "category": "MAINTENANCE",
+    "accent": "rose",
+    "title": "Ongoing care for your site",
+    "description": "Your site, monitored and maintained, so you can run your business instead of babysitting a server.",
+    "features": [
+      "Uptime & security monitoring",
+      "Content & feature updates",
+      "Direct line to your developer"
+    ],
+    "image": "/what-we-build/maintenance.jpg"
+  },
+  {
+    "id": "cto",
+    "code": "06",
+    "category": "CTO SERVICE",
+    "accent": "violet",
+    "title": "A fractional CTO, on call",
+    "description": "Technical leadership for founders who need clear decisions, not just more code.",
+    "features": [
+      "Architecture & tech strategy",
+      "Vendor & hiring guidance",
+      "Your technical co-founder, on demand"
+    ],
+    "image": "/what-we-build/cto.jpg"
   }
 ]

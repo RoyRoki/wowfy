@@ -149,17 +149,40 @@ html.lenis body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg,
-      var(--color-accent) 0%,
-      var(--color-highlight) 100%);
+  background: var(--color-accent);
   border-radius: 999px;
   border: 2px solid var(--color-background-alt);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg,
-      var(--color-accent-light) 0%,
-      var(--color-highlight) 100%);
+  background: var(--color-accent-light);
+}
+
+/* ========================================
+   Link Underline Reveal (CSS-only)
+   ======================================== */
+
+.link {
+  position: relative;
+  display: inline-block;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.08em;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* ========================================
@@ -181,10 +204,7 @@ html.lenis body {
    ======================================== */
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-highlight) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent);
 }
 
 .text-display {

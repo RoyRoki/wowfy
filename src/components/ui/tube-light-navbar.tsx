@@ -32,7 +32,15 @@ const iconMap: Record<string, LucideIcon> = {
 export function NavBar({ items, className }: NavBarProps) {
     const [activeTab, setActiveTab] = useState(items[0].name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isVisible, setIsVisible] = useState(true)
+    const [mounted, setMounted] = useState(false)
     const isMobile = useMediaQuery("(max-width: 768px)")
+
+    // Avoid a flash of the desktop (top) navbar on mobile before the real
+    // breakpoint is known on the client — stay hidden until then.
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     // Mobile Navigation Logic
     // Desired: Home, Services, Works (Most Imp), Contact, More
@@ -80,6 +88,35 @@ export function NavBar({ items, className }: NavBarProps) {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [items, activeTab])
 
+    // Hide navbar on scroll down, reveal on scroll up
+    useEffect(() => {
+        let lastScrollY = window.scrollY
+        const REVEAL_THRESHOLD = 80 // stay visible near the top
+
+        const handleDirection = () => {
+            const currentScrollY = window.scrollY
+            const scrolledDown = currentScrollY > lastScrollY
+
+            if (currentScrollY <= REVEAL_THRESHOLD) {
+                setIsVisible(true)
+            } else if (scrolledDown) {
+                setIsVisible(false)
+            } else {
+                setIsVisible(true)
+            }
+
+            lastScrollY = currentScrollY
+        }
+
+        window.addEventListener("scroll", handleDirection, { passive: true })
+        return () => window.removeEventListener("scroll", handleDirection)
+    }, [])
+
+    // Keep the navbar visible whenever the mobile "more" menu is open
+    useEffect(() => {
+        if (isMenuOpen) setIsVisible(true)
+    }, [isMenuOpen])
+
     const handleLinkClick = (e: React.MouseEvent, item: NavItem) => {
         e.preventDefault()
         setActiveTab(item.name)
@@ -92,9 +129,18 @@ export function NavBar({ items, className }: NavBarProps) {
 
     return (
         <>
-            <div
+            <motion.div
+                animate={
+                    !mounted
+                        ? { opacity: 0 }
+                        : isMobile
+                            ? { y: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }
+                            : { y: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0 }
+                }
+                transition={{ duration: 0.35, ease: "easeInOut" }}
                 className={cn(
                     "fixed z-[200] h-max",
+                    !isVisible && "pointer-events-none",
                     isMobile
                         ? "bottom-0 left-0 right-0 pb-safe"
                         : "top-0 right-0 pt-6 pr-6 md:pr-12 lg:pr-24",
@@ -208,7 +254,7 @@ export function NavBar({ items, className }: NavBarProps) {
                         })
                     )}
                 </div>
-            </div>
+            </motion.div>
 
             {/* Mobile "More" Menu Overlay */}
             <AnimatePresence>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { SvgRevealText } from "@/components/ui/svg-reveal-text";
 
 // Ensure ScrollTrigger is registered
 if (typeof window !== "undefined") {
@@ -34,10 +35,9 @@ export function SectionHeader({
     const headingRef = useRef<HTMLHeadingElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Combine title and gradient text for splitting, but we need to know where the gradient starts
-    // Simplified approach: Split title and gradientText separately
+    // Split the plain title into chars for the flip-up reveal; the highlighted
+    // portion is rendered separately as an SVG draw+fill reveal (see below).
     const titleChars = title.split("");
-    const gradientChars = gradientText ? gradientText.split("") : [];
 
     useEffect(() => {
         if (!headingRef.current || !containerRef.current) return;
@@ -76,7 +76,7 @@ export function SectionHeader({
                 </span>
             )}
 
-            <h2 ref={headingRef} className="text-headline mb-6" style={{ perspective: "1000px" }}>
+            <h2 ref={headingRef} className="link text-headline mb-6" style={{ perspective: "1000px" }}>
                 {/* Regular Title Part */}
                 {titleChars.map((char, i) => (
                     <span
@@ -92,21 +92,10 @@ export function SectionHeader({
                 ))}
 
                 {/* Spacer if both exist */}
-                {title && gradientText && <span className="char inline-block w-2">{"\u00A0"}</span>}
+                {title && gradientText && <span className="inline-block w-2">{"\u00A0"}</span>}
 
-                {/* Gradient Text Part */}
-                {gradientChars.map((char, i) => (
-                    <span
-                        key={`g-${i}`}
-                        className={cn(
-                            "char inline-block text-gradient",
-                            char === " " ? "w-2" : ""
-                        )}
-                        style={{ transformOrigin: "50% 100%" }}
-                    >
-                        {char === " " ? "\u00A0" : char}
-                    </span>
-                ))}
+                {/* Highlighted Text \u2014 draws in as an SVG outline, then fills with the accent color */}
+                {gradientText && <SvgRevealText text={gradientText} />}
             </h2>
 
             {description && (

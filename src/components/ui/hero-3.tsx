@@ -1,8 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Ambient auto-scroll speed — one full loop of the (duplicated) track, in seconds.
+const IDLE_LOOP_DURATION = 90;
 
 // Props interface for the component
 interface AnimatedMarqueeHeroProps {
@@ -46,8 +53,67 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     // Duplicate images for a seamless loop
     const duplicatedImages = [...images, ...images];
 
+    const sectionRef = useRef<HTMLElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        const track = trackRef.current;
+        if (!section || !track) return;
+
+        const ctx = gsap.context(() => {
+            let idleTween: gsap.core.Tween;
+
+            const startIdle = () => {
+                idleTween?.kill();
+                const current = gsap.getProperty(track, "xPercent") as number;
+                idleTween = gsap.fromTo(
+                    track,
+                    { xPercent: current },
+                    {
+                        xPercent: 0,
+                        duration: (Math.abs(current) / 50) * IDLE_LOOP_DURATION || 0.01,
+                        ease: "none",
+                        onComplete: () => {
+                            idleTween = gsap.fromTo(track, { xPercent: -50 }, {
+                                xPercent: 0,
+                                duration: IDLE_LOOP_DURATION,
+                                ease: "none",
+                                repeat: -1,
+                            });
+                        },
+                    }
+                );
+            };
+
+            gsap.set(track, { xPercent: -50 });
+            startIdle();
+
+            // Lock vertical scroll for one viewport and convert it into horizontal
+            // card movement — releases back to normal scroll at either end.
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top top",
+                end: "+=100%",
+                pin: true,
+                scrub: true,
+                anticipatePin: 1,
+                onEnter: () => idleTween?.pause(),
+                onEnterBack: () => idleTween?.pause(),
+                onLeave: () => startIdle(),
+                onLeaveBack: () => startIdle(),
+                onUpdate: (self) => {
+                    gsap.set(track, { xPercent: gsap.utils.interpolate(-50, 0, self.progress) });
+                },
+            });
+        }, section);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
         <section
+            ref={sectionRef}
             className={cn(
                 "relative w-full h-screen overflow-hidden bg-background flex flex-col items-center justify-center text-center px-4",
                 className
@@ -76,7 +142,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                             },
                         },
                     }}
-                    className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground"
+                    className="link text-5xl md:text-7xl font-bold tracking-tighter text-foreground"
                 >
                     {typeof title === 'string' ? (
                         title.split(" ").map((word, i) => (
@@ -117,17 +183,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
 
             {/* Animated Image Marquee */}
             <div className="absolute bottom-0 left-0 w-full h-1/3 md:h-2/5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-                <motion.div
-                    className="flex gap-4"
-                    animate={{
-                        x: ["-100%", "0%"],
-                        transition: {
-                            ease: "linear",
-                            duration: 40,
-                            repeat: Infinity,
-                        },
-                    }}
-                >
+                <div ref={trackRef} className="flex gap-4 will-change-transform">
                     {duplicatedImages.map((src, index) => (
                         <div
                             key={index}
@@ -143,7 +199,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                             />
                         </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

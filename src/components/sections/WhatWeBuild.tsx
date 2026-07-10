@@ -1,276 +1,314 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CheckIcon, SparklesIcon, ArrowUpRight } from 'lucide-react';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { SvgRevealText } from '@/components/ui/svg-reveal-text';
+import { InteractiveDotGrid } from '@/components/ui/interactive-dot-grid';
 import { cn } from '@/lib/utils';
-import servicesData from '@/data/what-we-build.json';
+import services from '@/data/what-we-build.json';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 type Service = {
     id: string;
-    badge: string;
-    hook: string;
+    code: string;
+    category: string;
+    accent: keyof typeof ACCENTS;
+    title: string;
     description: string;
     features: string[];
-    stack: string[];
-    timeline: string;
-    featured: boolean;
+    image?: string;
 };
 
-function FilledCheck() {
-    return (
-        <div className="bg-primary text-primary-foreground rounded-full p-0.5 shrink-0">
-            <CheckIcon className="size-3" strokeWidth={3} />
-        </div>
-    );
-}
+const list = services as Service[];
 
-function StackTag({ label }: { label: string }) {
-    return (
-        <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/50 font-mono">
-            {label}
-        </span>
-    );
-}
+const ACCENTS = {
+    violet: { rgb: '139,92,246', text: 'text-violet-400', border: 'border-violet-500/30' },
+    cyan: { rgb: '6,182,212', text: 'text-cyan-400', border: 'border-cyan-500/30' },
+    amber: { rgb: '245,158,11', text: 'text-amber-400', border: 'border-amber-500/30' },
+    emerald: { rgb: '16,185,129', text: 'text-emerald-400', border: 'border-emerald-500/30' },
+    rose: { rgb: '244,63,94', text: 'text-rose-400', border: 'border-rose-500/30' },
+} as const;
 
-function ServiceCard({ service, className }: { service: Service; className?: string }) {
-    return (
-        <div
-            className={cn(
-                'wwb-card group relative overflow-hidden rounded-xl border border-white/8 bg-white/[0.03]',
-                'transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.05]',
-                className,
-            )}
-        >
-            {/* Featured grid overlay */}
-            {service.featured && (
-                <div className="pointer-events-none absolute inset-0 opacity-40">
-                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/8 via-transparent to-transparent" />
-                    <div
-                        aria-hidden="true"
-                        className={cn(
-                            'absolute inset-0',
-                            'bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)]',
-                            'bg-[size:24px_24px]',
-                            '[mask-image:radial-gradient(ellipse_at_top_right,white_20%,transparent_70%)]',
-                        )}
-                    />
-                </div>
-            )}
-
-            <div className="relative flex h-full flex-col p-6">
-                {/* Top row */}
-                <div className="flex items-start justify-between gap-4 mb-5">
-                    <div className="flex items-center gap-2 flex-wrap">
-                        <Badge variant="secondary" className="font-mono text-[10px] tracking-widest">
-                            {service.badge}
-                        </Badge>
-                        {service.featured && (
-                            <Badge variant="outline" className="hidden lg:flex text-[10px] border-violet-500/30 text-violet-400">
-                                <SparklesIcon className="me-1 size-3" /> Most Popular
-                            </Badge>
-                        )}
-                    </div>
-                    <a
-                        href="https://wa.me/919800881300"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white"
-                    >
-                        Let&apos;s Talk <ArrowUpRight className="size-3" />
-                    </a>
-                </div>
-
-                {/* Hook */}
-                <h3 className="text-xl font-bold text-white leading-snug mb-2">
-                    {service.hook}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-white/45 leading-relaxed mb-5">
-                    {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="grid gap-2.5 mb-6">
-                    {service.features.map((f, i) => (
-                        <li key={i} className="flex items-center gap-2.5 text-sm text-white/60">
-                            <FilledCheck />
-                            <span>{f}</span>
-                        </li>
-                    ))}
-                </ul>
-
-                {/* Bottom row */}
-                <div className="mt-auto flex items-center justify-between gap-4">
-                    <div className="flex flex-wrap gap-1.5">
-                        {service.stack.map((s) => (
-                            <StackTag key={s} label={s} />
-                        ))}
-                    </div>
-                    <span className="shrink-0 text-xs text-white/30 font-mono">{service.timeline}</span>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function RefactorBanner({ service }: { service: Service }) {
-    return (
-        <div className="wwb-card group relative overflow-hidden rounded-xl border border-white/8 bg-white/[0.03] transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.05]">
-            {/* Subtle background glow */}
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-transparent" />
-            </div>
-
-            <div className="relative flex flex-col gap-6 p-6 lg:flex-row lg:items-center">
-                {/* Left: badge + hook + desc */}
-                <div className="lg:w-[45%]">
-                    <Badge variant="secondary" className="font-mono text-[10px] tracking-widest mb-4">
-                        {service.badge}
-                    </Badge>
-                    <h3 className="text-xl font-bold text-white leading-snug mb-2">
-                        {service.hook}
-                    </h3>
-                    <p className="text-sm text-white/45 leading-relaxed">
-                        {service.description}
-                    </p>
-                </div>
-
-                {/* Right: features + meta */}
-                <div className="lg:w-[35%]">
-                    <ul className="grid gap-2.5">
-                        {service.features.map((f, i) => (
-                            <li key={i} className="flex items-center gap-2.5 text-sm text-white/60">
-                                <FilledCheck />
-                                <span>{f}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* CTA */}
-                <div className="flex flex-col items-start gap-3 lg:w-[20%] lg:items-end">
-                    <div className="flex flex-wrap gap-1.5">
-                        {service.stack.map((s) => (
-                            <StackTag key={s} label={s} />
-                        ))}
-                    </div>
-                    <span className="text-xs text-white/30 font-mono">{service.timeline}</span>
-                    <a
-                        href="https://wa.me/919800881300"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/70 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white"
-                    >
-                        Let&apos;s Talk <ArrowUpRight className="size-3.5 ml-0.5" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    );
-}
+const ACCENT_KEYS = Object.keys(ACCENTS) as (keyof typeof ACCENTS)[];
 
 export function WhatWeBuild() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLDivElement>(null);
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const trackWrapRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const glowRefs = useRef<Partial<Record<keyof typeof ACCENTS, HTMLDivElement | null>>>({});
+    const [activeIndex, setActiveIndex] = useState(0);
+    const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+    const prevIndexRef = useRef(0);
+    const prevAccentKeyRef = useRef<keyof typeof ACCENTS | undefined>(list[0]?.accent);
 
-    const cards = servicesData.filter((s) => s.id !== 'refactor') as Service[];
-    const refactor = servicesData.find((s) => s.id === 'refactor') as Service;
+    // Cross-fade the ambient glow to the active card's accent color — kept minimal.
+    useEffect(() => {
+        const activeKey = list[activeIndex]?.accent;
+        prevIndexRef.current = activeIndex;
+
+        if (!activeKey || activeKey === prevAccentKeyRef.current) return;
+
+        const outgoingKey = prevAccentKeyRef.current;
+        const incomingEl = glowRefs.current[activeKey];
+        const outgoingEl = outgoingKey ? glowRefs.current[outgoingKey] : null;
+        prevAccentKeyRef.current = activeKey;
+
+        if (!incomingEl) return;
+
+        gsap.to(incomingEl, { opacity: 1, duration: 0.8, ease: 'power1.inOut', overwrite: 'auto' });
+        if (outgoingEl) {
+            gsap.to(outgoingEl, { opacity: 0, duration: 0.8, ease: 'power1.inOut', overwrite: 'auto' });
+        }
+    }, [activeIndex]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.from(headingRef.current, {
-                scrollTrigger: {
-                    trigger: headingRef.current,
-                    start: 'top 82%',
-                    toggleActions: 'play none none reverse',
-                },
-                y: 40,
+                y: 30,
                 opacity: 0,
-                duration: 0.9,
+                duration: 0.8,
                 ease: 'power3.out',
-            });
-
-            gsap.from('.wwb-card', {
                 scrollTrigger: {
                     trigger: sectionRef.current,
-                    start: 'top 70%',
+                    start: 'top 85%',
                     toggleActions: 'play none none reverse',
                 },
-                y: 60,
-                opacity: 0,
-                duration: 0.9,
-                stagger: 0.1,
-                ease: 'power3.out',
             });
+
+            const panels = panelRefs.current.filter(Boolean) as HTMLDivElement[];
+            const track = trackRef.current;
+            const wrap = trackWrapRef.current;
+            if (!track || !wrap || panels.length === 0) return;
+
+            const lastIndex = panels.length - 1;
+            let currentIdx = 0;
+            let animating = false;
+            let st: ScrollTrigger;
+
+            // Step exactly one card at a time — locked while transitioning, so a
+            // single scroll gesture can never skip a card or leave a blended state.
+            const stepTo = (idx: number) => {
+                idx = gsap.utils.clamp(0, lastIndex, idx);
+                if (idx === currentIdx || animating) return;
+                animating = true;
+                currentIdx = currentIdx + (idx > currentIdx ? 1 : -1);
+                setActiveIndex(currentIdx);
+
+                gsap.to(track, {
+                    x: -currentIdx * wrap.clientWidth,
+                    duration: 0.5,
+                    ease: 'power3.inOut',
+                    overwrite: 'auto',
+                    onComplete: () => {
+                        animating = false;
+                        // Catch up one more step if the user scrolled further while locked.
+                        const target = Math.round(st.progress * lastIndex);
+                        if (target !== currentIdx) stepTo(target);
+                    },
+                });
+
+                panels.forEach((panel, i) => {
+                    const dist = Math.min(Math.abs(currentIdx - i), 1);
+                    gsap.to(panel, {
+                        opacity: gsap.utils.interpolate(1, 0.12, dist),
+                        scale: gsap.utils.interpolate(1, 0.86, dist),
+                        filter: `blur(${dist * 8}px)`,
+                        duration: 0.5,
+                        ease: 'power3.inOut',
+                        overwrite: 'auto',
+                    });
+                });
+            };
+
+            st = ScrollTrigger.create({
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: () => '+=' + lastIndex * window.innerHeight,
+                pin: true,
+                scrub: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                    if (animating) return;
+                    const target = Math.round(self.progress * lastIndex);
+                    if (target !== currentIdx) stepTo(target);
+                },
+            });
+
+            scrollTriggerRef.current = st;
         }, sectionRef);
 
-        return () => ctx.revert();
+        return () => {
+            ctx.revert();
+            scrollTriggerRef.current = null;
+        };
     }, []);
 
-    // Grid col spans: landing(4), business(8), mvp(8), mobile(4)
-    const colSpans: Record<string, string> = {
-        landing: 'lg:col-span-4',
-        business: 'lg:col-span-8',
-        mvp: 'lg:col-span-8',
-        mobile: 'lg:col-span-4',
+    // Keep the active tab scrolled into view within the tab strip.
+    useEffect(() => {
+        const container = tabsRef.current;
+        const tab = container?.querySelector<HTMLElement>(`[data-tab-index="${activeIndex}"]`);
+        if (!container || !tab) return;
+        const cRect = container.getBoundingClientRect();
+        const tRect = tab.getBoundingClientRect();
+        container.scrollBy({
+            left: tRect.left - cRect.left - (container.clientWidth - tab.clientWidth) / 2,
+            behavior: 'smooth',
+        });
+    }, [activeIndex]);
+
+    const goToIndex = (idx: number) => {
+        const st = scrollTriggerRef.current;
+        if (!st) return;
+        const lastIndex = list.length - 1;
+        const target = st.start + (idx / lastIndex) * (st.end - st.start);
+        gsap.to(window, { duration: 1, scrollTo: { y: target }, ease: 'power2.inOut' });
     };
 
     return (
-        <div ref={sectionRef} className="relative flex size-full min-h-screen items-center justify-center overflow-hidden py-24 bg-[var(--color-background)]">
-            {/* Dots background */}
-            <div
-                aria-hidden="true"
-                className={cn(
-                    'absolute inset-0 -z-10 size-full',
-                    'bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)]',
-                    'bg-[size:14px_14px]',
-                )}
-            />
-
-            {/* Ambient glow */}
-            <div aria-hidden className="absolute inset-0 isolate -z-10 opacity-25 contain-strict">
-                <div className="absolute top-1/3 right-0 h-[600px] w-[400px] translate-x-1/4 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.12)_0%,transparent_70%)]" />
-                <div className="absolute bottom-1/4 left-0 h-[500px] w-[350px] -translate-x-1/4 rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)]" />
+        <div ref={sectionRef} className="relative flex h-screen w-full flex-col overflow-hidden bg-[var(--color-background)]">
+            {/* Dots background — dots near the cursor get pushed away */}
+            <div aria-hidden="true" className="absolute inset-0 -z-10 size-full">
+                <InteractiveDotGrid spacing={14} radius={1} influence={140} maxPush={32} />
             </div>
 
-            <section className="mx-auto w-full max-w-6xl px-4">
+            {/* Ambient glow — cross-fades to match the active card's accent */}
+            <div aria-hidden className="absolute inset-0 -z-10 isolate contain-strict">
+                {ACCENT_KEYS.map((key) => (
+                    <div
+                        key={key}
+                        ref={(el) => {
+                            glowRefs.current[key] = el;
+                        }}
+                        className="absolute inset-0"
+                        style={{
+                            opacity: list[0]?.accent === key ? 1 : 0,
+                            background: `radial-gradient(circle at 8% 15%, rgba(${ACCENTS[key].rgb},0.22) 0%, transparent 40%), radial-gradient(circle at 92% 90%, rgba(${ACCENTS[key].rgb},0.14) 0%, transparent 38%)`,
+                        }}
+                    />
+                ))}
+            </div>
+
+            <section className="mx-auto flex h-full w-full max-w-6xl flex-col px-4 pt-20 pb-8 md:pt-24">
                 {/* Heading */}
-                <div ref={headingRef} className="mx-auto mb-12 max-w-2xl text-center">
+                <div ref={headingRef} className="mx-auto mb-6 max-w-2xl shrink-0 text-center">
                     <p className="text-xs font-mono tracking-[0.2em] text-white/40 uppercase mb-3">
                         What We Build
                     </p>
-                    <h2 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-white">
-                        Pick your launchpad
+                    <h2 className="link text-3xl font-extrabold tracking-tight md:text-5xl text-white">
+                        Pick your{" "}
+                        <SvgRevealText text="launchpad" />
                     </h2>
-                    <p className="text-white/40 mt-4 text-sm md:text-base leading-relaxed">
-                        From scroll-stopping landing pages to full-stack products — we build
-                        what your vision demands. No templates. No shortcuts. Just craft.
-                    </p>
                 </div>
 
-                {/* Bento grid */}
-                <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-12">
-                    {cards.map((service) => (
-                        <ServiceCard
-                            key={service.id}
-                            service={service}
-                            className={colSpans[service.id]}
-                        />
-                    ))}
-                </div>
-
-                {/* Refactor banner */}
-                {refactor && (
-                    <div className="mt-3">
-                        <RefactorBanner service={refactor} />
+                {/* Tab strip */}
+                <nav aria-label="Service navigation" className="mx-auto w-full max-w-4xl shrink-0 border-b border-white/8 px-6 md:px-10">
+                    <div
+                        ref={tabsRef}
+                        className="flex items-center gap-0 overflow-x-auto [mask-image:linear-gradient(to_right,transparent,black_2%,black_98%,transparent)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                    >
+                        {list.map((s, i) => {
+                            const isActive = activeIndex === i;
+                            return (
+                                <button
+                                    key={s.id}
+                                    type="button"
+                                    data-tab-index={i}
+                                    aria-current={isActive ? 'true' : undefined}
+                                    onClick={() => goToIndex(i)}
+                                    className={cn(
+                                        '-mb-px inline-flex shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-4 py-4 text-sm transition-colors',
+                                        isActive ? 'border-white text-white' : 'border-transparent text-white/40 hover:text-white/70',
+                                    )}
+                                >
+                                    <span className="font-mono text-xs">{s.code}</span>
+                                    <span className="hidden sm:inline">{s.category}</span>
+                                </button>
+                            );
+                        })}
                     </div>
-                )}
+                </nav>
+
+                {/* Horizontal, scroll-driven card track */}
+                <div className="mx-auto mt-6 min-h-0 w-full max-w-4xl flex-1 px-6 md:px-10">
+                    <div ref={trackWrapRef} className="relative h-full w-full overflow-hidden">
+                        <div ref={trackRef} className="flex h-full w-full will-change-transform">
+                            {list.map((s, i) => {
+                                const accent = ACCENTS[s.accent] ?? ACCENTS.violet;
+                                return (
+                                <div
+                                    key={s.id}
+                                    ref={(el) => {
+                                        panelRefs.current[i] = el;
+                                    }}
+                                    className="h-full w-full shrink-0 px-1"
+                                >
+                                    <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white/[0.02]">
+                                        {/* Banner — visual only, no text baked in */}
+                                        <div className="relative min-h-0 flex-[1.3] overflow-hidden">
+                                            {s.image ? (
+                                                // eslint-disable-next-line @next/next/no-img-element
+                                                <img src={s.image} alt="" className="size-full object-cover" />
+                                            ) : (
+                                                <div
+                                                    aria-hidden="true"
+                                                    className="size-full"
+                                                    style={{
+                                                        background: `radial-gradient(circle at 25% 30%, rgba(${accent.rgb},0.22), transparent 55%), radial-gradient(circle at 80% 75%, rgba(${accent.rgb},0.22), transparent 50%), var(--color-background-alt)`,
+                                                    }}
+                                                />
+                                            )}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent" />
+                                        </div>
+
+                                        <div className="relative shrink-0 p-5 md:p-8">
+                                            <div className="flex items-start justify-between gap-4 mb-3 md:mb-5">
+                                                <Badge
+                                                    variant="outline"
+                                                    className={cn('font-mono text-[10px] tracking-widest', accent.border, accent.text)}
+                                                >
+                                                    {s.code} · {s.category}
+                                                </Badge>
+                                                <a
+                                                    href="https://wa.me/919800881300"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="shrink-0 flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white"
+                                                >
+                                                    Let&apos;s Talk <ArrowUpRight className="size-3" />
+                                                </a>
+                                            </div>
+
+                                            <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-2">
+                                                {s.title}
+                                            </h3>
+                                            <p className="text-sm text-white/50 leading-relaxed mb-4 max-w-xl">
+                                                {s.description}
+                                            </p>
+
+                                            <ul className="grid gap-2 sm:grid-cols-3 sm:gap-4">
+                                                {s.features.map((f, fi) => (
+                                                    <li key={fi} className="text-xs md:text-sm text-white/60 leading-relaxed">
+                                                        — {f}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    </div>
+                </div>
             </section>
         </div>
     );

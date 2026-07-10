@@ -62,32 +62,15 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
         if (!section || !track) return;
 
         const ctx = gsap.context(() => {
-            let idleTween: gsap.core.Tween;
-
-            const startIdle = () => {
-                idleTween?.kill();
-                const current = gsap.getProperty(track, "xPercent") as number;
-                idleTween = gsap.fromTo(
-                    track,
-                    { xPercent: current },
-                    {
-                        xPercent: 0,
-                        duration: (Math.abs(current) / 50) * IDLE_LOOP_DURATION || 0.01,
-                        ease: "none",
-                        onComplete: () => {
-                            idleTween = gsap.fromTo(track, { xPercent: -50 }, {
-                                xPercent: 0,
-                                duration: IDLE_LOOP_DURATION,
-                                ease: "none",
-                                repeat: -1,
-                            });
-                        },
-                    }
-                );
-            };
-
-            gsap.set(track, { xPercent: -50 });
-            startIdle();
+            // Single tween is the only thing that ever sets xPercent — its
+            // progress is driven exclusively by scroll (see onUpdate below).
+            // Auto-scrolling (idle looping) is disabled: no second state means
+            // nothing to desync, so no layout/position jump.
+            const loop = gsap.fromTo(
+                track,
+                { xPercent: -50 },
+                { xPercent: 0, duration: IDLE_LOOP_DURATION, ease: "none", repeat: -1, paused: true }
+            );
 
             // Lock vertical scroll for one viewport and convert it into horizontal
             // card movement — releases back to normal scroll at either end.
@@ -96,15 +79,14 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 start: "top top",
                 end: "+=100%",
                 pin: true,
-                scrub: true,
+                scrub: 0.4,
                 anticipatePin: 1,
-                onEnter: () => idleTween?.pause(),
-                onEnterBack: () => idleTween?.pause(),
-                onLeave: () => startIdle(),
-                onLeaveBack: () => startIdle(),
-                onUpdate: (self) => {
-                    gsap.set(track, { xPercent: gsap.utils.interpolate(-50, 0, self.progress) });
-                },
+                invalidateOnRefresh: true,
+                // onEnter: () => loop.pause(),
+                // onEnterBack: () => loop.pause(),
+                // onLeave: () => loop.play(),
+                // onLeaveBack: () => loop.play(),
+                onUpdate: (self) => loop.progress(self.progress % 1),
             });
         }, section);
 

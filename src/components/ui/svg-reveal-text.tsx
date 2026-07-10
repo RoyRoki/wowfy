@@ -55,6 +55,8 @@ export function SvgRevealText({ text, fontSize = 64, className }: SvgRevealTextP
         loadFont().then((font) => {
             if (cancelled) return;
 
+            pathRefs.current = [];
+
             const PAD = fontSize * 0.12;
             let x = 0;
             const paths: GlyphPath[] = [];
@@ -83,8 +85,11 @@ export function SvgRevealText({ text, fontSize = 64, className }: SvgRevealTextP
 
     useEffect(() => {
         if (!glyphs || !svgRef.current) return;
-        const paths = pathRefs.current.filter(Boolean) as SVGPathElement[];
-        if (paths.length === 0) return;
+        // Guard against stale/partially-attached refs (e.g. React Strict Mode's
+        // double-invoke in dev) — only animate once every glyph has a live path.
+        const paths = pathRefs.current.slice(0, glyphs.length);
+        if (paths.length !== glyphs.length || paths.some((p) => !p)) return;
+        const livePaths = paths as SVGPathElement[];
 
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
@@ -95,22 +100,25 @@ export function SvgRevealText({ text, fontSize = 64, className }: SvgRevealTextP
                 },
             });
 
-            tl.set(paths, { drawSVG: "0%", fill: "transparent" })
-                .to(paths, {
+            tl.set(livePaths, { drawSVG: "0%", fill: "transparent" })
+                .to(livePaths, {
                     drawSVG: "100%",
                     duration: 0.9,
                     stagger: 0.12,
                     ease: "power2.inOut",
                 })
                 .to(
-                    paths,
+                    livePaths,
                     {
                         fill: "var(--color-accent)",
                         duration: 0.5,
                         stagger: 0.08,
                     },
                     "-=0.5"
-                );
+                )
+                // Safety net: guarantee every glyph ends fully drawn + filled,
+                // even if a stagger/interruption left one mid-animation.
+                .set(livePaths, { drawSVG: "100%", fill: "var(--color-accent)" });
         }, svgRef);
 
         return () => ctx.revert();

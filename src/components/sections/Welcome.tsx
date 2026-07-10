@@ -31,10 +31,12 @@ export const Welcome: React.FC = () => {
         offset: ["start end", "start start"],
     });
 
-    // Fade in as user scrolls into view
+    // Fade in as user scrolls into view. Deliberately opacity-only — a
+    // scroll-linked scale/translateY transform on this element used to fight
+    // with the GSAP ScrollTrigger pin inside AnimatedMarqueeHero (both keyed
+    // to the same "top hits viewport top" moment), causing a settle jump
+    // right as pinning engaged.
     const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 1, 1]);
-    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1]);
-    const y = useTransform(scrollYProgress, [0, 0.5, 1], [60, 0, 0]);
 
     // Scroll to portfolio section
     const handleCtaClick = () => {
@@ -47,7 +49,7 @@ export const Welcome: React.FC = () => {
     return (
         <motion.div
             ref={containerRef}
-            style={{ opacity, scale, y }}
+            style={{ opacity }}
             className="relative"
         >
             {/* Background Effects */}
@@ -67,10 +69,10 @@ export const Welcome: React.FC = () => {
                 title={
                     <>
                         Premium builds.{" "}
-                        <SvgRevealText text="Solo speed." />
+                        <SvgRevealText text="Zero excuses." />
                     </>
                 }
-                description="Full-stack dev based in Siliguri. Design, build, and deploy — solo. No handoffs, no delays, direct accountability."
+                description="Full-stack dev based in Siliguri, leading a small senior team. I'm hands-on across design, build, and deploy — no handoffs, no delays, direct accountability."
                 ctaText="See the Work"
                 images={WELCOME_IMAGES}
                 className="bg-transparent relative z-10"

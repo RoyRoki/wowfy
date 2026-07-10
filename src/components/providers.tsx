@@ -43,6 +43,19 @@ export function Providers({ children }: ProvidersProps) {
         // Connect Lenis to GSAP ScrollTrigger
         lenis.on("scroll", ScrollTrigger.update);
 
+        // Pinned sections cache their scroll-range dimensions at creation time.
+        // Async layout shifts (webfonts swapping in, images loading, the SVG
+        // glyph-draw headlines resizing) after that can leave them stale,
+        // which shows up as jumps/padding mismatches while pinned. Refresh once
+        // everything's actually settled.
+        const refresh = () => ScrollTrigger.refresh();
+        if (document.readyState === "complete") {
+            requestAnimationFrame(refresh);
+        } else {
+            window.addEventListener("load", refresh);
+        }
+        document.fonts?.ready?.then(refresh);
+
         // Single RAF via GSAP ticker (removed duplicate requestAnimationFrame loop)
         const tickerCallback = (time: number) => {
             lenis.raf(time * 1000);
@@ -55,6 +68,7 @@ export function Providers({ children }: ProvidersProps) {
             lenis.destroy();
             gsap.ticker.remove(tickerCallback);
             lenisRef.current = null;
+            window.removeEventListener("load", refresh);
         };
     }, []);
 

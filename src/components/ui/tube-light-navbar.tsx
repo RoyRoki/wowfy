@@ -34,12 +34,30 @@ export function NavBar({ items, className }: NavBarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
     const [mounted, setMounted] = useState(false)
+    const [pageLoaded, setPageLoaded] = useState(false)
     const isMobile = useMediaQuery("(max-width: 768px)")
 
     // Avoid a flash of the desktop (top) navbar on mobile before the real
-    // breakpoint is known on the client — stay hidden until then.
+    // breakpoint is known on the client — stay hidden until then. Deferred a
+    // frame: useMediaQuery's client-correct value can land one tick after this
+    // effect fires, so revealing on the same tick can still catch `isMobile`
+    // at its stale (false) SSR default and flash the desktop layout.
     useEffect(() => {
-        setMounted(true)
+        const raf = requestAnimationFrame(() => setMounted(true))
+        return () => cancelAnimationFrame(raf)
+    }, [])
+
+    // On mobile, keep the nav hidden through the initial page-loading state
+    // (fonts/images/hero reveal settling) — only fade it in once the page has
+    // actually finished loading.
+    useEffect(() => {
+        if (document.readyState === "complete") {
+            setPageLoaded(true)
+            return
+        }
+        const onLoad = () => setPageLoaded(true)
+        window.addEventListener("load", onLoad)
+        return () => window.removeEventListener("load", onLoad)
     }, [])
 
     // Mobile Navigation Logic
@@ -131,7 +149,7 @@ export function NavBar({ items, className }: NavBarProps) {
         <>
             <motion.div
                 animate={
-                    !mounted
+                    !mounted || (isMobile && !pageLoaded)
                         ? { opacity: 0 }
                         : isMobile
                             ? { y: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }
@@ -140,7 +158,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 transition={{ duration: 0.35, ease: "easeInOut" }}
                 className={cn(
                     "fixed z-[200] h-max",
-                    !isVisible && "pointer-events-none",
+                    (!isVisible || !mounted || (isMobile && !pageLoaded)) && "pointer-events-none",
                     isMobile
                         ? "bottom-0 left-0 right-0 pb-safe"
                         : "top-0 right-0 pt-6 pr-6 md:pr-12 lg:pr-24",

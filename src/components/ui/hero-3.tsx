@@ -101,7 +101,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 className
             )}
         >
-            <div className="z-10 flex flex-col items-center">
+            <div className="z-10 flex flex-col items-center -translate-y-16 md:-translate-y-24">
                 {/* Tagline */}
                 <motion.div
                     initial="hidden"

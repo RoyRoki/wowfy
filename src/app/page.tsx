@@ -2,7 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Welcome } from "@/components/sections/Welcome";
 import { Journey } from "@/components/sections/Journey";
 import { Services } from "@/components/sections/Services";
-import { WhyUs } from "@/components/sections/WhyUs";
+import { Products } from "@/components/sections/Products";
 import { TechStack } from "@/components/sections/TechStack";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -18,7 +18,7 @@ export default function Home() {
     { name: 'Home', url: '#hero', icon: 'Home' },
     // { name: 'Intro', url: '#welcome', icon: 'User' },
     { name: 'Build', url: '#what-we-build', icon: 'Briefcase' },
-    { name: 'Why Us', url: '#why-us', icon: 'Star' },
+    { name: 'Products', url: '#products', icon: 'Star' },
     { name: 'Tech', url: '#tech-stack', icon: 'Code' },
     { name: 'Works', url: '#portfolio', icon: 'Folder' },
     { name: 'Team', url: '#team', icon: 'Users' },
@@ -41,8 +41,8 @@ export default function Home() {
       <section id="what-we-build">
         <WhatWeBuild />
       </section>
-      <section id="why-us">
-        <WhyUs />
+      <section id="products">
+        <Products />
       </section>
       <section id="tech-stack">
         <TechStack />

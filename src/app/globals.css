@@ -546,3 +546,167 @@ html.lenis body {
 .text-white\/80 {
   color: rgba(255, 255, 255, 0.8);
 }
+
+/* ========================================
+   Global Loader — rotating letter cubes
+   ======================================== */
+
+:root {
+  --wrapper-bg: #ffffff;
+  --cube-color: #0000;
+  --highlight-color: var(--color-accent);
+}
+
+.dark {
+  --wrapper-bg: #000000;
+  --cube-color: #0000;
+  --highlight-color: var(--color-accent);
+}
+
+.wrapper-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  perspective: 400px;
+}
+
+.cube {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  transform-style: preserve-3d;
+  animation: translate-z 2.1s ease-in-out infinite;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  backface-visibility: hidden;
+  animation:
+    face-color 2.1s ease-in-out infinite,
+    face-glow 2.1s ease-in-out infinite,
+    edge-glow 2.1s ease-in-out infinite;
+}
+
+.face-front {
+  transform: translateZ(14px);
+}
+
+.face-back {
+  transform: rotateY(180deg) translateZ(14px);
+}
+
+.face-right {
+  transform: rotateY(90deg) translateZ(14px);
+}
+
+.face-left {
+  transform: rotateY(-90deg) translateZ(14px);
+}
+
+.face-top {
+  transform: rotateX(90deg) translateZ(14px);
+}
+
+.face-bottom {
+  transform: rotateX(-90deg) translateZ(14px);
+}
+
+/* Stagger each cube so the glow travels across the word left to right */
+.cube:nth-child(1),
+.cube:nth-child(1) .face {
+  animation-delay: 0s;
+}
+.cube:nth-child(2),
+.cube:nth-child(2) .face {
+  animation-delay: 0.12s;
+}
+.cube:nth-child(3),
+.cube:nth-child(3) .face {
+  animation-delay: 0.24s;
+}
+.cube:nth-child(4),
+.cube:nth-child(4) .face {
+  animation-delay: 0.36s;
+}
+.cube:nth-child(5),
+.cube:nth-child(5) .face {
+  animation-delay: 0.48s;
+}
+.cube:nth-child(6),
+.cube:nth-child(6) .face {
+  animation-delay: 0.6s;
+}
+.cube:nth-child(7),
+.cube:nth-child(7) .face {
+  animation-delay: 0.72s;
+}
+
+/* Round only the outer ends so the tiles read as one seamless bar */
+.cube:first-child .face {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.cube:last-child .face {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+@keyframes translate-z {
+  0%,
+  40%,
+  100% {
+    transform: translateZ(-2px);
+  }
+  30% {
+    transform: translateZ(16px) translateY(-1px);
+  }
+}
+
+@keyframes face-color {
+  0%,
+  50%,
+  100% {
+    background-color: var(--cube-color);
+  }
+  10% {
+    background-color: var(--highlight-color);
+  }
+}
+
+@keyframes face-glow {
+  0%,
+  50%,
+  100% {
+    color: #fff0;
+    filter: none;
+  }
+  30% {
+    color: #fff;
+    filter: drop-shadow(0 14px 10px var(--highlight-color));
+  }
+}
+
+@keyframes edge-glow {
+  0%,
+  40%,
+  100% {
+    /* Top/bottom only — an all-side inset would double up with the neighboring
+       tile's own inset at every shared left/right edge, showing as seam lines. */
+    box-shadow:
+      inset 0 1px 0 0 #fff1,
+      inset 0 -1px 0 0 #0002;
+  }
+  30% {
+    box-shadow: 0 0 2px 0px var(--highlight-color);
+  }
+}

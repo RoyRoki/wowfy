@@ -1,38 +1,54 @@
-export interface WhyUsData {
-    hero: {
-        title: string;
-        highlightedWord: string;
-        particleWords: string[];
-    };
-    valueProposition: {
-        headline: string;
-        subheadline: string;
-        description: string;
-    };
-    location: {
-        label: string;
-        city: string;
-        servingLabel: string;
-        targetAudience: string;
-    };
-    accessibility: {
-        instruction: string;
-    };
+export interface ProductStat {
+    label: string;
+    value: string;
+}
+
+export interface ProductJourneyStep {
+    title: string;
+    date: string;
+    content: string;
+    status: "completed" | "in-progress" | "pending";
+}
+
+export interface ProductImages {
+    hero: string;
+    app: string;
+    feature: string;
+    og: string;
+    gallery?: string[];
+}
+
+export interface Product {
+    id: string;
+    code: string;
+    name: string;
+    tagline: string;
+    description: string;
+    status: "live" | "upcoming";
+    category: string;
+    url?: string;
+    stats: ProductStat[];
+    features: string[];
+    journey: ProductJourneyStep[];
+    capabilities: string[];
+    accentColor: string;
+    bannerPrompts: string[];
+    images: ProductImages;
+    upcomingNote?: string;
 }
 
 export interface TechStackItem {
     id: string;
-    src: string;
-    alt: string;
-    title: string;
-    glowColor: string;
+    name: string;
+    icon?: string;
+    src?: string;
 }
 
-export interface TechCategory {
+export interface TechStackGroup {
+    id: string;
     label: string;
-    tech: string;
-    color: string;
-    modelPath: string;
+    description: string;
+    items: TechStackItem[];
 }
 
 export interface TechStackData {
@@ -40,8 +56,7 @@ export interface TechStackData {
     title: string;
     gradientText: string;
     description: string;
-    logos: TechStackItem[];
-    categories: TechCategory[];
+    groups: TechStackGroup[];
     footerText: string;
 }
 

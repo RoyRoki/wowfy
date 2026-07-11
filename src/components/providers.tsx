@@ -18,6 +18,22 @@ export function Providers({ children }: ProvidersProps) {
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
+        // On a hard navigation with a #hash (e.g. returning from a product/project
+        // detail page), the browser scrolls to it before GSAP's pinned sections have
+        // created their spacers — landing short, inside whichever pinned section
+        // came before the real target. Re-scroll once layout has actually settled.
+        const scrollToHash = () => {
+            const hash = window.location.hash;
+            if (!hash) return;
+            const el = document.querySelector(hash);
+            if (!el) return;
+            if (lenisRef.current) {
+                lenisRef.current.scrollTo(el as HTMLElement, { immediate: true });
+            } else {
+                (el as HTMLElement).scrollIntoView({ behavior: "auto" });
+            }
+        };
+
         // Skip Lenis on touch devices — native scroll is more performant
         const isTouchDevice =
             "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -26,6 +42,7 @@ export function Providers({ children }: ProvidersProps) {
             // Still need ScrollTrigger updates via native scroll
             ScrollTrigger.defaults({ scroller: window });
             ScrollTrigger.refresh();
+            requestAnimationFrame(scrollToHash);
             return;
         }
 
@@ -48,7 +65,10 @@ export function Providers({ children }: ProvidersProps) {
         // glyph-draw headlines resizing) after that can leave them stale,
         // which shows up as jumps/padding mismatches while pinned. Refresh once
         // everything's actually settled.
-        const refresh = () => ScrollTrigger.refresh();
+        const refresh = () => {
+            ScrollTrigger.refresh();
+            scrollToHash();
+        };
         if (document.readyState === "complete") {
             requestAnimationFrame(refresh);
         } else {

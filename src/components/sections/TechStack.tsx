@@ -1,184 +1,77 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SphereImageGrid, { ImageData } from "@/components/ui/image-sphere";
-import { TechModelViewer, preloadModels } from "@/components/ui/tech-model-viewer";
+import type { ComponentType, CSSProperties } from "react";
+import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
-import { motion, AnimatePresence } from "framer-motion";
-import { assetPath } from "@/lib/utils";
+import { GlowCard } from "@/components/ui/GlowCard";
 import techStackData from "@/data/tech-stack.json";
-import Image from "next/image";
-import { useMobileDetect } from "@/hooks/useMobileDetect";
+import type { TechStackData } from "@/types/data";
+import {
+    SiNextdotjs,
+    SiReact,
+    SiTypescript,
+    SiTailwindcss,
+    SiFramer,
+    SiGreensock,
+    SiThreedotjs,
+    SiFigma,
+    SiNodedotjs,
+    SiGo,
+    SiPostgresql,
+    SiMongodb,
+    SiDocker,
+    SiGit,
+    SiGithub,
+    SiVercel,
+    SiFlutter,
+    SiSwift,
+    SiShopify,
+    SiWhatsapp,
+    SiClaude,
+    SiOpenai,
+    SiGooglegemini,
+    SiN8n,
+} from "@icons-pack/react-simple-icons";
 
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
+type SimpleIcon = ComponentType<{ size?: number; color?: string; style?: CSSProperties }>;
 
-// Transform the JSON data to match the component's expected format if needed,
-// or just use it directly if it matches.
-const TECH_LOGOS: ImageData[] = techStackData.logos;
-const TECH_CATEGORIES = techStackData.categories;
+const ICONS: Record<string, SimpleIcon> = {
+    SiNextdotjs,
+    SiReact,
+    SiTypescript,
+    SiTailwindcss,
+    SiFramer,
+    SiGreensock,
+    SiThreedotjs,
+    SiFigma,
+    SiNodedotjs,
+    SiGo,
+    SiPostgresql,
+    SiMongodb,
+    SiDocker,
+    SiGit,
+    SiGithub,
+    SiVercel,
+    SiFlutter,
+    SiSwift,
+    SiShopify,
+    SiWhatsapp,
+    SiClaude,
+    SiOpenai,
+    SiGooglegemini,
+    SiN8n,
+};
 
-const getTechCategories = () => TECH_CATEGORIES.map(cat => ({
-    ...cat,
-    modelPath: assetPath(cat.modelPath)
-}));
-
-// Preload all 3D models — desktop only (checked at call site)
-function preloadModelsIfDesktop() {
-    if (typeof window === "undefined") return;
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (!isTouchDevice) {
-        preloadModels(getTechCategories().map(cat => cat.modelPath));
-    }
-}
-preloadModelsIfDesktop();
+const data = techStackData as TechStackData;
 
 export function TechStack() {
-    const sectionRef = useRef<HTMLElement>(null);
-    const textContainerRef = useRef<HTMLDivElement>(null);
-    const sphereContainerRef = useRef<HTMLDivElement>(null);
-    const [activeModel, setActiveModel] = useState<string | null>(null);
-    const [isSectionVisible, setIsSectionVisible] = useState(false);
-    const { isMobile, isTouchDevice } = useMobileDetect();
-
-    // Track section visibility with Intersection Observer
-    useEffect(() => {
-        if (!sectionRef.current) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    setIsSectionVisible(entry.isIntersecting);
-
-                    // Hide active model when leaving section
-                    if (!entry.isIntersecting && activeModel) {
-                        setActiveModel(null);
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '0px'
-            }
-        );
-
-        observer.observe(sectionRef.current);
-
-        return () => {
-            observer.disconnect();
-        };
-    }, [activeModel]);
-
-    useEffect(() => {
-        if (!sectionRef.current || !textContainerRef.current) return;
-
-        const ctx = gsap.context(() => {
-            // Sphere entrance animation
-            gsap.from(sphereContainerRef.current, {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "top 50%",
-                    toggleActions: "play none none reverse"
-                },
-                opacity: 0,
-                x: -100,
-                duration: 1.2,
-                ease: "power3.out"
-            });
-
-            // Animate each tech category
-            const categories = textContainerRef.current?.querySelectorAll(".tech-category");
-            categories?.forEach((category, index) => {
-                const label = category.querySelector(".tech-label");
-                const slash = category.querySelector(".tech-slash");
-                const tech = category.querySelector(".tech-name");
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top 70%",
-                        end: "top 40%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-
-                // Animate label with clip-path reveal
-                tl.fromTo(label,
-                    {
-                        clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-                        opacity: 0
-                    },
-                    {
-                        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: "power3.out",
-                        delay: index * 0.15
-                    }
-                )
-                    // Animate slash
-                    .fromTo(slash,
-                        {
-                            scale: 0,
-                            rotation: -45,
-                            opacity: 0
-                        },
-                        {
-                            scale: 1,
-                            rotation: 0,
-                            opacity: 0.3,
-                            duration: 0.5,
-                            ease: "back.out(2)"
-                        },
-                        "-=0.4"
-                    )
-                    // Animate tech name
-                    .fromTo(tech,
-                        {
-                            clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
-                            opacity: 0,
-                            filter: isMobile ? "none" : "blur(10px)"
-                        },
-                        {
-                            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                            opacity: 1,
-                            filter: "blur(0px)",
-                            duration: 0.9,
-                            ease: "power3.out"
-                        },
-                        "-=0.5"
-                    );
-
-                // Infinite float animation — desktop only (saves CPU on mobile)
-                if (!isMobile && !isTouchDevice) {
-                    tl.to([label, tech], {
-                        y: -5,
-                        duration: 2,
-                        ease: "sine.inOut",
-                        yoyo: true,
-                        repeat: -1
-                    }, "-=0.2");
-                }
-            });
-        });
-
-        return () => ctx.revert();
-    }, [isMobile, isTouchDevice]);
-
     return (
         <section
             id="tech-stack"
-            ref={sectionRef}
             className="section-padding relative overflow-hidden bg-[var(--color-background)]"
         >
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background-alt)]/30 via-transparent to-[var(--color-background-alt)]/30" />
-
-            {/* Animated Grid Pattern */}
             <div className="absolute inset-0 opacity-[0.02]">
                 <div
                     className="absolute inset-0"
@@ -191,132 +84,57 @@ export function TechStack() {
             </div>
 
             <div className="container-wide relative z-10">
-                {/* Header */}
                 <SectionHeader
-                    eyebrow={techStackData.eyebrow}
-                    title={techStackData.title}
-                    gradientText={techStackData.gradientText}
-                    description={techStackData.description}
+                    eyebrow={data.eyebrow}
+                    title={data.title}
+                    gradientText={data.gradientText}
+                    description={data.description}
                     center
-                    className="mb-20"
+                    className="mb-16"
                 />
 
-                {/* Main Content: Sphere + Text */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
-                    {/* Left: 3D Sphere (desktop) or Logo Grid (mobile) */}
-                    <div
-                        ref={sphereContainerRef}
-                        className="flex justify-center relative w-full"
-                    >
-                        {isMobile || isTouchDevice ? (
-                            /* Mobile: Lightweight CSS grid of tech logos */
-                            <div className="grid grid-cols-4 gap-4 w-full max-w-[350px] mx-auto py-8">
-                                {TECH_LOGOS.slice(0, 16).map((logo) => (
-                                    <motion.div
-                                        key={logo.id}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.3 }}
-                                        className="aspect-square rounded-xl bg-white/5 border border-white/10 p-3 flex items-center justify-center"
-                                    >
-                                        <Image
-                                            src={assetPath(logo.src)}
-                                            alt={logo.alt}
-                                            width={40}
-                                            height={40}
-                                            className="w-full h-full object-contain"
-                                            loading="lazy"
-                                        />
-                                    </motion.div>
-                                ))}
-                            </div>
-                        ) : (
-                            /* Desktop: Full 3D Sphere */
-                            <div className="relative w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] aspect-square mx-auto">
-                                {/* Globe - fades out when model is active */}
-                                <AnimatePresence>
-                                    {!activeModel && (
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.9 }}
-                                            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                                            className="absolute inset-0"
-                                        >
-                                            <SphereImageGrid
-                                                images={TECH_LOGOS}
-                                                containerSize={600}
-                                                sphereRadius={220}
-                                                dragSensitivity={0.8}
-                                                momentumDecay={0.96}
-                                                maxRotationSpeed={6}
-                                                baseImageScale={0.15}
-                                                hoverScale={1.3}
-                                                perspective={1000}
-                                                autoRotate={true}
-                                                autoRotateSpeed={0.2}
-                                                className="mx-auto w-full h-full"
-                                            />
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+                    {data.groups.map((group, gi) => (
+                        <motion.div
+                            key={group.id}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.6, delay: gi * 0.1 }}
+                        >
+                            <GlowCard className="h-full p-6 md:p-8">
+                                <h3 className="text-lg font-semibold text-white mb-1">{group.label}</h3>
+                                <p className="text-sm text-white/50 mb-6">{group.description}</p>
 
-                                {/* 3D Model Viewer - Only render when section is visible */}
-                                {isSectionVisible && activeModel && (
-                                    <TechModelViewer
-                                        key={activeModel}
-                                        modelPath={activeModel}
-                                        onHide={() => setActiveModel(null)}
-                                        autoHideDuration={3000}
-                                    />
-                                )}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Right: GSAP Animated Text */}
-                    <div ref={textContainerRef} className="space-y-16">
-                        {getTechCategories().map((category) => (
-                            <div
-                                key={category.label}
-                                className="tech-category flex items-baseline gap-6 justify-center cursor-pointer transition-transform hover:scale-105"
-                                onClick={() => {
-                                    // Only show 3D model on desktop
-                                    if (!isMobile && !isTouchDevice) {
-                                        setActiveModel(category.modelPath);
-                                    }
-                                }}
-                            >
-                                {/* Label */}
-                                <div className="text-right">
-                                    <h3 className="tech-label text-4xl md:text-5xl lg:text-6xl font-bold text-white/40 tracking-tight">
-                                        {category.label}
-                                    </h3>
+                                <div className="grid grid-cols-3 gap-3">
+                                    {group.items.map((item) => {
+                                        const Icon = item.icon ? ICONS[item.icon] : undefined;
+                                        return (
+                                            <div
+                                                key={item.id}
+                                                className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-white/25 hover:bg-white/[0.06]"
+                                            >
+                                                {Icon ? (
+                                                    <Icon size={26} color="#ffffff" style={{ opacity: 0.85 }} />
+                                                ) : item.src ? (
+                                                    // eslint-disable-next-line @next/next/no-img-element
+                                                    <img src={item.src} alt={item.name} className="h-[26px] w-auto object-contain" />
+                                                ) : null}
+                                                <span className="text-[11px] text-white/60 text-center leading-tight">
+                                                    {item.name}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-
-                                {/* Slash separator */}
-                                <div className="tech-slash text-6xl md:text-7xl lg:text-8xl font-thin text-[var(--color-accent)]/30 select-none" style={{ lineHeight: '0.8' }}>
-                                    /
-                                </div>
-
-                                {/* Tech name */}
-                                <div className="text-left">
-                                    <h3 className={`tech-name text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent tracking-tight`}>
-                                        {category.tech}
-                                    </h3>
-                                </div>
-                            </div>
-                        ))}
-
-                        {/* Additional info */}
-                        <div className="mt-16 pt-8 border-t border-[var(--color-accent)]/20">
-                            <p className="text-body text-[var(--color-text-muted)] leading-relaxed text-center lg:text-left">
-                                {techStackData.footerText}
-                            </p>
-                        </div>
-                    </div>
+                            </GlowCard>
+                        </motion.div>
+                    ))}
                 </div>
+
+                <p className="text-body text-[var(--color-text-muted)] leading-relaxed text-center max-w-2xl mx-auto mt-14">
+                    {data.footerText}
+                </p>
             </div>
 
             {/* Decorative Elements */}

@@ -381,8 +381,8 @@
         ],
         "projectType": "Personal Project",
         "image": "/projects/Works_Best/Wowfy/images/image.webp",
-        "liveUrl": "https://royroki.github.io/wowfy/",
-        "featured": true,
+        "liveUrl": "https://rokiroy.in/",
+        "featured": false,
         "deviceType": "laptop",
         "screenshots": [
             "/projects/Works_Best/Wowfy/images/image.webp",
@@ -478,6 +478,138 @@
         "problem": "Needed portfolio website that showcases advanced web development skills including 3D graphics and complex animations.",
         "solution": "Created immersive 3D portfolio using Three.js for 3D graphics, GSAP for advanced animations, and Framer Motion for smooth interactions.",
         "results": "Built showcase portfolio demonstrating cutting-edge web technologies and creative development capabilities."
+    },
+    {
+        "id": "saanjh-home",
+        "title": "Saanjh Home",
+        "year": "2026",
+        "role": "Full-Stack Development",
+        "description": "Editorial-grade D2C storefront for a West Bengal home decor studio — hand-designed lamps, vases, organisers and coasters. Next.js frontend on a headless Shopify backend.",
+        "tech": [
+            "Next.js",
+            "Shopify",
+            "Headless Commerce",
+            "Tailwind CSS",
+            "E-commerce",
+            "Responsive Design"
+        ],
+        "projectType": "Client Project",
+        "image": "/projects/saanjhhome/images/image.webp",
+        "liveUrl": "https://saanjhhome.in/",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/saanjhhome/images/image.webp",
+            "/projects/saanjhhome/images/image copy.webp",
+            "/projects/saanjhhome/images/image copy 2.webp",
+            "/projects/saanjhhome/images/image copy 3.webp",
+            "/projects/saanjhhome/images/image copy 4.webp",
+            "/projects/saanjhhome/images/image copy 5.webp",
+            "/projects/saanjhhome/images/image copy 6.webp",
+            "/projects/saanjhhome/images/image copy 7.webp",
+            "/projects/saanjhhome/images/image copy 8.webp",
+            "/projects/saanjhhome/images/image copy 9.webp"
+        ],
+        "screenshotInfo": [
+            {
+                "title": "Editorial Hero",
+                "description": "'After a long day, come home to the calm' — full-bleed lifestyle hero with a Made in West Bengal badge and a Shop the Collection CTA.",
+                "features": [
+                    "Editorial Hero",
+                    "Shopify Backend",
+                    "Made in West Bengal"
+                ]
+            },
+            {
+                "title": "Shop by Category",
+                "description": "'Find your moment' — Lamps, Vases, Organisers, Coasters presented as mood-led tiles rather than a plain nav grid.",
+                "features": [
+                    "Category Tiles",
+                    "Mood-Led UX",
+                    "4 Collections"
+                ]
+            },
+            {
+                "title": "Brand Story Moment",
+                "description": "Full-width editorial break — 'You don't notice a Saanjh piece. You notice the room got quieter' — paired with the Twilight lamp.",
+                "features": [
+                    "Brand Storytelling",
+                    "Full-Bleed Imagery",
+                    "Typography-Led"
+                ]
+            },
+            {
+                "title": "Customer Reviews",
+                "description": "'What our customers tell us' — 4.9★ from real homes, with customer-submitted photos and video reviews per product.",
+                "features": [
+                    "4.9★ Rating",
+                    "UGC Reviews",
+                    "Social Proof"
+                ]
+            },
+            {
+                "title": "Our Process",
+                "description": "'From sketch to your doorstep' — designed in-house in a West Bengal studio, from sketch to 3D model to finished piece.",
+                "features": [
+                    "Process Story",
+                    "In-House Design",
+                    "Craft Narrative"
+                ]
+            },
+            {
+                "title": "Best Sellers",
+                "description": "Shoppable best-seller grid with live discount badges (Bow Trinket Tray, TimTim Mini Lamps, Jugnu Lamp) and quick 'Choose Options' add-to-cart.",
+                "features": [
+                    "Best Sellers",
+                    "Discount Badges",
+                    "Quick Add"
+                ]
+            },
+            {
+                "title": "Showpieces Collection",
+                "description": "Filterable Showpieces category with price-range slider and sort — Golden Ganesha and Sattva Om festive pieces featured.",
+                "features": [
+                    "Price Filter",
+                    "Sort & Filter",
+                    "Festive Collection"
+                ]
+            },
+            {
+                "title": "Product Detail Page",
+                "description": "Full PDP with color variant swatches, rating, price with strike-through discount, sticky Add to Cart, and shipping & care details.",
+                "features": [
+                    "Color Variants",
+                    "Add to Cart",
+                    "Shipping Info"
+                ]
+            },
+            {
+                "title": "Cart Drawer",
+                "description": "Slide-in cart with quantity controls, promo code entry, live subtotal, and one-click checkout — no page reload.",
+                "features": [
+                    "Slide-In Cart",
+                    "Promo Codes",
+                    "Fast Checkout"
+                ]
+            },
+            {
+                "title": "Search & Discovery",
+                "description": "Instant search overlay with category quick-links (Lamps, Vases, Organisers, Coasters) for zero-friction browsing.",
+                "features": [
+                    "Instant Search",
+                    "Category Shortcuts",
+                    "Zero Friction"
+                ]
+            }
+        ],
+        "metrics": {
+            "type": "D2C E-commerce",
+            "backend": "Shopify",
+            "status": "Live"
+        },
+        "problem": "A West Bengal home decor studio needed a storefront that matched the craft and warmth of their hand-designed pieces — not a generic Shopify theme.",
+        "solution": "Built a custom Next.js frontend on a headless Shopify backend — editorial hero sections, mood-led category browsing, UGC-driven reviews, and a fast, native-feeling cart and checkout flow.",
+        "results": "Live at saanjhhome.in, running on Shopify's commerce engine with a fully custom storefront experience across desktop and tablet."
     },
     {
         "id": "emsigner",

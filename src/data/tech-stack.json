@@ -1,190 +1,63 @@
 {
     "eyebrow": "Technology Stack",
-    "title": "Our Tech",
-    "gradientText": "Stack",
-    "description": "Next.js, React, Flutter, GSAP, Three.js — Modern technologies that power premium digital experiences",
-    "logos": [
+    "title": "Built with tools that",
+    "gradientText": "actually ship",
+    "description": "The real stack behind every product we build — no padding, no buzzword bingo.",
+    "groups": [
         {
-            "id": "nextjs",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-            "alt": "Next.js",
-            "title": "Next.js",
-            "glowColor": "#FFFFFF"
+            "id": "frontend",
+            "label": "Frontend & Motion",
+            "description": "What clients actually see and feel",
+            "items": [
+                { "id": "nextjs", "name": "Next.js", "icon": "SiNextdotjs" },
+                { "id": "react", "name": "React", "icon": "SiReact" },
+                { "id": "typescript", "name": "TypeScript", "icon": "SiTypescript" },
+                { "id": "tailwind", "name": "Tailwind CSS", "icon": "SiTailwindcss" },
+                { "id": "framer", "name": "Framer Motion", "icon": "SiFramer" },
+                { "id": "gsap", "name": "GSAP", "icon": "SiGreensock" },
+                { "id": "threejs", "name": "Three.js", "icon": "SiThreedotjs" },
+                { "id": "figma", "name": "Figma", "icon": "SiFigma" }
+            ]
         },
         {
-            "id": "react",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-            "alt": "React",
-            "title": "React",
-            "glowColor": "#61DAFB"
+            "id": "backend",
+            "label": "Backend & Infra",
+            "description": "What keeps it running in production",
+            "items": [
+                { "id": "nodejs", "name": "Node.js", "icon": "SiNodedotjs" },
+                { "id": "golang", "name": "Golang", "icon": "SiGo" },
+                { "id": "postgresql", "name": "PostgreSQL", "icon": "SiPostgresql" },
+                { "id": "mongodb", "name": "MongoDB", "icon": "SiMongodb" },
+                { "id": "docker", "name": "Docker", "icon": "SiDocker" },
+                { "id": "aws", "name": "AWS", "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+                { "id": "vercel", "name": "Vercel", "icon": "SiVercel" },
+                { "id": "git", "name": "Git", "icon": "SiGit" },
+                { "id": "github", "name": "GitHub", "icon": "SiGithub" }
+            ]
         },
         {
-            "id": "typescript",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-            "alt": "TypeScript",
-            "title": "TypeScript",
-            "glowColor": "#3178C6"
+            "id": "mobile",
+            "label": "Mobile & Integrations",
+            "description": "Native apps, commerce, and messaging",
+            "items": [
+                { "id": "flutter", "name": "Flutter", "icon": "SiFlutter" },
+                { "id": "reactnative", "name": "React Native", "icon": "SiReact" },
+                { "id": "swift", "name": "Swift", "icon": "SiSwift" },
+                { "id": "shopify", "name": "Shopify", "icon": "SiShopify" },
+                { "id": "whatsapp", "name": "WhatsApp API", "icon": "SiWhatsapp" }
+            ]
         },
         {
-            "id": "tailwind",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-            "alt": "Tailwind CSS",
-            "title": "Tailwind CSS",
-            "glowColor": "#06B6D4"
-        },
-        {
-            "id": "vue",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-            "alt": "Vue.js",
-            "title": "Vue.js",
-            "glowColor": "#4FC08D"
-        },
-        {
-            "id": "golang",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg",
-            "alt": "Golang",
-            "title": "Golang",
-            "glowColor": "#00ADD8"
-        },
-        {
-            "id": "nodejs",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-            "alt": "Node.js",
-            "title": "Node.js",
-            "glowColor": "#339933"
-        },
-        {
-            "id": "python",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-            "alt": "Python",
-            "title": "Python",
-            "glowColor": "#3776AB"
-        },
-        {
-            "id": "postgresql",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-            "alt": "PostgreSQL",
-            "title": "PostgreSQL",
-            "glowColor": "#4169E1"
-        },
-        {
-            "id": "mongodb",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-            "alt": "MongoDB",
-            "title": "MongoDB",
-            "glowColor": "#47A248"
-        },
-        {
-            "id": "vite",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
-            "alt": "Vite",
-            "title": "Vite",
-            "glowColor": "#646CFF"
-        },
-        {
-            "id": "java",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-            "alt": "Java",
-            "title": "Java",
-            "glowColor": "#007396"
-        },
-        {
-            "id": "php",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-            "alt": "PHP",
-            "title": "PHP",
-            "glowColor": "#777BB4"
-        },
-        {
-            "id": "wordpress",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg",
-            "alt": "WordPress",
-            "title": "WordPress",
-            "glowColor": "#21759B"
-        },
-        {
-            "id": "flutter",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-            "alt": "Flutter",
-            "title": "Flutter",
-            "glowColor": "#02569B"
-        },
-        {
-            "id": "docker",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-            "alt": "Docker",
-            "title": "Docker",
-            "glowColor": "#2496ED"
-        },
-        {
-            "id": "kubernetes",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
-            "alt": "Kubernetes",
-            "title": "Kubernetes",
-            "glowColor": "#326CE5"
-        },
-        {
-            "id": "git",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-            "alt": "Git",
-            "title": "Git",
-            "glowColor": "#F05032"
-        },
-        {
-            "id": "graphql",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
-            "alt": "GraphQL",
-            "title": "GraphQL",
-            "glowColor": "#E10098"
-        },
-        {
-            "id": "redis",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-            "alt": "Redis",
-            "title": "Redis",
-            "glowColor": "#DC382D"
-        },
-        {
-            "id": "aws",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-            "alt": "AWS",
-            "title": "AWS",
-            "glowColor": "#FF9900"
-        },
-        {
-            "id": "prisma",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg",
-            "alt": "Prisma",
-            "title": "Prisma",
-            "glowColor": "#2D3748"
-        },
-        {
-            "id": "firebase",
-            "src": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-            "alt": "Firebase",
-            "title": "Firebase",
-            "glowColor": "#FFCA28"
+            "id": "ai",
+            "label": "AI-Augmented Workflow · 2026",
+            "description": "Built faster, without cutting corners",
+            "items": [
+                { "id": "claude", "name": "Claude", "icon": "SiClaude" },
+                { "id": "gpt", "name": "ChatGPT", "icon": "SiOpenai" },
+                { "id": "gemini", "name": "Gemini", "icon": "SiGooglegemini" },
+                { "id": "n8n", "name": "n8n", "icon": "SiN8n" }
+            ]
         }
     ],
-    "categories": [
-        {
-            "label": "Frontend",
-            "tech": "Next.js",
-            "color": "from-white via-gray-200 to-gray-400",
-            "modelPath": "/3d/react_logo.glb"
-        },
-        {
-            "label": "Backend",
-            "tech": "Golang",
-            "color": "from-cyan-400 via-sky-500 to-blue-600",
-            "modelPath": "/3d/gopher.glb"
-        },
-        {
-            "label": "Mobile",
-            "tech": "Flutter",
-            "color": "from-pink-400 via-purple-500 to-blue-500",
-            "modelPath": "/3d/flutter.glb"
-        }
-    ],
-    "footerText": "From responsive frontends to scalable backends and native mobile experiences, we architect solutions using industry-leading frameworks and best practices."
+    "footerText": "This is the exact stack we ship client work on — from responsive frontends to production infra, sped up (never replaced) by AI tooling."
 }

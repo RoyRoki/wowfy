@@ -1,0 +1,308 @@
+[
+  {
+    "id": "linkgen",
+    "code": "01",
+    "name": "LinkGen",
+    "tagline": "Smart WhatsApp links that actually convert",
+    "description": "A branded link platform for Indian businesses: turn a raw WhatsApp number into a trackable, editable, professional short link with pre-filled messages and real-time click analytics.",
+    "status": "live",
+    "category": "SaaS · Business Tools",
+    "url": "https://www.linkgen.pro/",
+    "stats": [
+      { "label": "Active Users", "value": "80+" },
+      { "label": "Paid Subscriptions", "value": "50+/mo" },
+      { "label": "Status", "value": "Live in Production" }
+    ],
+    "features": [
+      "Instant server-side redirects to WhatsApp",
+      "Real-time click analytics dashboard",
+      "Pre-filled messages auto-populate on open",
+      "Branded custom short links (linkgen.pro/yourbrand)",
+      "Editable destination number — change it anytime, link stays the same",
+      "Role-based access control for teams"
+    ],
+    "journey": [
+      {
+        "title": "The Problem",
+        "date": "Phase 1",
+        "content": "Businesses were sharing raw WhatsApp numbers on ads and storefronts — unprofessional, untrackable, and a pain to update whenever a number changed.",
+        "status": "completed"
+      },
+      {
+        "title": "Core Redirect Engine",
+        "date": "Phase 2",
+        "content": "Built the sub-millisecond redirect engine and link editor — one short link, an editable destination behind it.",
+        "status": "completed"
+      },
+      {
+        "title": "Analytics Layer",
+        "date": "Phase 3",
+        "content": "Added a real-time click tracking dashboard so businesses could see exactly how their links were performing.",
+        "status": "completed"
+      },
+      {
+        "title": "Public Launch",
+        "date": "Phase 4",
+        "content": "Opened signups with branded slugs and subscription plans — first paying customers came in within weeks.",
+        "status": "completed"
+      },
+      {
+        "title": "Where It Stands",
+        "date": "Now",
+        "content": "80+ active users and 50+ paid subscriptions a month, running live in production with zero downtime incidents.",
+        "status": "in-progress"
+      }
+    ],
+    "capabilities": ["Real-time analytics engine", "WhatsApp deep-link redirects", "Custom branding & slugs", "Subscription billing"],
+    "accentColor": "#25D366",
+    "bannerPrompts": [
+      "Hero banner: A sleek dark-mode SaaS dashboard mockup on a MacBook screen, floating at a slight 3D angle above a deep indigo-to-black gradient background. The dashboard shows a WhatsApp-green accented analytics panel with a line chart of link clicks trending upward, a list of branded short links, and a glowing WhatsApp icon. Soft cyan and green rim lighting, subtle particle glow, ultra-clean modern UI, product-shot photography style, 4k, high detail, minimal clutter, premium tech-startup aesthetic. 16:9.",
+      "App screenshot mockup: Close-up of a mobile phone screen showing the LinkGen link editor UI — a short branded URL at the top, an editable WhatsApp number field below it with a green checkmark, and a toggle for pre-filled messages. Clean dark UI, WhatsApp green accents, soft shadow under the phone, floating above a subtle indigo gradient background, product photography lighting, 4k, sharp UI text legibility implied, minimal and premium.",
+      "Analytics screenshot: A widescreen dashboard panel showing a real-time click analytics graph trending upward over 30 days, a table of branded short links with click counts, and a small 'Live' pulse indicator. Dark theme, WhatsApp-green and cyan data visualization accents, glass-panel card style with soft glow borders, 4k, crisp data-viz aesthetic, premium SaaS product shot.",
+      "Social share / OG banner: Wide 1200x630 banner with the LinkGen wordmark on the left in bold white type, tagline 'Smart WhatsApp links that convert' beneath it, and on the right a stylized WhatsApp chat bubble morphing into a link icon with green glow trails. Deep black background with soft green and indigo gradient glow, minimal, high-contrast, premium tech branding style."
+    ],
+    "images": {
+      "hero": "/products/linkgen/hero.webp",
+      "app": "/products/linkgen/app.webp",
+      "feature": "/products/linkgen/feature.webp",
+      "og": "/products/linkgen/og.webp"
+    }
+  },
+  {
+    "id": "boombuy",
+    "code": "02",
+    "name": "BoomBuy",
+    "tagline": "Never miss a loot deal",
+    "description": "An affiliate deal-aggregation engine that scans Amazon, Flipkart and Myntra for live discounts and pushes verified deals straight to WhatsApp, Telegram and the web — the moment they drop.",
+    "status": "live",
+    "category": "Affiliate · Deals Platform",
+    "url": "https://www.boombuy.in/",
+    "stats": [
+      { "label": "Users", "value": "500+" },
+      { "label": "Status", "value": "Live in Production" }
+    ],
+    "features": [
+      "Real-time deal alerts across categories",
+      "Live aggregation from Amazon, Flipkart & Myntra",
+      "Distribution via WhatsApp, Telegram & website",
+      "Category filtering — electronics, fashion, appliances & more",
+      "Trending & budget-friendly deal sections",
+      "100% free for end users, affiliate-funded"
+    ],
+    "journey": [
+      {
+        "title": "The Problem",
+        "date": "Phase 1",
+        "content": "Genuine discounts get buried across a dozen apps and marketplaces — deal hunters were spending hours scrolling for the same 5% off.",
+        "status": "completed"
+      },
+      {
+        "title": "Deal Engine",
+        "date": "Phase 2",
+        "content": "Built the aggregation pipeline that watches marketplace pricing and surfaces verified drops as they happen.",
+        "status": "completed"
+      },
+      {
+        "title": "Multi-Channel Push",
+        "date": "Phase 3",
+        "content": "Connected the engine to WhatsApp broadcast channels, a Telegram bot, and the public website for instant alerts.",
+        "status": "completed"
+      },
+      {
+        "title": "Where It Stands",
+        "date": "Now",
+        "content": "500+ users rely on BoomBuy daily for verified, 100% genuine deals — growing purely on word of mouth.",
+        "status": "in-progress"
+      }
+    ],
+    "capabilities": ["Live marketplace price watching", "Multi-channel broadcast (WhatsApp/Telegram/Web)", "Affiliate deal verification", "Category-based filtering"],
+    "accentColor": "#F59E0B",
+    "bannerPrompts": [
+      "Hero banner: A vibrant e-commerce deals app mockup shown on a smartphone screen, tilted at a dynamic angle, floating above a dark background with warm orange and gold gradient lighting. The screen shows a feed of product deal cards with bold discount percentage badges (like -60%, -40%), small marketplace logos, and a 'verified deal' checkmark. Sparks of confetti-like particles and motion blur suggest speed and excitement. Product-shot photography style, high contrast, 4k, energetic and premium. 16:9.",
+      "App screenshot mockup: A vertical smartphone screen showing the BoomBuy deals feed — scrollable cards each with a product photo thumbnail, strikethrough original price next to a bold discounted price, a marketplace logo badge (generic e-commerce icon), and a 'Grab Deal' button. Dark UI theme with amber/gold highlight accents, clean modern layout, product photography lighting, 4k.",
+      "Distribution screenshot: Split-screen mockup showing the same deal card appearing simultaneously in a WhatsApp chat bubble, a Telegram channel post, and a website card — connected by glowing orange broadcast lines converging from a central 'BoomBuy' logo node. Dark background, energetic gold particle glow, isometric-style layout, 4k, premium fintech/deals aesthetic.",
+      "Social share / OG banner: Wide 1200x630 banner with bold 'BoomBuy' wordmark top-left in white/gold gradient type, tagline 'Never miss a loot deal' beneath, and on the right a burst of discount tag icons (%, ₹ symbols) exploding outward with motion streaks. Deep black background, warm orange-to-gold radial glow, high energy, premium deal-hunting brand aesthetic."
+    ],
+    "images": {
+      "hero": "/products/boombuy/hero.webp",
+      "app": "/products/boombuy/app.webp",
+      "feature": "/products/boombuy/feature.webp",
+      "og": "/products/boombuy/og.webp"
+    }
+  },
+  {
+    "id": "easyrestro",
+    "code": "03",
+    "name": "EasyRestro",
+    "tagline": "Own your restaurant's digital experience",
+    "description": "A full restaurant management system: QR-code dine-in menus, real-time kitchen order display, and waiter tools — with zero commission, unlike aggregator apps.",
+    "status": "live",
+    "category": "Restaurant Tech · SaaS",
+    "url": "https://www.easyrestro.in/",
+    "stats": [
+      { "label": "Restaurants Onboarding", "value": "5+" },
+      { "label": "Full Rollout", "value": "Next Month" },
+      { "label": "Commission", "value": "0%" }
+    ],
+    "features": [
+      "QR-code dynamic menus — no app download needed",
+      "Real-time kitchen display with order alerts",
+      "Waiter mode for manual orders from any phone",
+      "Dine-in order tracking end-to-end",
+      "Zero commission — flat monthly subscription",
+      "Analytics on orders, revenue & operations"
+    ],
+    "journey": [
+      {
+        "title": "The Problem",
+        "date": "Phase 1",
+        "content": "Aggregator apps take a cut on every order and stand between restaurants and their own customers — owners wanted their data and their margins back.",
+        "status": "completed"
+      },
+      {
+        "title": "QR Menu + Ordering",
+        "date": "Phase 2",
+        "content": "Built the QR-scan dynamic menu and dine-in ordering flow — works on any phone browser, no app install.",
+        "status": "completed"
+      },
+      {
+        "title": "Kitchen & Waiter Tools",
+        "date": "Phase 3",
+        "content": "Added the real-time kitchen display with audio alerts and a waiter mode for manual table management.",
+        "status": "completed"
+      },
+      {
+        "title": "Pilot Onboarding",
+        "date": "Now",
+        "content": "5 restaurants have already shown interest and are onboarding — full public rollout launching next month.",
+        "status": "in-progress"
+      }
+    ],
+    "capabilities": ["QR-based ordering flow", "Real-time kitchen display system", "Zero-commission billing model", "Restaurant analytics"],
+    "accentColor": "#F97316",
+    "bannerPrompts": [
+      "Hero banner: A modern restaurant tech mockup: a tablet showing a kitchen order display with ticket cards, next to a smartphone showing a clean QR-code restaurant menu with food photography thumbnails. Both devices float above a warm dark background with deep red and amber accent lighting reminiscent of restaurant ambiance. Steam-like soft particle wisps, subtle bokeh, product-shot photography style, 4k, appetizing and premium, professional SaaS aesthetic. 16:9.",
+      "App screenshot mockup: Close-up of a smartphone screen showing the EasyRestro QR-scan menu — a restaurant table QR code at top, a scrollable food menu with appetizing dish photography thumbnails, prices, and an 'Add to Order' button. Dark UI theme with warm red/amber highlight accents, clean modern restaurant app layout, soft shadow, 4k.",
+      "Kitchen display screenshot: A widescreen tablet mockup showing the EasyRestro kitchen display system — a grid of order ticket cards each with table number, item list, and a pulsing 'New Order' alert badge. Dark theme with red/amber accent glow, clean SaaS dashboard aesthetic, subtle steam particle effect in background, 4k, professional restaurant-tech product shot.",
+      "Social share / OG banner: Wide 1200x630 banner with 'EasyRestro' wordmark in bold white type top-left, tagline 'Own your restaurant's digital experience' beneath, and on the right a stylized QR code morphing into a restaurant table icon with warm amber glow trails. Deep black background, red-to-amber radial gradient glow, premium restaurant-tech branding style."
+    ],
+    "images": {
+      "hero": "/products/easyrestro/hero.webp",
+      "app": "/products/easyrestro/app.webp",
+      "feature": "/products/easyrestro/feature.webp",
+      "og": "/products/easyrestro/og.webp",
+      "gallery": [
+        "/products/easyrestro/gallery-1.webp",
+        "/products/easyrestro/gallery-2.webp",
+        "/products/easyrestro/gallery-3.webp",
+        "/products/easyrestro/gallery-4.webp"
+      ]
+    }
+  },
+  {
+    "id": "futureclicks",
+    "code": "04",
+    "name": "FutureClicks",
+    "tagline": "AI-powered event photography, instantly yours",
+    "description": "Photographers upload live event photos straight to FutureClicks. AI face-recognition auto-tags every guest, applies trending live edits, and lets attendees scan, find and download their own photos in seconds — no scrolling through hundreds of images.",
+    "status": "upcoming",
+    "category": "AI · Event Tech",
+    "stats": [
+      { "label": "Status", "value": "In Development" }
+    ],
+    "features": [
+      "Live photo upload straight from the event",
+      "AI face-recognition auto-tagging per guest",
+      "Trending AI live edits applied automatically",
+      "Guests scan a code to instantly find their own photos",
+      "Built for photographers to plug in and go"
+    ],
+    "journey": [
+      {
+        "title": "The Idea",
+        "date": "In Progress",
+        "content": "Event photographers spend days sorting and delivering thousands of photos, and guests rarely find the ones they're actually in. FutureClicks automates both sides.",
+        "status": "in-progress"
+      },
+      {
+        "title": "Face Recognition Engine",
+        "date": "In Progress",
+        "content": "Building the AI pipeline that tags every guest across a live photo stream as images come in.",
+        "status": "in-progress"
+      },
+      {
+        "title": "Guest Discovery + AI Edits",
+        "date": "Upcoming",
+        "content": "Scan-to-find photo retrieval for guests, plus automatic trending-style live edits on top of raw shots.",
+        "status": "pending"
+      }
+    ],
+    "capabilities": ["AI face recognition", "Live photo pipeline", "Automated photo edits", "Guest self-serve discovery"],
+    "accentColor": "#A855F7",
+    "bannerPrompts": [
+      "Hero banner: A futuristic event photography app concept mockup on a smartphone, floating above a dark background with vivid purple and magenta gradient lighting suggestive of a concert or wedding event. The screen shows a photo grid with a glowing face-recognition bounding box around one face, and a 'Found 12 photos of you' notification card. Bokeh light particles like a dance floor in the background, cinematic lighting, product-shot photography style, 4k, premium AI-tech aesthetic, sense of motion and celebration. 16:9.",
+      "App screenshot mockup: A vertical smartphone screen showing the FutureClicks guest view — a QR scan prompt transitioning into a personalized photo grid of one guest across an event, with a glowing 'AI Matched' badge on each thumbnail and a download-all button. Dark UI, purple/magenta neon accents, subtle bokeh light dots in background, 4k, premium AI event-tech aesthetic.",
+      "AI pipeline screenshot: A widescreen dashboard mockup for photographers showing an upload queue of event photos flowing into a face-recognition processing panel, with detected face thumbnails being auto-tagged and sorted into guest folders in real time. Dark theme, purple/violet glow, clean data-pipeline visualization style, 4k, premium AI-SaaS product shot.",
+      "Social share / OG banner: Wide 1200x630 banner with 'FutureClicks' wordmark in bold white/purple gradient type top-left, tagline 'AI-powered event photography, instantly yours' beneath, and on the right a glowing face-recognition scan grid over a silhouette of event-goers with camera flash bokeh. Deep black background, vivid purple-to-magenta radial glow, premium AI-tech branding style."
+    ],
+    "images": {
+      "hero": "/products/futureclicks/hero.webp",
+      "app": "/products/futureclicks/app.webp",
+      "feature": "/products/futureclicks/feature.webp",
+      "og": "/products/futureclicks/og.webp"
+    }
+  },
+  {
+    "id": "whatsapyi",
+    "code": "05",
+    "name": "WhatsApyi",
+    "tagline": "WhatsApp Business API, made simple",
+    "description": "Connect your WhatsApp Business API and manage leads, campaigns and conversations from one dashboard — built for teams who run marketing and support entirely over WhatsApp.",
+    "status": "upcoming",
+    "category": "SaaS · WhatsApp API",
+    "url": "https://whatsapyi.vercel.app/",
+    "stats": [
+      { "label": "Status", "value": "In Development" }
+    ],
+    "features": [
+      "Connect and manage WhatsApp Business API access",
+      "Centralized lead management",
+      "Campaign broadcasting over WhatsApp",
+      "Conversation and team inbox tools"
+    ],
+    "journey": [
+      {
+        "title": "The Idea",
+        "date": "In Progress",
+        "content": "Teams running marketing and support over WhatsApp were stitching together the API themselves — WhatsApyi packages that into one dashboard.",
+        "status": "in-progress"
+      },
+      {
+        "title": "API + Lead Management",
+        "date": "In Progress",
+        "content": "Building the WhatsApp API connection layer alongside lead and campaign management tools.",
+        "status": "in-progress"
+      },
+      {
+        "title": "Public Beta",
+        "date": "Upcoming",
+        "content": "Opening up to early teams who want to run marketing and support fully through WhatsApp.",
+        "status": "pending"
+      }
+    ],
+    "capabilities": ["WhatsApp Business API integration", "Lead & campaign management", "Team conversation inbox"],
+    "accentColor": "#22C55E",
+    "bannerPrompts": [
+      "Hero banner: A clean SaaS dashboard mockup on a laptop screen, floating above a dark background with WhatsApp-green gradient lighting. The screen shows a conversation inbox with multiple WhatsApp chat threads, a leads pipeline in kanban columns, and a campaign broadcast panel. Soft green glow, minimal geometric background shapes, product-shot photography style, 4k, clean enterprise SaaS aesthetic, high detail. 16:9.",
+      "App screenshot mockup: Close-up of a laptop screen showing the WhatsApyi conversation inbox — a left sidebar list of WhatsApp chat threads with unread badges, and a right panel showing an active conversation with quick-reply buttons. Dark UI theme, WhatsApp-green accents, clean enterprise inbox layout, soft shadow, 4k.",
+      "Leads pipeline screenshot: A widescreen dashboard mockup showing a kanban-style leads pipeline with columns like 'New', 'Contacted', 'Converted', each with lead cards showing name, WhatsApp icon, and a small campaign tag. Dark theme, green accent glow, clean CRM-style data visualization, 4k, premium enterprise SaaS product shot.",
+      "Social share / OG banner: Wide 1200x630 banner with 'WhatsApyi' wordmark in bold white type top-left, tagline 'WhatsApp Business API, made simple' beneath, and on the right a stylized API connection node diagram linking into a WhatsApp chat bubble icon, glowing green. Deep black background, green radial gradient glow, minimal premium enterprise-SaaS branding style."
+    ],
+    "images": {
+      "hero": "/products/whatsapyi/hero.webp",
+      "app": "/products/whatsapyi/app.webp",
+      "feature": "/products/whatsapyi/feature.webp",
+      "og": "/products/whatsapyi/og.webp"
+    }
+  }
+]

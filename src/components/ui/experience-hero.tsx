@@ -99,10 +99,12 @@ export const ExperienceHero = () => {
 
     return (
         <section ref={containerRef} className="relative min-h-screen w-full bg-[#020202] flex flex-col selection:bg-white selection:text-black overflow-hidden">
-            {/* Geometric monolith on every device — the liquid shader background is desktop-only for performance */}
+            {/* Geometric monolith on every device — the liquid shader background is desktop-only for performance.
+                Lightened vs. the near-black monolith material (metalness 1, color #0a0a0a) so its silhouette
+                actually reads against the backdrop instead of blending into it. */}
             <div className="fixed inset-0 z-0 pointer-events-none"
                 style={{
-                    background: 'radial-gradient(ellipse at 30% 50%, rgba(30,30,40,1) 0%, rgba(2,2,2,1) 70%)',
+                    background: 'radial-gradient(ellipse at 30% 50%, rgba(70,70,88,1) 0%, rgba(12,12,16,1) 70%)',
                 }}
             />
             <div className="fixed inset-0 z-0 pointer-events-none">

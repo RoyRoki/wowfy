@@ -3,6 +3,7 @@ import { Inter, Outfit, Manrope } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { CustomCursor } from "@/components/CustomCursor";
+import { GlobalLoader } from "@/components/ui/global-loader";
 
 // Display font - Bold geometric elegance for hero headlines
 const outfit = Outfit({
@@ -68,6 +69,7 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9948218546114476"
           crossOrigin="anonymous"
         />
+        <GlobalLoader />
         <Providers>
           <CustomCursor />
           {children}

@@ -252,11 +252,13 @@ export function WhatWeBuild() {
                                     className="h-full w-full shrink-0 px-1"
                                 >
                                     <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white/[0.02]">
-                                        {/* Banner — visual only, no text baked in */}
-                                        <div className="relative min-h-0 flex-[1.3] overflow-hidden">
+                                        {/* Banner — visual only, no text baked in. On short viewports it
+                                            becomes the full card background (blurred/darkened) instead of
+                                            a shrinking top strip, so there's always room for the text. */}
+                                        <div className="relative min-h-0 flex-[1.3] overflow-hidden [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:flex-none">
                                             {s.image ? (
                                                 // eslint-disable-next-line @next/next/no-img-element
-                                                <img src={s.image} alt="" className="size-full object-cover" />
+                                                <img src={s.image} alt="" className="size-full object-cover [@media(max-height:700px)]:blur-md [@media(max-height:700px)]:scale-110" />
                                             ) : (
                                                 <div
                                                     aria-hidden="true"
@@ -266,10 +268,10 @@ export function WhatWeBuild() {
                                                     }}
                                                 />
                                             )}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent [@media(max-height:700px)]:from-black/30 [@media(max-height:700px)]:via-black/10" />
                                         </div>
 
-                                        <div className="relative shrink-0 p-5 md:p-8">
+                                        <div className="relative shrink-0 p-5 md:p-8 [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:z-10 [@media(max-height:700px)]:overflow-y-auto [@media(max-height:700px)]:bg-black/30 [@media(max-height:700px)]:backdrop-blur-[2px]">
                                             <div className="flex items-start justify-between gap-4 mb-3 md:mb-5">
                                                 <Badge
                                                     variant="outline"

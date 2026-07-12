@@ -205,7 +205,7 @@ export function Products() {
                 </div>
 
                 {/* Build-together bar — desktop only, mobile is tight on vertical space */}
-                <div className="mx-auto mb-6 hidden w-full max-w-2xl shrink-0 items-center justify-between gap-4 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 sm:flex">
+                <div className="mx-auto mb-6 hidden w-full max-w-2xl shrink-0 items-center justify-between gap-4 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 sm:flex [@media(max-height:700px)]:!hidden">
                     <span className="flex items-center gap-2 text-xs md:text-sm text-white/60">
                         <MessageCircle size={14} className="text-emerald-400" />
                         Got a product idea? I&apos;m ready to partner.
@@ -265,17 +265,19 @@ export function Products() {
                                         className="h-full w-full shrink-0 px-1"
                                     >
                                         <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white/[0.02]">
-                                            {/* Banner */}
+                                            {/* Banner — on short viewports it becomes the full card
+                                                background (blurred/darkened) instead of a shrinking top
+                                                strip, so there's always room for the text. */}
                                             <Link
                                                 href={`/products/${p.id}`}
-                                                className="group/banner relative min-h-0 flex-[1.3] overflow-hidden block"
+                                                className="group/banner relative min-h-0 flex-[1.3] overflow-hidden block [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:flex-none"
                                             >
                                                 {p.images?.hero ? (
                                                     // eslint-disable-next-line @next/next/no-img-element
                                                     <img
                                                         src={p.images.hero}
                                                         alt={p.name}
-                                                        className="size-full object-cover transition-transform duration-500 group-hover/banner:scale-105"
+                                                        className="size-full object-cover transition-transform duration-500 group-hover/banner:scale-105 [@media(max-height:700px)]:blur-md [@media(max-height:700px)]:scale-110"
                                                     />
                                                 ) : (
                                                     <div
@@ -286,7 +288,7 @@ export function Products() {
                                                         }}
                                                     />
                                                 )}
-                                                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent [@media(max-height:700px)]:from-black/30 [@media(max-height:700px)]:via-black/10" />
                                                 <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover/banner:bg-black/20" />
 
                                                 <div className="absolute top-4 left-4 md:top-5 md:left-5">
@@ -310,7 +312,7 @@ export function Products() {
                                                 </span>
                                             </Link>
 
-                                            <div className="relative shrink-0 p-5 md:p-8">
+                                            <div className="relative shrink-0 p-5 md:p-8 [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:z-10 [@media(max-height:700px)]:overflow-y-auto [@media(max-height:700px)]:pt-14 [@media(max-height:700px)]:bg-black/30 [@media(max-height:700px)]:backdrop-blur-[2px]">
                                                 <div className="flex items-start justify-between gap-4 mb-3 md:mb-5">
                                                     <div>
                                                         <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-1">

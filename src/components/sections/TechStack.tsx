@@ -72,16 +72,25 @@ export function TechStack() {
         >
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background-alt)]/30 via-transparent to-[var(--color-background-alt)]/30" />
-            <div className="absolute inset-0 opacity-[0.02]">
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        backgroundImage: `linear-gradient(var(--color-accent) 1px, transparent 1px),
-                            linear-gradient(90deg, var(--color-accent) 1px, transparent 1px)`,
-                        backgroundSize: "60px 60px",
-                    }}
-                />
-            </div>
+            <div
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{
+                    background: `radial-gradient(circle at 12% 8%, rgba(99,102,241,0.16) 0%, transparent 45%), radial-gradient(circle at 88% 82%, rgba(99,102,241,0.12) 0%, transparent 42%)`,
+                }}
+            />
+            <div
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{
+                    backgroundImage: `linear-gradient(var(--color-accent) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--color-accent) 1px, transparent 1px)`,
+                    backgroundSize: "60px 60px",
+                    opacity: 0.07,
+                    maskImage: "radial-gradient(ellipse at 50% 30%, black, transparent 75%)",
+                    WebkitMaskImage: "radial-gradient(ellipse at 50% 30%, black, transparent 75%)",
+                }}
+            />
 
             <div className="container-wide relative z-10">
                 <SectionHeader

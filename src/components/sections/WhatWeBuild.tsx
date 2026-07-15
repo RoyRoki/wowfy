@@ -271,7 +271,7 @@ export function WhatWeBuild() {
                                             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent [@media(max-height:700px)]:from-black/30 [@media(max-height:700px)]:via-black/10" />
                                         </div>
 
-                                        <div className="relative shrink-0 p-5 md:p-8 [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:z-10 [@media(max-height:700px)]:overflow-y-auto [@media(max-height:700px)]:bg-black/30 [@media(max-height:700px)]:backdrop-blur-[2px]">
+                                        <div className="relative shrink-0 p-5 md:p-8 [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:z-10 [@media(max-height:700px)]:overflow-y-auto [@media(max-height:700px)]:bg-black/30 [@media(max-height:700px)]:pb-16 [@media(max-height:700px)]:backdrop-blur-[2px]">
                                             <div className="flex items-start justify-between gap-4 mb-3 md:mb-5">
                                                 <Badge
                                                     variant="outline"
@@ -305,6 +305,17 @@ export function WhatWeBuild() {
                                                 ))}
                                             </ul>
                                         </div>
+
+                                        {/* Mobile CTA — sibling above the frosted panel (z-20) so the
+                                            panel's backdrop-blur never touches it. Short-viewport only. */}
+                                        <a
+                                            href="https://wa.me/919800881300"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="absolute bottom-4 right-4 z-20 hidden items-center gap-1 rounded-full border border-white/20 bg-black/80 px-4 py-2 text-xs font-semibold text-white shadow-lg [@media(max-height:700px)]:flex"
+                                        >
+                                            Let&apos;s Talk <ArrowUpRight className="size-3" />
+                                        </a>
                                     </div>
                                 </div>
                             );

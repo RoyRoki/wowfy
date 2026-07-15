@@ -29,6 +29,8 @@ export function Footer() {
     const currentYear = new Date().getFullYear();
     const { isMobile, isTouchDevice } = useMobileDetect();
     const brandRef = useRef<HTMLHeadingElement>(null);
+    const brandTlRef = useRef<gsap.core.Timeline | null>(null);
+    const brandPlayedRef = useRef(false);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,16 +42,14 @@ export function Footer() {
         if (!(isMobile || isTouchDevice) || !brandRef.current) return;
         const el = brandRef.current;
 
-        let tl: gsap.core.Timeline;
-        let played = false;
-
         const ctx = gsap.context(() => {
-            // Built paused, then played once via IntersectionObserver below.
-            // ScrollTrigger was unreliable here: it's created only after mobile
-            // detection resolves, and the pinned sections above (+ Lenis) shift
-            // the trigger position, so on first view it often never fired and
-            // the brand stayed at opacity-0.
-            tl = gsap.timeline({ paused: true });
+            // Built paused; played once when the brand scrolls into view — the
+            // trigger is framer-motion's onViewportEnter on the wrapper (see JSX),
+            // the same viewport system the rest of this footer uses reliably.
+            // (A GSAP ScrollTrigger here was unreliable: it's created only after
+            // mobile detection resolves and the pinned sections above + Lenis
+            // shift its position, so on first view it often never fired.)
+            const tl = gsap.timeline({ paused: true });
 
             tl.fromTo(el, { opacity: 0 }, { opacity: 0.8, duration: 0.4 });
 
@@ -76,25 +76,24 @@ export function Footer() {
                     });
                 });
             });
+
+            brandTlRef.current = tl;
+            // If the footer was already in view before this built, play now.
+            if (brandPlayedRef.current) tl.play();
         });
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0]?.isIntersecting && !played) {
-                    played = true;
-                    tl?.play();
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.2 },
-        );
-        observer.observe(el);
-
         return () => {
-            observer.disconnect();
             ctx.revert();
+            brandTlRef.current = null;
         };
     }, [isMobile, isTouchDevice]);
+
+    // Play the brand timeline once, whenever the wrapper enters the viewport.
+    const playBrand = () => {
+        if (brandPlayedRef.current) return;
+        brandPlayedRef.current = true;
+        brandTlRef.current?.play();
+    };
 
     const { socialLinks, contactHeading, contactSubHeading, copyrightText } = socialsData;
 
@@ -180,14 +179,18 @@ export function Footer() {
             {/* Particle Text Effect (desktop) / Static Gradient Text (mobile) */}
             <div className="w-full h-[300px] md:h-[400px] relative mb-16">
                 {isMobile || isTouchDevice ? (
-                    <div className="w-full h-full flex items-center justify-center">
+                    <motion.div
+                        className="w-full h-full flex items-center justify-center"
+                        onViewportEnter={playBrand}
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
                         <h2
                             ref={brandRef}
                             className="text-7xl md:text-8xl font-black tracking-tighter text-white select-none opacity-0"
                         >
                             Roki Roy
                         </h2>
-                    </div>
+                    </motion.div>
                 ) : (
                     <ParticleTextEffect
                         text="Roki Roy"

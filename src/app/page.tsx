@@ -12,6 +12,8 @@ import { Contact } from "@/components/sections/Contact";
 import { Home as HomeIcon, Briefcase, DollarSign, Mail } from "lucide-react"; // Removed as not needed
 import { NavBar } from "@/components/ui/tube-light-navbar";
 import { Footer } from "@/components/sections/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteGraph } from "@/lib/seo";
 
 export default function Home() {
   const navItems = [
@@ -27,6 +29,7 @@ export default function Home() {
 
   return (
     <main className="relative">
+      <JsonLd data={siteGraph()} />
       {/* <CircularRadialNav /> */}
       <NavBar items={navItems} />
       <section id="hero">

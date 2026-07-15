@@ -29,21 +29,75 @@ const interDisplay = Inter({
   weight: ["400", "500"],
 });
 
+const SITE_NAME = "RokiRoy Digital";
+const SITE_TITLE = "RokiRoy Digital | Premium Web & App Development Studio";
+const SITE_DESCRIPTION =
+  "RokiRoy Digital is a senior-led studio building premium websites, web apps and mobile apps for startups — Awwwards-quality design and solid engineering, shipped in weeks, at a fraction of western-agency cost. Based in Siliguri, India.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rokiroy.in"),
-  title: "RokiRoy Digital | Premium Tech Solutions",
-  description: "We Build Tomorrow's Tech Today. From Vision to Victory – Full-Stack Freelance Solutions. Web & Mobile Apps, UI/UX Design, Cloud Architecture, AI/ML Integrations.",
-  keywords: ["web development", "mobile apps", "UI/UX design", "freelance developer", "tech solutions", "full-stack", "React", "Next.js"],
-  authors: [{ name: "RokiRoy Digital" }],
+  title: {
+    default: SITE_TITLE,
+    template: "%s | RokiRoy Digital",
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "web development",
+    "web app development",
+    "mobile app development",
+    "UI/UX design",
+    "Next.js developer",
+    "React developer",
+    "Flutter developer",
+    "freelance development studio",
+    "premium website design",
+    "Awwwards-quality websites",
+    "startup product development",
+    "Siliguri web developer",
+    "India development agency",
+  ],
+  authors: [{ name: "Roki Roy", url: "https://www.rokiroy.in" }],
+  creator: "Roki Roy",
+  publisher: "RokiRoy Digital",
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "RokiRoy Digital | Premium Tech Solutions",
-    description: "We Build Tomorrow's Tech Today. Full-Stack Freelance Solutions.",
     type: "website",
+    url: "https://www.rokiroy.in",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "RokiRoy Digital — Premium Web & App Development Studio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "RokiRoy Digital | Premium Tech Solutions",
-    description: "We Build Tomorrow's Tech Today. Full-Stack Freelance Solutions.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    site: "@MRrokiroy",
+    creator: "@MRrokiroy",
+    images: ["/twitter-image.jpg"],
   },
 };
 

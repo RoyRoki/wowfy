@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 const list = productsData as Product[];
 
 const WHATSAPP_NUMBER = '919800881300';
-const BUILD_TOGETHER_MESSAGE = "Hi! I have a product idea and I'd like to partner with Wowfy to build it.";
+const BUILD_TOGETHER_MESSAGE = "Hi! I have a product idea and I'd like to partner.";
 
 function hexToRgb(hex: string): string {
     const clean = hex.replace('#', '');

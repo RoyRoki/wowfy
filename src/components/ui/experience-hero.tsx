@@ -132,8 +132,8 @@ export const ExperienceHero = () => {
                         <p className="font-mono text-[13px] text-white/80 uppercase tracking-[0.15em] max-w-xl leading-relaxed border-l-2 border-white/20 pl-6">
                             Premium Digital Experiences. <span className="text-white font-bold">Unbeatable Indian Pricing.</span>
                             <br /><br />
-                            Awwwards-quality design. Solid engineering. <br />
-                            Fraction of the cost of western agencies.
+                            World-class design. Solid engineering. <br />
+                            A fraction of the cost.
                         </p>
                     </div>
 

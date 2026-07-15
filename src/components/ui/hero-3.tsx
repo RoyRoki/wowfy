@@ -168,7 +168,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
 
             {/* Animated Image Marquee */}
             <div className="absolute bottom-0 left-0 w-full h-1/3 md:h-2/5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-                <div ref={trackRef} className="flex gap-4 will-change-transform">
+                <div ref={trackRef} className="flex gap-4 items-end h-full will-change-transform">
                     {duplicatedImages.map((src, index) => (
                         <div
                             key={index}

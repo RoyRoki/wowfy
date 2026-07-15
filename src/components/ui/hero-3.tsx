@@ -62,14 +62,14 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
         if (!section || !track) return;
 
         const ctx = gsap.context(() => {
-            // Single tween is the only thing that ever sets xPercent — its
-            // progress is driven exclusively by scroll (see onUpdate below).
-            // Auto-scrolling (idle looping) is disabled: no second state means
-            // nothing to desync, so no layout/position jump.
+            // Single non-repeating tween is the only thing that ever sets
+            // xPercent — its progress is driven exclusively by scroll (see
+            // onUpdate below). No repeat + no modulo means the track advances
+            // once from -50% to 0% and holds at the end, never snapping back.
             const loop = gsap.fromTo(
                 track,
                 { xPercent: -50 },
-                { xPercent: 0, duration: IDLE_LOOP_DURATION, ease: "none", repeat: -1, paused: true }
+                { xPercent: 0, duration: IDLE_LOOP_DURATION, ease: "none", paused: true }
             );
 
             // Lock vertical scroll for one viewport and convert it into horizontal
@@ -86,7 +86,10 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 // onEnterBack: () => loop.pause(),
                 // onLeave: () => loop.play(),
                 // onLeaveBack: () => loop.play(),
-                onUpdate: (self) => loop.progress(self.progress % 1),
+                // Map scroll progress straight to the tween (no modulo) so the
+                // track holds its final position at the end instead of wrapping
+                // back to the start.
+                onUpdate: (self) => loop.progress(self.progress),
             });
         }, section);
 

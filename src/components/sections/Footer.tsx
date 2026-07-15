@@ -40,14 +40,16 @@ export function Footer() {
         if (!(isMobile || isTouchDevice) || !brandRef.current) return;
         const el = brandRef.current;
 
+        let tl: gsap.core.Timeline;
+        let played = false;
+
         const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%",
-                    toggleActions: "play none none none",
-                },
-            });
+            // Built paused, then played once via IntersectionObserver below.
+            // ScrollTrigger was unreliable here: it's created only after mobile
+            // detection resolves, and the pinned sections above (+ Lenis) shift
+            // the trigger position, so on first view it often never fired and
+            // the brand stayed at opacity-0.
+            tl = gsap.timeline({ paused: true });
 
             tl.fromTo(el, { opacity: 0 }, { opacity: 0.8, duration: 0.4 });
 
@@ -76,7 +78,22 @@ export function Footer() {
             });
         });
 
-        return () => ctx.revert();
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0]?.isIntersecting && !played) {
+                    played = true;
+                    tl?.play();
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.2 },
+        );
+        observer.observe(el);
+
+        return () => {
+            observer.disconnect();
+            ctx.revert();
+        };
     }, [isMobile, isTouchDevice]);
 
     const { socialLinks, contactHeading, contactSubHeading, copyrightText } = socialsData;

@@ -176,13 +176,13 @@ export function Footer() {
                         text="Roki Roy"
                         className="w-full h-full"
                         colors={[
+                            '7C3AED',
                             '8B5CF6',
                             'A78BFA',
-                            'C084FC',
-                            'E879F9',
-                            'F472B6',
-                            '06B6D4',
-                            '0EA5E9',
+                            'C4B5FD',
+                            'DDD6FE',
+                            'EDE9FE',
+                            'FFFFFF',
                         ]}
                         animationForce={60}
                         particleDensity={4}

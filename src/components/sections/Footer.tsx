@@ -82,7 +82,7 @@ export function Footer() {
     const { socialLinks, contactHeading, contactSubHeading, copyrightText } = socialsData;
 
     return (
-        <footer className="relative pt-16 pb-16 border-t border-white/10 min-h-[800px]">
+        <footer className="relative pt-16 pb-16 border-t border-white/10">
 
 
             <div className="container-wide relative z-10">
@@ -192,7 +192,7 @@ export function Footer() {
             </div>
 
             {/* Bottom Bar - Below Particle Text */}
-            <div className="absolute bottom-8 left-0 right-0 z-10">
+            <div className="relative z-10">
                 <div className="container-wide">
                     <motion.div
                         initial={{ opacity: 0 }}

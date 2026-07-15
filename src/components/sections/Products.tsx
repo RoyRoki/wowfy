@@ -277,7 +277,7 @@ export function Products() {
                                                     <img
                                                         src={p.images.hero}
                                                         alt={p.name}
-                                                        className="size-full object-cover transition-transform duration-500 group-hover/banner:scale-105 [@media(max-height:700px)]:blur-md [@media(max-height:700px)]:scale-110"
+                                                        className="size-full object-cover transition-transform duration-500 group-hover/banner:scale-105"
                                                     />
                                                 ) : (
                                                     <div
@@ -291,7 +291,7 @@ export function Products() {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent [@media(max-height:700px)]:from-black/30 [@media(max-height:700px)]:via-black/10" />
                                                 <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover/banner:bg-black/20" />
 
-                                                <div className="absolute top-4 left-4 md:top-5 md:left-5">
+                                                <div className="absolute top-4 left-4 md:top-5 md:left-5 [@media(max-height:700px)]:top-auto [@media(max-height:700px)]:left-auto [@media(max-height:700px)]:bottom-4 [@media(max-height:700px)]:right-4 [@media(max-height:700px)]:z-20">
                                                     {isLive ? (
                                                         <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
                                                             <span className="relative flex h-1.5 w-1.5">
@@ -312,7 +312,7 @@ export function Products() {
                                                 </span>
                                             </Link>
 
-                                            <div className="relative shrink-0 p-5 md:p-8 [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:z-10 [@media(max-height:700px)]:overflow-y-auto [@media(max-height:700px)]:pt-14 [@media(max-height:700px)]:bg-black/30 [@media(max-height:700px)]:backdrop-blur-[2px]">
+                                            <div className="relative shrink-0 p-5 md:p-8 [@media(max-height:700px)]:absolute [@media(max-height:700px)]:inset-0 [@media(max-height:700px)]:z-10 [@media(max-height:700px)]:overflow-y-auto [@media(max-height:700px)]:pt-6 [@media(max-height:700px)]:bg-black/60">
                                                 <div className="flex items-start justify-between gap-4 mb-3 md:mb-5">
                                                     <div>
                                                         <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-1">

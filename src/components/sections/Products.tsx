@@ -277,7 +277,7 @@ export function Products() {
                                                     <img
                                                         src={p.images.hero}
                                                         alt={p.name}
-                                                        className="size-full object-cover transition-transform duration-500 group-hover/banner:scale-105"
+                                                        className="size-full object-cover transition-transform duration-500 group-hover/banner:scale-105 [@media(max-height:700px)]:blur-md [@media(max-height:700px)]:scale-110"
                                                     />
                                                 ) : (
                                                     <div

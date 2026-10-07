@@ -179,7 +179,7 @@ export function TechStack() {
     return (
         <section
             id="tech-stack"
-            className="relative overflow-hidden bg-[var(--color-background)] md:section-padding"
+            className="relative overflow-hidden bg-[var(--color-background)] md:pt-[clamp(6rem,14vh,10rem)] md:pb-[clamp(4rem,10vh,8rem)]"
         >
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background-alt)]/30 via-transparent to-[var(--color-background-alt)]/30" />

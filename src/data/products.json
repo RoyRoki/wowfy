@@ -200,56 +200,65 @@
     }
   },
   {
-    "id": "futureclicks",
+    "id": "loopandlark",
     "code": "04",
-    "name": "FutureClicks",
-    "tagline": "AI-powered event photography, instantly yours",
-    "description": "Photographers upload live event photos straight to FutureClicks. AI face-recognition auto-tags every guest, applies trending live edits, and lets attendees scan, find and download their own photos in seconds — no scrolling through hundreds of images.",
-    "status": "upcoming",
-    "category": "AI · Event Tech",
+    "name": "Loop & Lark",
+    "tagline": "Handmade crochet, crafted into a living storefront",
+    "description": "A D2C crochet brand from Siliguri & Darjeeling with a storefront where the interface itself is crochet — one strand of yarn writes every heading and stitches every button. Static-fast Astro storefront, a custom admin, and a Creative Studio for personalised pieces.",
+    "status": "live",
+    "category": "D2C · E-commerce",
+    "url": "https://loopandlark.in/",
     "stats": [
-      { "label": "Status", "value": "In Development" }
+      { "label": "Handmade Pieces", "value": "116+" },
+      { "label": "Status", "value": "Live in Production" }
     ],
     "features": [
-      "Live photo upload straight from the event",
-      "AI face-recognition auto-tagging per guest",
-      "Trending AI live edits applied automatically",
-      "Guests scan a code to instantly find their own photos",
-      "Built for photographers to plug in and go"
+      "Canvas yarn engine — headings and buttons crocheted live, ~36 KB JS",
+      "116+ product catalogue with one SKU tracking product, URL, image & analytics",
+      "Creative Studio for custom, trend-led personalised pieces",
+      "Admin panel with photo uploads to Cloudflare R2",
+      "Publish-to-live pipeline via GitHub Actions",
+      "Full SEO: JSON-LD, OG cards, sitemap & RSS"
     ],
     "journey": [
       {
-        "title": "The Idea",
-        "date": "In Progress",
-        "content": "Event photographers spend days sorting and delivering thousands of photos, and guests rarely find the ones they're actually in. FutureClicks automates both sides.",
-        "status": "in-progress"
+        "title": "The Brand",
+        "date": "Phase 1",
+        "content": "Two college friends turned a late-night hostel crochet hobby into a brand — they needed a shop as handmade-feeling as the pieces themselves.",
+        "status": "completed"
       },
       {
-        "title": "Face Recognition Engine",
-        "date": "In Progress",
-        "content": "Building the AI pipeline that tags every guest across a live photo stream as images come in.",
-        "status": "in-progress"
+        "title": "Yarn Engine",
+        "date": "Phase 2",
+        "content": "Built a Canvas 2D engine where a single strand of yarn starts from a magic ring and writes every heading and stitches every button.",
+        "status": "completed"
       },
       {
-        "title": "Guest Discovery + AI Edits",
-        "date": "Upcoming",
-        "content": "Scan-to-find photo retrieval for guests, plus automatic trending-style live edits on top of raw shots.",
-        "status": "pending"
+        "title": "Storefront + Admin",
+        "date": "Phase 3",
+        "content": "Static Astro storefront backed by Firestore, an admin for products and journal posts, and image uploads through a Cloudflare Worker to R2.",
+        "status": "completed"
+      },
+      {
+        "title": "Where It Stands",
+        "date": "Now",
+        "content": "Live at loopandlark.in with 116+ handmade pieces, festive sales and a Creative Studio for custom orders.",
+        "status": "in-progress"
       }
     ],
-    "capabilities": ["AI face recognition", "Live photo pipeline", "Automated photo edits", "Guest self-serve discovery"],
-    "accentColor": "#A855F7",
+    "capabilities": ["Custom Canvas animation engine", "Static e-commerce storefront", "Headless admin & image pipeline", "Ecommerce analytics & SEO"],
+    "accentColor": "#E8A87C",
     "bannerPrompts": [
-      "Hero banner: A futuristic event photography app concept mockup on a smartphone, floating above a dark background with vivid purple and magenta gradient lighting suggestive of a concert or wedding event. The screen shows a photo grid with a glowing face-recognition bounding box around one face, and a 'Found 12 photos of you' notification card. Bokeh light particles like a dance floor in the background, cinematic lighting, product-shot photography style, 4k, premium AI-tech aesthetic, sense of motion and celebration. 16:9.",
-      "App screenshot mockup: A vertical smartphone screen showing the FutureClicks guest view — a QR scan prompt transitioning into a personalized photo grid of one guest across an event, with a glowing 'AI Matched' badge on each thumbnail and a download-all button. Dark UI, purple/magenta neon accents, subtle bokeh light dots in background, 4k, premium AI event-tech aesthetic.",
-      "AI pipeline screenshot: A widescreen dashboard mockup for photographers showing an upload queue of event photos flowing into a face-recognition processing panel, with detected face thumbnails being auto-tagged and sorted into guest folders in real time. Dark theme, purple/violet glow, clean data-pipeline visualization style, 4k, premium AI-SaaS product shot.",
-      "Social share / OG banner: Wide 1200x630 banner with 'FutureClicks' wordmark in bold white/purple gradient type top-left, tagline 'AI-powered event photography, instantly yours' beneath, and on the right a glowing face-recognition scan grid over a silhouette of event-goers with camera flash bokeh. Deep black background, vivid purple-to-magenta radial glow, premium AI-tech branding style."
+      "Premium product-shot banner for 'Loop & Lark', a handmade crochet e-commerce brand. A sleek laptop floating at a slight 3D angle shows a warm cream-and-terracotta storefront website: a large serif headline that looks written by a single continuous strand of yarn, product cards of crocheted amigurumi, tulip bouquets and a granny-square tote. Around the laptop on a dark charcoal surface: real crocheted tulips, a small amigurumi red panda, yarn balls in peach, sage and cream, a wooden crochet hook. Moody dark background with soft warm peach rim light, shallow depth of field, 4k, cinematic, minimal clutter, premium tech-meets-craft aesthetic. Keep the left-top area slightly darker and uncluttered.",
+      "Close-up mockup of a smartphone showing the Loop & Lark mobile shop: cream background, product grid of handmade crochet items (sunflower bouquet, pickle amigurumi, crossbody phone bag) with prices in rupees, a soft 'Diwali Sale' ribbon, and a WhatsApp order button. The phone rests on a dark linen surface beside a peach yarn ball and a crochet hook, warm studio lighting, soft shadow, 4k, premium product photography.",
+      "Concept visual of a 'yarn engine': on a dark charcoal background, a single glowing peach strand of yarn starting from a small magic ring loop, flowing in one continuous line to write the word 'Loop & Lark' in cursive and then stitching itself into a rounded website button shape. Faint UI wireframe grid behind, warm bokeh, subtle crochet stitch texture visible in the yarn, 4k, elegant, premium creative-coding aesthetic.",
+      "Wide social banner for 'Loop & Lark': on the left, the text 'Loop & Lark' in an elegant cream serif wordmark with tagline 'Little crocheted things, made slowly by hand' beneath; on the right, a styled flat-lay of crocheted tulip bouquet, amigurumi red panda and a kraft gift box with tissue paper and a handwritten note. Deep charcoal background with soft warm peach glow, high contrast, premium handmade-brand aesthetic, crisp legible text."
     ],
     "images": {
-      "hero": "/products/futureclicks/hero.webp",
-      "app": "/products/futureclicks/app.webp",
-      "feature": "/products/futureclicks/feature.webp",
-      "og": "/products/futureclicks/og.webp"
+      "hero": "/products/loopandlark/hero.webp",
+      "app": "/products/loopandlark/app.webp",
+      "feature": "/products/loopandlark/feature.webp",
+      "og": "/products/loopandlark/og.webp"
     }
   },
   {

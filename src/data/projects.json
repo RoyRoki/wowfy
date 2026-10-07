@@ -1,5 +1,158 @@
 [
     {
+        "id": "linkgen",
+        "title": "LinkGen — WhatsApp Link & Attribution Platform",
+        "year": "2026",
+        "role": "Full-Stack Development",
+        "description": "Branded WhatsApp short links for Indian businesses — pre-filled messages, campaign attribution, QR flyers and real-time click analytics. A live SaaS with paying subscribers and sub-100ms server-side redirects.",
+        "tech": [
+            "Next.js",
+            "Tailwind CSS",
+            "Firebase",
+            "Razorpay",
+            "GSAP",
+            "Recharts",
+            "Vercel"
+        ],
+        "projectType": "Own Product",
+        "image": "/projects/Works_Best/LinkGen/images/image.webp",
+        "liveUrl": "https://www.linkgen.pro/",
+        "featured": true,
+        "deviceType": "laptop",
+        "screenshots": [
+            "/projects/Works_Best/LinkGen/images/image.webp",
+            "/projects/Works_Best/LinkGen/images/image copy.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 2.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 3.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 4.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 5.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 6.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 7.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 8.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 9.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 10.webp",
+            "/projects/Works_Best/LinkGen/images/image copy 11.webp"
+        ],
+        "screenshotInfo": [
+            {
+                "title": "WhatsApp Marketing Hero",
+                "description": "Landing hero positioning LinkGen as a complete WhatsApp marketing & attribution platform — 3-day free trial CTA and a branded short link preview.",
+                "features": [
+                    "Hero",
+                    "Free Trial",
+                    "Brand Link"
+                ]
+            },
+            {
+                "title": "Instant Link Builder",
+                "description": "Generate a working WhatsApp link in one step: name, number and a pre-filled welcome message, with a live chat preview on a phone mockup.",
+                "features": [
+                    "Link Builder",
+                    "Live Preview",
+                    "Pre-filled Message"
+                ]
+            },
+            {
+                "title": "Up and Running in 2 Minutes",
+                "description": "Four-step onboarding: claim a brand link, tag every campaign, print a QR flyer, and track & export reports.",
+                "features": [
+                    "Onboarding",
+                    "UTM Tagging",
+                    "QR Flyer"
+                ]
+            },
+            {
+                "title": "Campaign Attribution",
+                "description": "Tag any link in 5 seconds and see exactly which channel — Instagram bio, Reels, paid ads, influencer shoutouts — drives WhatsApp sales.",
+                "features": [
+                    "Attribution",
+                    "1-Tap Presets",
+                    "Influencer ROI"
+                ]
+            },
+            {
+                "title": "Client-Ready Reports",
+                "description": "White-label PDF performance reports and CSV exports built for agencies — branded with the agency name for a premium client experience.",
+                "features": [
+                    "PDF Reports",
+                    "White-Label",
+                    "CSV Export"
+                ]
+            },
+            {
+                "title": "Scan-to-Chat QR Flyers",
+                "description": "Bridge offline footfall to WhatsApp with print-ready A4 table-tent flyers and vector SVG/PNG QR codes for billboards and packaging.",
+                "features": [
+                    "QR Studio",
+                    "Print-Ready A4",
+                    "Vector Export"
+                ]
+            },
+            {
+                "title": "Geo & Device Analytics",
+                "description": "See which cities and devices drive leads — city-level geographic reach and device/platform breakdowns, recorded without slowing the sub-100ms redirect.",
+                "features": [
+                    "Geo Analytics",
+                    "Device Breakdown",
+                    "Sub-100ms"
+                ]
+            },
+            {
+                "title": "Social Proof",
+                "description": "Testimonials from business owners, marketers and teams who switched from raw numbers to branded, trackable WhatsApp links.",
+                "features": [
+                    "Testimonials",
+                    "Trust",
+                    "Ratings"
+                ]
+            },
+            {
+                "title": "FAQ",
+                "description": "Answers on how the redirect works, tracking influencer sales, printing QR codes and what happens after the 3-day trial.",
+                "features": [
+                    "FAQ",
+                    "Redirect Engine",
+                    "Trial"
+                ]
+            },
+            {
+                "title": "About LinkGen",
+                "description": "Brand story page — making WhatsApp work harder for businesses — with live platform stats on uptime and redirect speed.",
+                "features": [
+                    "About",
+                    "99.9% Uptime",
+                    "<100ms Redirect"
+                ]
+            },
+            {
+                "title": "Growth Blog",
+                "description": "SEO content hub with guides like 'What is a WhatsApp Link? Complete Guide for Indian Businesses (2026)'.",
+                "features": [
+                    "Blog",
+                    "SEO",
+                    "Guides"
+                ]
+            },
+            {
+                "title": "Passwordless Login",
+                "description": "Clean auth flow with Continue with Google or a 6-digit email code — no passwords, no credit card for the trial.",
+                "features": [
+                    "Google Auth",
+                    "Email OTP",
+                    "Passwordless"
+                ]
+            }
+        ],
+        "metrics": {
+            "type": "SaaS Platform",
+            "tech": "Sub-100ms Redirects",
+            "model": "Paid Subscriptions"
+        },
+        "problem": "Businesses were sharing raw WhatsApp numbers on ads, bios and storefronts — unprofessional, impossible to track, and painful to update whenever a number changed.",
+        "solution": "Built a branded short-link platform with an instant server-side redirect engine, editable destinations, pre-filled messages, UTM-style campaign tagging, QR flyer generation and a real-time analytics dashboard, with Razorpay subscriptions.",
+        "results": "Live in production at linkgen.pro with 80+ active users and 50+ paid subscriptions a month, redirecting in under 100ms."
+    },
+    {
         "id": "formula-shop",
         "title": "The Formula Shop",
         "year": "2025",

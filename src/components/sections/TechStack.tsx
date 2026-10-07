@@ -73,7 +73,7 @@ const data = techStackData as TechStackData;
 function IconCell({ icon, name, src }: { icon?: string; name: string; src?: string }) {
     const Icon = icon ? ICONS[icon] : undefined;
     return (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-white/25 hover:bg-white/[0.06]">
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.04] p-4 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-colors hover:border-white/25 hover:bg-white/[0.08]">
             {Icon ? (
                 <Icon size={26} color="#ffffff" style={{ opacity: 0.85 }} />
             ) : src ? (
@@ -223,7 +223,7 @@ export function TechStack() {
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.6, delay: gi * 0.1 }}
                         >
-                            <GlowCard className="h-full p-6 md:p-8">
+                            <GlowCard className="h-full p-6 md:p-8 bg-white/[0.03] bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent backdrop-blur-xl border-white/[0.12] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_20px_50px_-20px_rgba(0,0,0,0.6)]">
                                 <h3 className="text-lg font-semibold text-white mb-1">{group.label}</h3>
                                 <p className="text-sm text-white/50 mb-6">{group.description}</p>
                                 <div className="grid grid-cols-3 gap-3">

@@ -46,7 +46,7 @@ export const faqData: Record<keyof typeof faqCategories, FAQEntry[]> = {
     {
       question: "How much does it cost to hire Roki Roy for a website or app?",
       answer:
-        "Landing pages start at ₹1.5 lakh, business websites at ₹2.5 lakh and startup MVP web apps at ₹5 lakh. Flutter mobile apps are quoted per project. The final price depends on scope, integrations and content, and you get a fixed quote after a short discovery call.",
+        "Landing pages start at ₹50,000, business websites at ₹85,000 and startup MVP web apps at ₹1.7 lakh. Flutter mobile apps are quoted per project. The final price depends on scope, integrations and content, and you get a fixed quote after a short discovery call.",
     },
     {
       question: "How long does it take to build a website or MVP?",

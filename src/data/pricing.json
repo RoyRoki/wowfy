@@ -2,7 +2,7 @@
     {
         "id": "business",
         "titleBadge": "BUSINESS WEBSITE",
-        "priceLabel": "₹2.5L",
+        "priceLabel": "₹85K",
         "priceSuffix": "onwards",
         "features": [
             "Multi-page premium website",
@@ -18,7 +18,7 @@
     {
         "id": "mvp",
         "titleBadge": "STARTUP MVP",
-        "priceLabel": "₹5L",
+        "priceLabel": "₹1.7L",
         "priceSuffix": "onwards",
         "features": [
             "Full-stack web app",
@@ -35,7 +35,7 @@
     {
         "id": "landing",
         "titleBadge": "LANDING PAGE",
-        "priceLabel": "₹1.5L",
+        "priceLabel": "₹50K",
         "priceSuffix": "onwards",
         "features": [
             "Single-page scroll-driven design",

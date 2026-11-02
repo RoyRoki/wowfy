@@ -65,14 +65,14 @@ export const Welcome: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#020202] to-transparent z-20 pointer-events-none" />
 
             <AnimatedMarqueeHero
-                tagline="Available for Projects · 2026"
+                tagline="Freelance projects · Siliguri, India"
                 title={
                     <>
                         Premium builds.{" "}
                         <SvgRevealText text="Zero excuses." />
                     </>
                 }
-                description="Full-stack dev based in Siliguri, leading a small senior team. I'm hands-on across design, build, and deploy — no handoffs, no delays, direct accountability."
+                description="Roki Roy works directly with startup founders and stays hands-on from product planning and design through development and deployment."
                 ctaText="See the Work"
                 images={WELCOME_IMAGES}
                 className="bg-transparent relative z-10"

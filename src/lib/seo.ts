@@ -38,8 +38,8 @@ export function siteGraph() {
       },
       image: `${SITE_URL}/opengraph-image.jpg`,
       description:
-        "Senior-led digital studio building premium websites, web apps and mobile apps for startups — Awwwards-quality design and solid engineering, shipped in weeks at a fraction of western-agency cost.",
-      slogan: "World-class design. Solid engineering. A fraction of the cost.",
+        "Roki Roy is a freelance full-stack developer in Siliguri, India, building websites, web apps and mobile apps for startups from design through deployment.",
+      slogan: "Websites and apps for startups, from idea to launch.",
       foundingDate: "2024",
       founder: { "@id": FOUNDER_ID },
       knowsAbout: [
@@ -80,10 +80,24 @@ export function siteGraph() {
     },
     {
       "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${SITE_URL}/#freelance-development`,
+      name: "Freelance web and app development for startups",
+      serviceType: [
+        "Website development",
+        "Web application development",
+        "Mobile application development",
+        "Performance auditing and refactoring",
+      ],
+      provider: { "@id": ORG_ID },
+      areaServed: { "@type": "Place", name: "Worldwide" },
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "Person",
       "@id": FOUNDER_ID,
       name: "Roki Roy",
-      jobTitle: "Founder & Full-Stack Developer",
+      jobTitle: "Freelance Full-Stack Developer & Founder",
       worksFor: { "@id": ORG_ID },
       url: SITE_URL,
       image: `${SITE_URL}/team/roki-roy.jpg`,

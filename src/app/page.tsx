@@ -14,6 +14,22 @@ import { NavBar } from "@/components/ui/tube-light-navbar";
 import { Footer } from "@/components/sections/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteGraph } from "@/lib/seo";
+import { FAQ } from "@/components/ui/faq-tabs";
+import { SvgRevealText } from "@/components/ui/svg-reveal-text";
+import { faqCategories, faqData, allFaqs } from "@/data/faqs";
+
+const freelanceFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: allFaqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
+    },
+  })),
+};
 
 export default function Home() {
   const navItems = [
@@ -29,7 +45,7 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <JsonLd data={siteGraph()} />
+      <JsonLd data={[...siteGraph(), freelanceFaqSchema]} />
       {/* <CircularRadialNav /> */}
       <NavBar items={navItems} />
       <section id="hero">
@@ -55,6 +71,36 @@ export default function Home() {
       </section>
       <section id="team">
         <Team />
+      </section>
+      <section
+        id="freelance-faq"
+        aria-labelledby="freelance-faq-title"
+        className="relative overflow-hidden bg-[#080808] px-4 py-20 md:py-28"
+      >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-[350px] left-1/2 h-[500px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-r from-violet-500/10 to-cyan-500/5 blur-3xl"
+        />
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="mx-auto mb-10 max-w-2xl text-center">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-white/40">
+              Freelance FAQs
+            </p>
+            <h2
+              id="freelance-faq-title"
+              className="link text-3xl font-extrabold tracking-tight text-white md:text-5xl"
+            >
+              Questions,{" "}
+              <SvgRevealText text="answered" />
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-white/60 md:text-lg">
+              Roki Roy is a full-stack developer based in Siliguri, India, working
+              directly with founders to plan, design, build, and deploy websites,
+              web apps, and mobile apps.
+            </p>
+          </div>
+          <FAQ categories={faqCategories} faqData={faqData} />
+        </div>
       </section>
       <section id="contact">
         <Contact />

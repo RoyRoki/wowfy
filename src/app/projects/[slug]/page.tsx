@@ -25,6 +25,23 @@ function findProject(slug: string): Project | undefined {
     return projects.find((p) => p.id === slug);
 }
 
+const SEO_SNIPPETS: Record<string, { title?: string; description?: string }> = {
+    linkgen: {
+        title: 'LinkGen — WhatsApp Link Platform',
+        description: 'Branded WhatsApp links for Indian businesses, with pre-filled messages, campaign attribution, QR flyers and real-time click analytics.',
+    },
+    'rokiroy-digital-portfolio': {
+        title: 'RokiRoy Digital Portfolio',
+    },
+    emsigner: {
+        title: 'emSigner Mobile App Development',
+    },
+    pathsathi: {
+        title: 'PathSathi Travel Platform',
+        description: 'A 3D travel platform for North Bengal and Sikkim, with immersive mountain routes and a zero-commission agency marketplace.',
+    },
+};
+
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
     const { slug } = await params;
     const project = findProject(slug);
@@ -33,8 +50,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
         return { title: 'Project Not Found' };
     }
 
-    const title = `${project.title} — ${project.role ?? 'Case Study'}`;
-    const description = project.description ?? `${project.title}, built by ${SITE_NAME}.`;
+    const snippet = SEO_SNIPPETS[project.id];
+    const title = snippet?.title ?? `${project.title} — ${project.role ?? 'Case Study'}`;
+    const description = snippet?.description ?? project.description ?? `${project.title}, built by ${SITE_NAME}.`;
     const canonical = `/projects/${project.id}/`;
     const image = project.image ? [project.image] : ['/opengraph-image.jpg'];
 

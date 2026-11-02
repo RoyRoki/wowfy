@@ -25,6 +25,16 @@ function findProduct(slug: string): Product | undefined {
     return products.find((p) => p.id === slug);
 }
 
+const SEO_SNIPPETS: Record<string, { title?: string; description?: string }> = {
+    linkgen: {
+        title: 'LinkGen — WhatsApp Link Platform',
+        description: 'Create branded, editable WhatsApp links for Indian businesses, with pre-filled messages and real-time click analytics.',
+    },
+    boombuy: {
+        description: 'A deal engine that tracks Amazon, Flipkart and Myntra discounts and shares verified offers on WhatsApp, Telegram and web.',
+    },
+};
+
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
     const { slug } = await params;
     const product = findProduct(slug);
@@ -33,8 +43,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
         return { title: 'Product Not Found' };
     }
 
-    const title = `${product.name} — ${product.tagline}`;
-    const description = product.description;
+    const snippet = SEO_SNIPPETS[product.id];
+    const title = snippet?.title ?? `${product.name} — ${product.tagline}`;
+    const description = snippet?.description ?? product.description;
     const canonical = `/products/${product.id}/`;
     const image = product.images?.og || product.images?.hero || '/opengraph-image.jpg';
 

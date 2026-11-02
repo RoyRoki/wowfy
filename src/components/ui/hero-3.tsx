@@ -116,7 +116,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 </motion.div>
 
                 {/* Main Title */}
-                <motion.h1
+                <motion.h2
                     initial="hidden"
                     animate="show"
                     variants={{
@@ -142,7 +142,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                     ) : (
                         title
                     )}
-                </motion.h1>
+                </motion.h2>
 
                 {/* Description */}
                 <motion.p

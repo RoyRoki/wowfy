@@ -30,9 +30,9 @@ const interDisplay = Inter({
 });
 
 const SITE_NAME = "RokiRoy Digital";
-const SITE_TITLE = "RokiRoy Digital | Premium Web & App Development Studio";
+const SITE_TITLE = "Roki Roy | Freelance Web & App Developer in India";
 const SITE_DESCRIPTION =
-  "RokiRoy Digital is a senior-led studio building premium websites, web apps and mobile apps for startups — Awwwards-quality design and solid engineering, shipped in weeks, at a fraction of western-agency cost. Based in Siliguri, India.";
+  "Roki Roy is a freelance full-stack developer in Siliguri, India. He builds websites, web apps and mobile apps for startups, from design through deployment.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rokiroy.in"),
@@ -50,12 +50,12 @@ export const metadata: Metadata = {
     "Next.js developer",
     "React developer",
     "Flutter developer",
-    "freelance development studio",
-    "premium website design",
-    "Awwwards-quality websites",
-    "startup product development",
-    "Siliguri web developer",
-    "India development agency",
+    "freelance web developer India",
+    "freelance full-stack developer",
+    "freelance web developer for startups",
+    "freelance app developer",
+    "startup web app development",
+    "Siliguri freelance developer",
   ],
   authors: [{ name: "Roki Roy", url: "https://www.rokiroy.in" }],
   creator: "Roki Roy",
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
-        alt: "RokiRoy Digital — Premium Web & App Development Studio",
+        alt: "Roki Roy — Freelance Web & App Developer in India",
       },
     ],
   },

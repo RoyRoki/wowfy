@@ -44,7 +44,7 @@ function FAQTabs({
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative z-10 flex flex-wrap items-center justify-center gap-3" aria-label="Filter questions by topic">
+    <div className="relative z-10 -mx-4 flex flex-nowrap items-center gap-3 overflow-x-auto px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0" aria-label="Filter questions by topic">
       {keys.map((key) => {
         const isActive = selected === key;
         return (
@@ -54,7 +54,7 @@ function FAQTabs({
             aria-pressed={isActive}
             onClick={() => setSelected(key)}
             className={cn(
-              "relative overflow-hidden whitespace-nowrap rounded-md border px-4 py-2 text-sm font-medium transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080808]",
+              "relative shrink-0 overflow-hidden whitespace-nowrap rounded-md border px-4 py-2 text-sm font-medium transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080808]",
               isActive
                 ? "border-violet-400/60 text-white"
                 : "border-white/10 bg-transparent text-white/55 hover:border-white/25 hover:text-white",
